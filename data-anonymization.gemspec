@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'data-anonymization/version'
+require 'version'
 
 Gem::Specification.new do |gem|
   gem.name          = "data-anonymization"
-  gem.version       = Data::Anonymization::VERSION
+  gem.version       = DataAnonymization::VERSION
   gem.authors       = ["Sunit Parekh"]
   gem.email         = ["parekh.sunit@gmail.com"]
   gem.description   = %q{TODO: Write a gem description}

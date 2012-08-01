@@ -1,7 +1,2 @@
-require "data-anonymization/version"
+require "version"
 
-module Data
-  module Anonymization
-    # Your code goes here...
-  end
-end
