@@ -5,6 +5,7 @@ gemspec
 
 group :development do
   gem 'foreman'
+  gem 'rake'
   gem 'rspec'
 end
 
