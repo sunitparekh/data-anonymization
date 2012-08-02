@@ -4,7 +4,6 @@ require 'data-anonymization'
 
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
-
 RSpec.configure do |config|
   config.expect_with :rspec
   config.mock_with 'rspec-mocks'
