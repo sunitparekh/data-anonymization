@@ -1,8 +1,9 @@
 require "spec_helper"
 
-describe "Dummy Test" do
+describe "Investigation & Debugging Tests" do
 
-  it "should dummy test" do
-    true.should == true
+  it "test for investigating and debugging" do
+    Invoice = Utils::SourceTable.create :invoice
+    #pry.binding
   end
 end

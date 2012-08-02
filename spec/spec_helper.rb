@@ -1,4 +1,5 @@
 require 'rspec'
+require "pry"
 require 'data-anonymization'
 
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
