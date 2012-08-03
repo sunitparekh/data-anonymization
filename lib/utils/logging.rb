@@ -1,18 +1,12 @@
+require 'active_record'
 require 'logger'
 
 module DataAnon
   module Utils
     module Logging
+      LOGGER = Logger.new(STDOUT)
       def logger
-        @logger ||= Logging.logger_for(self.class.name)
-      end
-
-      @loggers = {}
-
-      class << self
-        def logger_for(classname)
-          @loggers[classname] ||= Logger.new(STDERR)
-        end
+        LOGGER
       end
     end
   end
