@@ -4,7 +4,13 @@ require 'data-anonymization'
 
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
-ActiveRecord::Base.logger.level = Logger::WARN
+
+source = {:adapter => 'sqlite3', :database => 'sample-data/chinook.sqlite'}
+destination = {:adapter => 'sqlite3', :database => 'sample-data/chinook-empty.sqlite'}
+
+DataAnon::Utils::SourceDatabase.establish_connection source
+DataAnon::Utils::DestinationDatabase.establish_connection destination
+
 
 RSpec.configure do |config|
   config.expect_with :rspec
