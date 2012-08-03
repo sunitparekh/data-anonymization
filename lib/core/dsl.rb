@@ -25,30 +25,26 @@ module DataAnonymization
           self
         end
 
-        def primary field
-          @primary_key = field
-        end
-
         def whitelist *fields
-          fields.each { |f| @fields[f] = "whitelist" }
+          fields.each { |f| @fields[f.downcase] = Strategy::Whitelist }
         end
 
-        def default_anonymize *fields
-          fields.each { |f| @fields[f] = "default" }
+        def anonymize *fields
+          fields.each { |f| @fields[f.downcase] = Strategy::Whitelist }
         end
 
         def process
           p "--------------- Processing table #{@name} -----------------"
-          source = Utils::BaseTable.create(@name, @primary_key)
-          source.establish_connection(@source)
-          p source.count
-          dest = Utils::BaseTable.create("Abc", @primary_key)
-          dest.establish_connection(@destination)
-          p source.count
+          source = Utils::SourceTable.create @name
+          dest = Utils::DestinationTable.create @name
           source.all.each do |record|
-            p "processing record #{record}"
-            #dest_record = dest.new(record.attributes)
-            #dest_record.save!
+            p "processing record #{record.attributes}"
+            dest_record_map = {}
+            record.attributes.each do | field_name, field_value |
+              dest_record_map[field_name] = @fields[field_name.downcase].new.process( field_name, field_value )
+            end
+            dest_record = dest.new dest_record_map
+            dest_record.save!
           end
         end
       end

@@ -6,13 +6,12 @@ destination = {:adapter => 'sqlite3', :database => '/Users/sunitparekh/Projects/
 database 'chinook', source, destination do
 
   table 'Genre' do |t|
-    t.primary 'GenreId'
     t.whitelist 'GenreId'
-    t.default_anonymize 'Name'
+    t.anonymize 'Name'
+    #t.anonymize 'FieldName1', 'FieldName2' using  Strategy::Default
   end
 
   table 'MediaType' do |t|
-    t.primary 'MediaTypeId'
     t.whitelist 'MediaTypeId','Name'
   end
 
