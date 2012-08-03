@@ -9,6 +9,9 @@ database 'chinook', source, destination do
     t.whitelist 'GenreId'
     t.anonymize 'Name'
     #t.anonymize 'FieldName1', 'FieldName2' using  Strategy::Default
+    #t.anonymize 'FieldName' do |data|
+    #
+    #end
   end
 
   table 'MediaType' do |t|
