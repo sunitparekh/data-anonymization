@@ -22,14 +22,15 @@ module DataAnon
       end
 
       def anonymize *fields
-        fields.each { |f| @fields[f.downcase] = DataAnon::Strategy::Whitelist }
+        fields.each { |f| @fields[f.downcase] = DataAnon::Strategy::DefaultAnon }
       end
 
       def process
-        logger.debug "  #{@name} : Table"
         source = Utils::SourceTable.create @name, @primary_key
         dest = Utils::DestinationTable.create @name, @primary_key
+        progress_logger.info "\n#{@name} "
         source.all.each do |record|
+          progress_logger.info "."
           dest_record_map = {}
           record.attributes.each do | field_name, field_value |
             dest_record_map[field_name] = @fields[field_name.downcase].new.process( field_name, field_value )

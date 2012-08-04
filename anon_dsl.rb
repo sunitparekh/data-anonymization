@@ -5,7 +5,7 @@ require 'data-anonymization'
 source = {:adapter => 'sqlite3', :database => '../sample-data/chinook.sqlite'}
 destination = {:adapter => 'sqlite3', :database => '../sample-data/chinook-empty.sqlite'}
 
-DataAnon::Utils::Logging.logger.level = Logger::DEBUG
+DataAnon::Utils::Logging.logger.level = Logger::INFO
 ActiveRecord::Base.logger = DataAnon::Utils::Logging.logger
 
 database 'Chinook', source, destination do
