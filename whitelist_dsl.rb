@@ -26,7 +26,7 @@ database 'Chinook' do
   table 'MediaType' do |t|
     t.primary_key 'MediaTypeId'
     t.whitelist 'MediaTypeId'
-    t.anonymize('Name').using FS::StringTemplate.new('Media Type #{field.row_index}')
+    t.anonymize('Name').using FS::StringTemplate.new('Media Type #{row_number}')
 
   end
 

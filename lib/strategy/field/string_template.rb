@@ -10,7 +10,8 @@ module DataAnon
         end
 
         def anonymize field
-          eval ('"' + @template + '"')
+          context = field.instance_eval { binding }
+          eval ('"' + @template + '"'), context
         end
 
       end

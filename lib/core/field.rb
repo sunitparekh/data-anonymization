@@ -3,14 +3,14 @@ module DataAnon
 
     class Field
 
-      def initialize name, value, row_index, record
+      def initialize name, value, row_number, ar_record
         @name = name
         @value = value
-        @row_index = row_index
-        @record = record
+        @row_number = row_number
+        @ar_record = ar_record
       end
 
-      attr_accessor :name, :value, :row_index, :record
+      attr_accessor :name, :value, :row_number, :ar_record
 
     end
 
