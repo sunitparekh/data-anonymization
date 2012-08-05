@@ -11,6 +11,11 @@ destination = {:adapter => 'sqlite3', :database => 'sample-data/chinook-empty.sq
 DataAnon::Utils::SourceDatabase.establish_connection source
 DataAnon::Utils::DestinationDatabase.establish_connection destination
 
+DataAnon::Utils::Logging.logger = Logger.new(STDOUT)
+ActiveRecord::Base.logger = DataAnon::Utils::Logging.logger
+DataAnon::Utils::Logging.progress_logger = Logger.new(STDOUT)
+DataAnon::Utils::Logging.logger.level = Logger::INFO
+
 
 RSpec.configure do |config|
   config.expect_with :rspec
