@@ -8,7 +8,10 @@ destination = {:adapter => 'sqlite3', :database => '../sample-data/chinook-empty
 DataAnon::Utils::Logging.logger.level = Logger::INFO
 ActiveRecord::Base.logger = DataAnon::Utils::Logging.logger
 
-database 'Chinook', source, destination do
+database 'Chinook' do
+  strategy DataAnon::Strategy::Whitelist
+  source source_conn
+  destination destination_conn
 
   table 'Genre' do |t|
     t.primary_key 'GenreId'
