@@ -5,8 +5,12 @@ module DataAnon
 
       class StringTemplate
 
+        def initialize template
+          @template = template
+        end
+
         def anonymize field
-          "Sunit Parekh #{field.row_index}"
+          eval ('"' + @template + '"')
         end
 
       end

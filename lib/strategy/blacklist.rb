@@ -1,13 +1,22 @@
 module DataAnon
   module Strategy
-    class Blacklist < Whitelist
+    class Blacklist < DataAnon::Strategy::Whitelist
 
       def process
         source = Utils::SourceTable.create @name, @primary_key
         logger.debug "Processing table #{@name} with fields strategy using #{@fields}"
         progress_logger.info "Table: #{@name} "
+        index = 1
         source.all.each do |record|
           progress_logger.info "."
+          @fields.each do |field, strategy|
+            database_field_name = record.attributes.select { |k,v| k.downcase == field }.keys[0]
+            field_value = record.attributes[database_field_name]
+            field = DataAnon::Core::Field.new(database_field_name, field_value, index, record)
+            record[database_field_name] = strategy.anonymize(field)
+          end
+          record.save!
+          index += 1
         end
         progress_logger.info " DONE\n"
       end
