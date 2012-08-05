@@ -25,7 +25,7 @@ module DataAnon
 
     class SourceTable < BaseTable
 
-      def self.create table_name, primary_key
+      def self.create table_name, primary_key = nil
         create_table table_name, primary_key, SourceDatabase
       end
 
@@ -33,7 +33,7 @@ module DataAnon
 
     class DestinationTable < BaseTable
 
-      def self.create table_name, primary_key
+      def self.create table_name, primary_key = nil
         create_table table_name, primary_key, DestinationDatabase
       end
 

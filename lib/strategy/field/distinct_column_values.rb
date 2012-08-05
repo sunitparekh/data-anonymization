@@ -3,10 +3,12 @@ module DataAnon
     module Field
 
 
-      class RandomSelection
+      class DistinctColumnValues
 
-        def initialize values
-          @values = values.class == Array ? values : [values]
+        def initialize table_name, field_name
+          source = Utils::SourceTable.create table_name
+          @values = source.select(field_name).uniq.collect { |record| record[field_name]}
+          p @values
         end
 
         def anonymize field
