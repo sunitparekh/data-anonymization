@@ -52,7 +52,8 @@ module DataAnon
           dest_record_map = {}
           record.attributes.each do | field_name, field_value |
             field = DataAnon::Core::Field.new(field_name, field_value, index, record)
-            dest_record_map[field_name] = @fields[field_name.downcase].anonymize(field)
+            field_strategy = @fields[field_name.downcase] || DataAnon::Strategy::Field::DefaultAnon.new
+            dest_record_map[field_name] = field_strategy.anonymize(field)
           end
           dest_record = dest.new dest_record_map
           dest_record.save!
