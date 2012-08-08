@@ -30,5 +30,11 @@ database 'Chinook' do
 
   end
 
+  table 'Employee' do |t|
+    t.primary_key 'EmployeeId'
+    t.whitelist 'EmployeeId'
+    t.anonymize('BirthDate').using FS::DateTimeDelta.new(1,1)
+  end
+
 end
 
