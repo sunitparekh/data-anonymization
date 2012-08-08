@@ -10,9 +10,16 @@ describe DataAnon::Strategy::Field::DateTimeDelta do
     let(:anonymized_value) { DateTimeDelta.new().anonymize(field) }
     let(:date_difference) {anonymized_value.to_i - field.value.to_i}
 
-    it {
-      puts date_difference.inspect
-      date_difference.should_not be 0 }
+    it {date_difference.should_not be 0 }
+  end
+
+  describe 'datetime should not change when provided with 0 delta for both date and time' do
+
+    let(:anonymized_value) { DateTimeDelta.new(0,0).anonymize(field) }
+    let(:date_difference) {anonymized_value.to_i - field.value.to_i}
+
+    it {date_difference.should be 0 }
+
   end
 
   describe 'date should be anonymized within provided delta' do
