@@ -28,6 +28,5 @@ module DataAnon
   end
 end
 
-extend DataAnon::Core::DSL
-Module.send(:include, DataAnon::Core::DSL)
+include DataAnon::Core::DSL
 

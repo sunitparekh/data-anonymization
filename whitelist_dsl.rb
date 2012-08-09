@@ -7,7 +7,7 @@ FS = DataAnon::Strategy::Field
 DataAnon::Utils::Logging.logger = Logger.new(STDOUT)
 ActiveRecord::Base.logger = DataAnon::Utils::Logging.logger
 DataAnon::Utils::Logging.progress_logger = Logger.new(STDOUT)
-DataAnon::Utils::Logging.logger.level = Logger::DEBUG
+DataAnon::Utils::Logging.logger.level = Logger::INFO
 
 database 'Chinook' do
   strategy DataAnon::Strategy::Whitelist
