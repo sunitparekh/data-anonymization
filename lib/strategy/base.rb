@@ -9,7 +9,7 @@ module DataAnon
       end
 
       def process_fields &block
-        block.call self
+        self.instance_eval &block
         self
       end
 

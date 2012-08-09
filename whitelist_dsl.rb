@@ -14,26 +14,26 @@ database 'Chinook' do
   source_db :adapter => 'sqlite3', :database => 'sample-data/chinook.sqlite'
   destination_db :adapter => 'sqlite3', :database => 'sample-data/chinook-empty.sqlite'
 
-  table 'Genre' do |t|
-    t.primary_key 'GenreId'
-    t.whitelist 'GenreId'
-    t.anonymize 'Name'
-    #t.anonymize 'FieldName' do |data|
+  table 'Genre' do
+    primary_key 'GenreId'
+    whitelist 'GenreId'
+    anonymize 'Name'
+    #anonymize 'FieldName' do |data|
     #
     #end
   end
 
-  table 'MediaType' do |t|
-    t.primary_key 'MediaTypeId'
-    t.whitelist 'MediaTypeId'
-    t.anonymize('Name').using FS::StringTemplate.new('Media Type #{row_number}')
+  table 'MediaType' do
+    primary_key 'MediaTypeId'
+    whitelist 'MediaTypeId'
+    anonymize('Name').using FS::StringTemplate.new('Media Type #{row_number}')
 
   end
 
-  table 'Employee' do |t|
-    t.primary_key 'EmployeeId'
-    t.whitelist 'EmployeeId'
-    t.anonymize('BirthDate').using FS::DateTimeDelta.new(1,1)
+  table 'Employee' do
+    primary_key 'EmployeeId'
+    whitelist 'EmployeeId'
+    anonymize('BirthDate').using FS::DateTimeDelta.new(1,1)
   end
 
 end

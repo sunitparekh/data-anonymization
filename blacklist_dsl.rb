@@ -13,9 +13,9 @@ database 'Chinook' do
   strategy DataAnon::Strategy::Blacklist
   source_db :adapter => 'sqlite3', :database => 'sample-data/chinook-empty.sqlite'
 
-  table 'MediaType' do |t|
-    t.primary_key 'MediaTypeId'
-    t.anonymize('Name').using FS::StringTemplate.new('Media Type 100#{row_number}')
+  table 'MediaType' do
+    primary_key 'MediaTypeId'
+    anonymize('Name').using FS::StringTemplate.new('Media Type 100#{row_number}')
   end
 
 end
