@@ -1,12 +1,16 @@
 require 'strategy/field/whitelist'
 require 'strategy/field/string_template'
+require 'strategy/field/random_string_same_length'
 require 'strategy/field/random_int'
+require 'strategy/field/random_integer_delta'
 require 'strategy/field/random_selection'
 require 'strategy/field/distinct_column_values'
 require 'strategy/field/lorem_ipsum'
 require 'strategy/field/date_time_delta'
-
-
-
 require 'strategy/field/default_anon'
-
+require 'strategy/field/random_email'
+require 'strategy/field/random_mailinator_email'
+require 'strategy/field/random_first_name'
+require 'strategy/field/random_last_name'
+require 'strategy/field/random_full_name'
+require 'strategy/field/random_user_name'
