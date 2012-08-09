@@ -5,20 +5,18 @@ module DataAnon
   module Utils
     module Logging
 
-      @@logger = Logger.new(STDOUT)
-      @@progress_logger = Logger.new(STDOUT)
-      @@progress_logger.formatter = proc { |severity, datetime, progname, msg| msg }
-
       def logger
-        @@logger
+        @@logger ||= (self.logger = Logger.new(STDOUT) )
       end
 
       def logger= logger
         @@logger = logger
+        ActiveRecord::Base.logger = logger
+        @@logger
       end
 
       def progress_logger
-        @@progress_logger
+        @@progress_logger ||= (self.progress_logger = Logger.new(STDOUT) )
       end
 
       def progress_logger= logger
