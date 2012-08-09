@@ -19,8 +19,12 @@ module DataAnon
         DataAnon::Utils::DestinationDatabase.establish_connection connection_spec
       end
 
+      def default_field_strategies default_strategies = {}
+        @default_strategies = default_strategies
+      end
+
       def table (name, &block)
-        @strategy.new(name).process_fields(&block).process
+        @strategy.new(name, @default_strategies).process_fields(&block).process
       end
 
 

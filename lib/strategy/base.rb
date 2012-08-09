@@ -3,8 +3,9 @@ module DataAnon
     class Base
       include Utils::Logging
 
-      def initialize name
+      def initialize name, user_strategies
         @name = name
+        @user_strategies = user_strategies
         @fields = {}
       end
 
@@ -26,7 +27,7 @@ module DataAnon
       end
 
       def anonymize *fields
-        fields.each { |f| @fields[f.downcase] = DataAnon::Strategy::Field::DefaultAnon.new }
+        fields.each { |f| @fields[f.downcase] = DataAnon::Strategy::Field::DefaultAnon.new(@user_strategies) }
         temp = self
         return Class.new do
 

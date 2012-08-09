@@ -11,11 +11,13 @@ database 'Chinook' do
   source_db :adapter => 'sqlite3', :database => 'sample-data/chinook.sqlite'
   destination_db :adapter => 'sqlite3', :database => 'sample-data/chinook-empty.sqlite'
 
+  default_field_strategies  :string => FS::StringTemplate.new('Sunit #{row_number} Parekh')
+
   table 'Genre' do
     primary_key 'GenreId'
     whitelist 'GenreId'
-    anonymize 'Name'
-    #anonymize 'FieldName' do |data|
+    #anonymize('Name') { |field| "sunit@gmail.com" }
+    #anonymize 'FieldName' do |field|
     #
     #end
   end
