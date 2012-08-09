@@ -4,6 +4,11 @@ require 'logger'
 module DataAnon
   module Utils
 
+    class MassAssignmentIgnoreSanitizer < ActiveModel::MassAssignmentSecurity::Sanitizer
+      def process_removed_attributes(attrs)
+      end
+    end
+
     class SourceDatabase < ActiveRecord::Base
       self.abstract_class = true
     end
@@ -18,6 +23,7 @@ module DataAnon
         Class.new(database) do
           self.table_name = table_name
           self.primary_key = primary_key
+          self.mass_assignment_sanitizer = MassAssignmentIgnoreSanitizer.new(self)
         end
       end
 
