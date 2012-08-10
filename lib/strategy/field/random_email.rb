@@ -14,8 +14,8 @@ module DataAnon
 
         def anonymize field
 
-          username_length = rand 5...15
-          host_name_length = rand 2...10
+          username_length = Random.new.rand 5...15
+          host_name_length = Random.new.rand 2...10
 
           username = rand(36**username_length).to_s(36)
           hostname = @hostname || rand(36**host_name_length).to_s(36)

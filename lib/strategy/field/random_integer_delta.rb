@@ -10,7 +10,7 @@ module DataAnon
         end
 
         def anonymize field
-          adjustment = rand -@delta...@delta
+          adjustment = Random.new.rand -@delta...@delta
           return field.value + adjustment
         end
       end

@@ -16,7 +16,7 @@ module DataAnon
 
         def anonymize field
 
-          username_length = rand @min_length...@max_length
+          username_length = Random.new.rand @min_length...@max_length
           return rand(36**username_length).to_s(36)
 
         end
