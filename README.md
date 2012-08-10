@@ -49,20 +49,29 @@ This tool helps you to get anonymized production data dump using either Blacklis
 ## Anonymization Strategies
 
 ### Blacklist
+This approach is essentially to leave all fields unchanged with the exception of a few which are scrambled/anonymized (hence the name blacklist).
+Blacklist create a copy of prod database and choose the fields to be anonymized like e.g. username, password, email, name, geo location etc. Most of the fields had different rules e.g. password as always set to same value for all user, email need to be valid email (we used gmail trick with +N appended to it).
+Problem with this approach is, if new fields are added it will not be anonymized be default. Risk of user personal data passing through in future.
 
 ```ruby
 database 'DatabaseName' do
   strategy DataAnon::Strategy::Blacklist
+  source_db :adapter => 'sqlite3', :database => 'sample-data/chinook-empty.sqlite'
   ...
 end
 ```
 
-
 ### Whitelist
+This approach is essentially to scramble/anonymize all fields except list of fields which are allowed to copy called as whitelist.
+By default all data needs to be anonymized. So from production database sanitizing the data record by record and insert anonymized data into destination database. Source database is kind of readonly.
+Have default anonymization rules based on data types. Have special rules for fields like username, password, email, name, geo location etc. And have list of whitelist fields means its okay to copy the data and doesn't need anonymization.
+This way any new field will be default get anonymized and if we need them as is, add it to the whitelist explicitly.
 
 ```ruby
 database 'DatabaseName' do
   strategy DataAnon::Strategy::Whitelist
+  source_db :adapter => 'sqlite3', :database => 'sample-data/chinook.sqlite'
+  destination_db :adapter => 'sqlite3', :database => 'sample-data/chinook-empty.sqlite'
   ...
 end
 ```
@@ -75,11 +84,11 @@ Default anonymization strategy for string content. Uses default 'Lorem ipsum...'
 ```ruby
 anonymize('UserName').using DS::Field::LoremIpsum.new
 ```
-OR
+
 ```ruby
 anonymize('UserName').using DS::Field::LoremIpsum.new("very large string....")
 ```
-OR
+
 ```ruby
 anonymize('UserName').using DS::Field::LoremIpsum.new(File.read('my_file.txt'))
 ```
