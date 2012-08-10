@@ -1,5 +1,7 @@
 # Data::Anonymization
 
+Tool to create anonymized production data dump to use for PREF and other TEST environments.
+
 ## Getting started
 
 Install gem using:

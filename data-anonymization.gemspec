@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Sunit Parekh", "Anand Agrawal", "Satyam Agarwala"]
   gem.email         = ["parekh.sunit@gmail.com","anand.agrawal84@gmail.com", "satyamag@gmail.com"]
   gem.description   = %q{Data anonymization tool for RDBMS databases}
-  gem.summary       = %q{Tool to get anonymized production data for PREF and other TEST environments.}
+  gem.summary       = %q{Tool to create anonymized production data dump to use for PREF and other TEST environments.}
   gem.homepage      = "https://github.com/sunitparekh/data-anonymization"
 
   gem.files         = `git ls-files`.split($/)
