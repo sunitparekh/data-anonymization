@@ -10,6 +10,7 @@ Create ruby program using data-anonymization DSL as following (my_dsl.rb):
 
 ```ruby
 require 'data-anonymization'
+DF = DataAnon::Strategy::Field
 
 database 'DatabaseName' do
   strategy DataAnon::Strategy::Blacklist  # whitelist (default) or blacklist
@@ -20,7 +21,7 @@ database 'DatabaseName' do
   table 'User' do
     primary_key 'id'
     anonymize 'DateOfBirth' # uses default anonymization based on data types
-    anonymize('UserName').using DataAnon::Strategy::Field::StringTemplate.new('user#{row_number}')
+    anonymize('UserName').using DF::StringTemplate.new('user#{row_number}')
     anonymize 'Password' { |f| "password" }
   end
 
