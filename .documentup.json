@@ -1,7 +1,7 @@
 {
 	"repo":  "sunitparekh/data-anonymization",
 	"name": "Data Anonymization",
-	"theme": v1,
+	"theme": "v1",
 	"travis": true,
 	"twitter": ["sunitparekh","dataanon"]
 }
