@@ -1,0 +1,24 @@
+module DataAnon
+  module Strategy
+    module Field
+      class RandomFloatDelta
+
+        DEFAULT_DELTA = 10.0
+
+        def initialize delta = nil
+          @delta = delta || DEFAULT_DELTA
+        end
+
+        def anonymize field
+           return range(field.value-@delta,field.value+@delta)
+        end
+
+        def range (min, max)
+          Random.new.rand * (max-min) + min
+        end
+
+
+      end
+    end
+  end
+end
