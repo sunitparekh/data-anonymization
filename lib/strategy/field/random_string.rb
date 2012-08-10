@@ -1,7 +1,7 @@
 module DataAnon
   module Strategy
     module Field
-      class RandomStringSameLength
+      class RandomString
         def initialize
 
         end
@@ -16,7 +16,7 @@ module DataAnon
             anonymized_string = anonymized_string + rand(36**word.length).to_s(36) + " "
           end
 
-          return anonymized_string.strip
+          anonymized_string.strip
 
         end
       end
