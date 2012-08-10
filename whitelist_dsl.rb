@@ -16,15 +16,14 @@ database 'Chinook' do
   table 'Genre' do
     primary_key 'GenreId'
     whitelist 'GenreId'
-    #anonymize('Name') { |field| "sunit@gmail.com" }
-    #anonymize 'FieldName' do |field|
-    #
-    #end
+    anonymize 'Name' do |field|
+      field.value + " test"
+    end
   end
 
   table 'MediaType' do
     primary_key 'MediaTypeId'
-    whitelist 'MediaTypeId'
+    anonymize('MediaTypeId') { |field| field.value }  # same as whitelist
     anonymize('Name').using FS::StringTemplate.new('Media Type #{row_number}')
 
   end

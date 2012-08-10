@@ -26,18 +26,19 @@ module DataAnon
         @fields
       end
 
-      def anonymize *fields
-        fields.each { |f| @fields[f.downcase] = DataAnon::Strategy::Field::DefaultAnon.new(@user_strategies) }
-        temp = self
-        return Class.new do
-
-          @temp_fields = fields
-          @table_fields = temp.fields
-
-          def self.using field_strategy
-            @temp_fields.each { |f| @table_fields[f.downcase] = field_strategy }
+      def anonymize *fields, &block
+        if block.nil?
+          fields.each { |f| @fields[f.downcase] = DataAnon::Strategy::Field::DefaultAnon.new(@user_strategies) }
+          temp = self
+          return Class.new do
+            @temp_fields = fields
+            @table_fields = temp.fields
+            def self.using field_strategy
+              @temp_fields.each { |f| @table_fields[f.downcase] = field_strategy }
+            end
           end
-
+        else
+          fields.each { |f| @fields[f.downcase] = DataAnon::Strategy::Field::Anonymous.new(&block) }
         end
       end
 
