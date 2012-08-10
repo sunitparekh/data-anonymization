@@ -70,9 +70,18 @@ end
 ## Field Strategies
 
 ### LoremIpsum
+Default anonymization strategy for string content. Uses default 'Lorem ipsum...' text or text supplied in strategy to generate same length string.
 
 ```ruby
 anonymize('UserName').using DS::Field::LoremIpsum.new
+```
+OR
+```ruby
+anonymize('UserName').using DS::Field::LoremIpsum.new("very large string....")
+```
+OR
+```ruby
+anonymize('UserName').using DS::Field::LoremIpsum.new(File.read('my_file.txt'))
 ```
 
 ### RandomString
