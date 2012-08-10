@@ -8,7 +8,7 @@ Install gem using:
 
     $ gem install data-anonymization
 
-Create ruby program using data-anonymization DSL as following:
+Create ruby program using data-anonymization DSL as following (my_dsl.rb):
 
 ```ruby
 require 'data-anonymization'
@@ -46,11 +46,49 @@ For almost all the project it is almost a need to have production data dump to r
 However, getting production data and using it is not feasible due to multiple reasons and one of them is users personal data in database. And hence the need of data anonymization.
 This tool helps you to get anonymized production data dump using either Blacklist or Whitelist strategies.
 
+## Anonymization Strategies
+
 ### Blacklist
+
+```ruby
+database 'DatabaseName' do
+  strategy DataAnon::Strategy::Blacklist
+  ...
+end
+```
+
 
 ### Whitelist
 
+```ruby
+database 'DatabaseName' do
+  strategy DataAnon::Strategy::Whitelist
+  ...
+end
+```
 
+## Field Strategies
+
+### LorumIpsum
+
+```ruby
+anonymize('UserName').using DS::Field::LorumIpsum.new
+```
+
+### RandomString
+### DateTimeDelta
+
+
+## Default Field Strategies
+
+### Override default field strategies
+
+
+
+## Roadmap
+
+### Run anonymization in parallel (performance enchantments)
+### MongoDB anonymization support
 
 ## Contributing
 
