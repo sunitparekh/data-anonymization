@@ -5,6 +5,7 @@ module DataAnon
 
       def initialize name
         @name = name
+        @strategy = DataAnon::Strategy::Whitelist
       end
 
       def strategy strategy

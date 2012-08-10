@@ -1,9 +1,7 @@
 # Data::Anonymization
-
 Tool to create anonymized production data dump to use for PREF and other TEST environments.
 
 ## Getting started
-
 Install gem using:
 
     $ gem install data-anonymization
@@ -13,10 +11,8 @@ Create ruby program using data-anonymization DSL as following (my_dsl.rb):
 ```ruby
 require 'data-anonymization'
 
-DS = DataAnon::Strategy
-
 database 'DatabaseName' do
-  strategy DS::Blacklist  # whitelist (default) or blacklist
+  strategy DataAnon::Strategy::Blacklist  # whitelist (default) or blacklist
 
   # database config as active record connection hash
   source_db :adapter => 'sqlite3', :database => 'sample-data/chinook-empty.sqlite'
@@ -24,9 +20,8 @@ database 'DatabaseName' do
   table 'User' do
     primary_key 'id'
     anonymize 'DateOfBirth' # uses default anonymization based on data types
-    anonymize('UserName').using DS::Field::StringTemplate.new('user#{row_number}')
+    anonymize('UserName').using DataAnon::Strategy::Field::StringTemplate.new('user#{row_number}')
     anonymize 'Password' { |f| "password" }
-    ...
   end
 
   ...
