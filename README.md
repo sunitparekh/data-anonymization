@@ -115,8 +115,8 @@ end
 
 ## Examples
 
-1. [Whitelist](https://github.com/sunitparekh/data-anonymization/blob/master/blacklist_dsl.rb)
-2. [Blacklist](https://github.com/sunitparekh/data-anonymization/blob/master/whitelist_dsl.rb)
+1. [Whitelist](https://github.com/sunitparekh/data-anonymization/blob/master/whitelist_dsl.rb)
+2. [Blacklist](https://github.com/sunitparekh/data-anonymization/blob/master/blacklist_dsl.rb)
 
 
 ## Logging
