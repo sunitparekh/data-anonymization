@@ -69,26 +69,41 @@ end
 
 ## Field Strategies
 
-### LorumIpsum
+### LoremIpsum
 
 ```ruby
-anonymize('UserName').using DS::Field::LorumIpsum.new
+anonymize('UserName').using DS::Field::LoremIpsum.new
 ```
 
 ### RandomString
+### StringTemplate
 ### DateTimeDelta
+### RandomEmail
+### RandomMailinatorEmail
+### RandomUserName
+### RandomFirstName
+### RandomLastName
+### RandomFullName
+### RandomInt
+### RandomIntegerDelta
+### RandomFloatDelta
 
+### Default Field Strategies
 
-## Default Field Strategies
+Overriding default field strategies,
 
-### Override default field strategies
-
+```ruby
+database 'Chinook' do
+  default_field_strategies  :string => FS::LoremIpsum.new
+  ...
+end
+```
 
 
 ## Roadmap
 
-### Run anonymization in parallel (performance enchantments)
-### MongoDB anonymization support
+1. Run anonymization in parallel (performance enchantments)
+2. MongoDB anonymization support
 
 ## Contributing
 
