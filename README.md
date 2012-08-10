@@ -13,15 +13,19 @@ Create ruby program using data-anonymization DSL as following:
 ```ruby
 require 'data-anonymization'
 
+DS = DataAnon::Strategy
+
 database 'DatabaseName' do
-  strategy DataAnon::Strategy::Blacklist  # strategy to use whitelist or blacklist
-  source_db :adapter => 'sqlite3', :database => 'sample-data/chinook-empty.sqlite' # active record connection hash
+  strategy DS::Blacklist  # whitelist (default) or blacklist
+
+  # database config as active record connection hash
+  source_db :adapter => 'sqlite3', :database => 'sample-data/chinook-empty.sqlite'
 
   table 'User' do
     primary_key 'id'
     anonymize 'DateOfBirth' # uses default anonymization based on data types
-    anonymize('UserName').using DataAnon::Strategy::Field::StringTemplate.new('user#{row_number}')
-    anonymize 'Password' { |f| "faklsdjfkdahwriuihsfd" }
+    anonymize('UserName').using DS::Field::StringTemplate.new('user#{row_number}')
+    anonymize 'Password' { |f| "password" }
     ...
   end
 
