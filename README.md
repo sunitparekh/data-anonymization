@@ -78,15 +78,13 @@ end
 Default anonymization strategy for string content. Uses default 'Lorem ipsum...' text or text supplied in strategy to generate same length string.
 
 ```ruby
-anonymize('UserName').using DS::Field::LoremIpsum.new
+anonymize('UserName').using DF::LoremIpsum.new
 ```
-
 ```ruby
-anonymize('UserName').using DS::Field::LoremIpsum.new("very large string....")
+anonymize('UserName').using DF::LoremIpsum.new("very large string....")
 ```
-
 ```ruby
-anonymize('UserName').using DS::Field::LoremIpsum.new(File.read('my_file.txt'))
+anonymize('UserName').using DF::LoremIpsum.new(File.read('my_file.txt'))
 ```
 
 ### RandomString
@@ -108,7 +106,7 @@ Overriding default field strategies,
 
 ```ruby
 database 'Chinook' do
-  default_field_strategies  :string => FS::LoremIpsum.new
+  default_field_strategies  :string => DF::LoremIpsum.new
   ...
 end
 ```
@@ -124,12 +122,12 @@ end
 1. Progress Logger
 2. Logger
 
-## Roadmap
+## What's plan ahead? (Product Roadmap)
 
-1. Run anonymization in parallel (performance enchantments)
-2. MongoDB anonymization support
+1. Run anonymization in parallel threads (performance enchantments)
+2. MongoDB anonymization support (NoSQL document based database support)
 
-## Contributing
+## Want to help building strategies?
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
