@@ -3,5 +3,6 @@
     "name": "Data Anonymization",
     "theme": "v1",
     "travis": true,
-    "twitter": ["dataanon"]
+    "twitter": ["dataanon"],
+    "google_analytics":"UA-34000799-1"
 }
