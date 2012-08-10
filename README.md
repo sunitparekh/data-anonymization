@@ -113,6 +113,16 @@ database 'Chinook' do
 end
 ```
 
+## Examples
+
+1. [Whitelist](https://github.com/sunitparekh/data-anonymization/blob/master/blacklist_dsl.rb)
+2. [Blacklist](https://github.com/sunitparekh/data-anonymization/blob/master/whitelist_dsl.rb)
+
+
+## Logging
+
+1. Progress Logger
+2. Logger
 
 ## Roadmap
 
