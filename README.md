@@ -1,6 +1,6 @@
 # Data::Anonymization
 
-# Getting started
+## Getting started
 
 Install gem using:
 
@@ -15,11 +15,11 @@ database 'DatabaseName' do
   strategy DataAnon::Strategy::Blacklist  # strategy to use whitelist or blacklist
   source_db :adapter => 'sqlite3', :database => 'sample-data/chinook-empty.sqlite' # active record connection hash
 
-  table 'TableName' do
-    primary_key 'FieldNamePK'
-    whitelist 'FieldNameA','FieldNameB'
-    anonymize 'FieldName1','FieldName2' # uses default anonymization based on data types
-    anonymize('FieldName3').using FS::StringTemplate.new('Media Type 100#{row_number}')
+  table 'User' do
+    primary_key 'id'
+    anonymize 'DateOfBirth' # uses default anonymization based on data types
+    anonymize('UserName').using DataAnon::Strategy::Field::StringTemplate.new('user#{row_number}')
+    anonymize 'Password' { |f| "faklsdjfkdahwriuihsfd" }
     ...
   end
 
@@ -34,34 +34,17 @@ Run using:
 
 Read more to learn all the features of the tool...
 
-# What is data anonymization?
+## What is data anonymization?
 
 For almost all the project it is almost a need to have production data dump to run performance tests, rehearsal production releases and debugging production issues.
 However, getting production data and using it is not feasible due to multiple reasons and one of them is users personal data in database. And hence the need of data anonymization.
 This tool helps you to get anonymized production data dump using either Blacklist or Whitelist strategies.
 
-## Blacklist
+### Blacklist
 
-## Whitelist
-
-
+### Whitelist
 
 
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'data-anonymization'
-
-And then execute:
-
-    $ bundle
-
-Or
-
-## Usage
-
-TODO: Write usage instructions here
 
 ## Contributing
 
