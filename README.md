@@ -77,8 +77,9 @@ end
 ### LoremIpsum
 Default anonymization strategy for `string` content. Uses default 'Lorem ipsum...' text or text supplied in strategy to generate same length string.
 
-`anonymize('UserName').using DF::LoremIpsum.new`
-
+```ruby
+anonymize('UserName').using DF::LoremIpsum.new
+```
 ```ruby
 anonymize('UserName').using DF::LoremIpsum.new("very large string....")
 ```
