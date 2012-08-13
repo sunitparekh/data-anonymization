@@ -6,7 +6,7 @@ module DataAnon
         source = Utils::SourceTable.create @name, @primary_key
         dest = Utils::DestinationTable.create @name, @primary_key
         logger.debug "Processing table #{@name} with fields strategy using #{@fields}"
-        progress_logger.info "Table: #{@name} "
+        progress_logger.info "Table: #{@name} (#{source.count} records) "
         index = 1
         source.find_each(:batch_size => 2) do |record|
           progress_logger.info "."

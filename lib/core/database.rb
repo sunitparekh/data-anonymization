@@ -6,6 +6,7 @@ module DataAnon
       def initialize name
         @name = name
         @strategy = DataAnon::Strategy::Whitelist
+        @user_defaults = {}
       end
 
       def strategy strategy
@@ -20,12 +21,12 @@ module DataAnon
         DataAnon::Utils::DestinationDatabase.establish_connection connection_spec
       end
 
-      def default_field_strategies default_strategies = {}
-        @default_strategies = default_strategies
+      def default_field_strategies default_strategies
+        @user_defaults = default_strategies
       end
 
       def table (name, &block)
-        @strategy.new(name, @default_strategies).process_fields(&block).process
+        @strategy.new(name, @user_defaults).process_fields(&block).process
       end
 
 

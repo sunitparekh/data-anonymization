@@ -106,6 +106,7 @@ Overriding default field strategies,
 
 ```ruby
 database 'Chinook' do
+  ...
   default_field_strategies  :string => DF::LoremIpsum.new
   ...
 end
@@ -119,18 +120,30 @@ end
 
 ## Logging
 
-1. Progress Logger
-2. Logger
+1. Progress Logger: provides progress of anonymization table by table.
+```ruby
+DataAnon::Utils::Logging.progress_logger.level = Logger::WARN
+```
 
-## What's plan ahead? (Product Roadmap)
+2. Logger: provides debug level messages including database queries.
+```ruby
+DataAnon::Utils::Logging.logger.level = Logger::INFO
+```
+
+
+## What's plan ahead?
 
 1. Run anonymization in parallel threads (performance enchantments)
 2. MongoDB anonymization support (NoSQL document based database support)
 
-## Want to help building strategies?
+## Want to contribute?
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+
+## Credits
+
