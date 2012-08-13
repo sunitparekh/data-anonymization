@@ -17,8 +17,6 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_dependency('activerecord', '~> 3.2.7')
-  gem.add_dependency('activesupport', '~> 3.2.7')
-  gem.add_dependency('faker', '~> 1.0.1')
-
+  gem.add_dependency('activerecord', '~> 3.2.8')
+  gem.add_dependency('activesupport', '~> 3.2.8')
 end
