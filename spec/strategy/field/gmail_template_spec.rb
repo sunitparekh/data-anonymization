@@ -7,7 +7,7 @@ describe DataAnon::Strategy::Field::GmailTemplate do
 
   describe 'generated email must be compliant with the provided template' do
 
-    let(:anonymized_email) {GmailTemplate.new().anonymize(field)}
+    let(:anonymized_email) {GmailTemplate.new("fake@gmail.com").anonymize(field)}
 
     it {anonymized_email.should eq('fake+456@gmail.com')}
   end
