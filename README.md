@@ -22,7 +22,7 @@ database 'DatabaseName' do
     primary_key 'id'
     anonymize 'DateOfBirth' # uses default anonymization based on data types
     anonymize('UserName').using DF::StringTemplate.new('user#{row_number}')
-    anonymize 'Password' { |f| "password" }
+    anonymize('Password') { |field| "password" }
   end
 
   ...
@@ -78,17 +78,25 @@ end
 Default anonymization strategy for `string` content. Uses default 'Lorem ipsum...' text or text supplied in strategy to generate same length string.
 
 ```ruby
-anonymize('UserName').using DF::LoremIpsum.new
+anonymize('UserName').using DataAnon::Strategy::Field::LoremIpsum.new
 ```
 ```ruby
-anonymize('UserName').using DF::LoremIpsum.new("very large string....")
+anonymize('UserName').using DataAnon::Strategy::Field::LoremIpsum.new("very large string....")
 ```
 ```ruby
-anonymize('UserName').using DF::LoremIpsum.new(File.read('my_file.txt'))
+anonymize('UserName').using DataAnon::Strategy::Field::LoremIpsum.new(File.read('my_file.txt'))
 ```
 
 ### RandomString
+Generates random string of same length.
+```ruby
+anonymize('UserName').using DataAnon::Strategy::Field::RandomString.new
+```
+
 ### StringTemplate
+Allows to templatize the string values
+
+
 ### DateTimeDelta
 ### RandomEmail
 ### RandomMailinatorEmail
@@ -100,7 +108,46 @@ anonymize('UserName').using DF::LoremIpsum.new(File.read('my_file.txt'))
 ### RandomIntegerDelta
 ### RandomFloatDelta
 
-### Default Field Strategies
+- - -
+
+
+
+- - -
+
+### Write you own field strategies
+
+```ruby
+class MyFieldStrategy
+
+    def anonymize field
+      # write your code here, `field` has 4 attributes
+      # `name` current field name
+      # `value` current field value
+      # `row_number` current row number
+      # `ar_record` active record of the current row under processing
+    end
+
+end
+```
+
+write your own anonymous field strategies within DSL,
+
+```ruby
+database 'DatabaseName' do
+  ...
+  table 'User' do
+    ...
+    anonymize('Password') { |field| "password" }
+    anonymize('email') do |field|
+        "test+#{field.row_number}@gmail.com"
+    end
+  end
+  ...
+end
+```
+
+
+### Default field strategies
 
 Overriding default field strategies,
 
@@ -120,12 +167,14 @@ end
 
 ## Logging
 
-1. Progress Logger: provides progress of anonymization table by table.
+`Progress Logger` provides progress of anonymization execution table by table.
+
 ```ruby
 DataAnon::Utils::Logging.progress_logger.level = Logger::WARN
 ```
 
-2. Logger: provides debug level messages including database queries.
+`Logger` provides debug level messages including database queries of active record.
+
 ```ruby
 DataAnon::Utils::Logging.logger.level = Logger::INFO
 ```
