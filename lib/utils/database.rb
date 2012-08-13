@@ -9,6 +9,10 @@ module DataAnon
       end
     end
 
+    class TempDatabase < ActiveRecord::Base
+      self.abstract_class = true
+    end
+
     class SourceDatabase < ActiveRecord::Base
       self.abstract_class = true
     end
