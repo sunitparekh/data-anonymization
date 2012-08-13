@@ -12,9 +12,11 @@ module DataAnon
           progress_logger.info "."
           dest_record_map = {}
           record.attributes.each do | field_name, field_value |
-            field = DataAnon::Core::Field.new(field_name, field_value, index, record)
-            field_strategy = @fields[field_name.downcase] || DataAnon::Strategy::Field::DefaultAnon.new(@user_strategies)
-            dest_record_map[field_name] = field_strategy.anonymize(field)
+            unless field_value.nil?
+              field = DataAnon::Core::Field.new(field_name, field_value, index, record)
+              field_strategy = @fields[field_name.downcase] || DataAnon::Strategy::Field::DefaultAnon.new(@user_strategies)
+              dest_record_map[field_name] = field_strategy.anonymize(field)
+            end
           end
           dest_record = dest.new dest_record_map
           dest_record.save!

@@ -34,5 +34,11 @@ database 'Chinook' do
     anonymize('BirthDate').using FS::DateTimeDelta.new(1,1)
   end
 
+  table 'Customer' do
+    primary_key 'CustomerId'
+    anonymize('Phone').using FS::RandomPhoneNumber.new
+  end
+
+
 end
 
