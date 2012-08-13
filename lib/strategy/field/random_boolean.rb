@@ -6,8 +6,6 @@ module DataAnon
       class RandomBoolean
 
         BOOL_VALUES = [true,false]
-        def initialize
-        end
 
         def anonymize field
            BOOL_VALUES.sample

@@ -6,7 +6,9 @@ module DataAnon
 
         FS = DataAnon::Strategy::Field
         DEFAULT_STRATEGIES = {:string => FS::LoremIpsum.new,
-                              :integer => FS::RandomInt.new(18,70)
+                              :integer => FS::RandomInt.new(18,70),
+                              :datetime => FS::DateTimeDelta.new,
+                              :boolean => FS::RandomBoolean.new
         }
 
         def initialize user_defaults

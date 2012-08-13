@@ -7,9 +7,9 @@ module DataAnon
         DEFAULT_DAY_DELTA = 10
         DEFAULT_MINUTE_DELTA = 30
 
-        def initialize day_delta = nil, minute_delta = nil
-          @day_delta = day_delta || DEFAULT_DAY_DELTA
-          @minute_delta =  minute_delta || DEFAULT_MINUTE_DELTA
+        def initialize day_delta = DEFAULT_DAY_DELTA, minute_delta = DEFAULT_MINUTE_DELTA
+          @day_delta = day_delta
+          @minute_delta =  minute_delta
         end
 
         def anonymize field

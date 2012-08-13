@@ -114,17 +114,17 @@ Allows to templatize the string values
 
 - - -
 
-### Write you own field strategies
+## Write you own field strategies
 
 ```ruby
 class MyFieldStrategy
 
     def anonymize field
-      # write your code here, `field` has 4 attributes
-      # `name` current field name
-      # `value` current field value
-      # `row_number` current row number
-      # `ar_record` active record of the current row under processing
+      # write your code here, "field" parameter has
+      # name - current field name
+      # value - current field value
+      # row_number - current row number
+      # ar_record - active record of the current row under processing
     end
 
 end
@@ -133,28 +133,32 @@ end
 write your own anonymous field strategies within DSL,
 
 ```ruby
-database 'DatabaseName' do
-  ...
   table 'User' do
-    ...
     anonymize('Password') { |field| "password" }
     anonymize('email') do |field|
         "test+#{field.row_number}@gmail.com"
     end
   end
-  ...
-end
 ```
 
 
-### Default field strategies
+## Default field strategies
+
+```ruby
+# Work in progress...
+DEFAULT_STRATEGIES = {:string => FS::LoremIpsum.new,
+                      :integer => FS::RandomInt.new(18,70),
+                      :datetime => FS::DateTimeDelta.new,
+                      :boolean => FS::RandomBoolean.new
+}
+```
 
 Overriding default field strategies,
 
 ```ruby
 database 'Chinook' do
   ...
-  default_field_strategies  :string => DF::LoremIpsum.new
+  default_field_strategies  :string => DataAnon::Strategy::Field::RandomString.new
   ...
 end
 ```
