@@ -7,10 +7,11 @@ module DataAnon
 
         def initialize delta = nil
           @delta = delta || DEFAULT_DELTA
+          @number_util = DataAnon::Utils::NumberUtils.new
         end
 
         def anonymize field
-          adjustment = Random.new.rand -@delta...@delta
+          adjustment = @number_util.generate_random_int(-@delta,@delta)
           return field.value + adjustment
         end
       end
