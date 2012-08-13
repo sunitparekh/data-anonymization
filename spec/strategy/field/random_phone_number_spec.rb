@@ -8,10 +8,7 @@ describe DataAnon::Strategy::Field::RandomPhoneNumber do
   describe 'anonymized phone number should not be the same as original phone number' do
     let(:anonymized_number) {RandomPhoneNumber.new().anonymize(field)}
 
-    it {
-      puts anonymized_number
-      puts field.value
-      anonymized_number.should_not equal field.value}
+    it {anonymized_number.should_not equal field.value}
   end
 
   describe 'anonymized phone number should be the same formatting as original phone number' do

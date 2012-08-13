@@ -9,9 +9,7 @@ describe DataAnon::Strategy::Field::RandomFullName do
 
     let(:anonymized_name) {RandomFullName.new().anonymize(field)}
 
-    it {
-      puts anonymized_name.inspect
-      anonymized_name.should_not equal field.value}
+    it {anonymized_name.should_not equal field.value}
   end
 
   describe 'anonymized name should have same number of words as original' do
