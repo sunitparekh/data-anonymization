@@ -75,11 +75,10 @@ end
 ## Field Strategies
 
 ### LoremIpsum
-Default anonymization strategy for string content. Uses default 'Lorem ipsum...' text or text supplied in strategy to generate same length string.
+Default anonymization strategy for `string` content. Uses default 'Lorem ipsum...' text or text supplied in strategy to generate same length string.
 
-```ruby
-anonymize('UserName').using DF::LoremIpsum.new
-```
+`anonymize('UserName').using DF::LoremIpsum.new`
+
 ```ruby
 anonymize('UserName').using DF::LoremIpsum.new("very large string....")
 ```
@@ -144,6 +143,10 @@ DataAnon::Utils::Logging.logger.level = Logger::INFO
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
+## License
+
+[MIT License](https://github.com/sunitparekh/data-anonymization/blob/master/LICENSE.txt)
 
 ## Credits
+
 

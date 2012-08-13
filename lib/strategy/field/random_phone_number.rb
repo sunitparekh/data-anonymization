@@ -5,10 +5,6 @@ module DataAnon
 
       class RandomPhoneNumber
 
-        def initialize
-
-        end
-
         def anonymize field
           @original_phone_number = field.value
           @anonymized_phone_number = ""
