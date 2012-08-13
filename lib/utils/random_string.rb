@@ -1,12 +1,8 @@
 module DataAnon
   module Utils
-    class StringUtils
+    class RandomString
 
-      def initialize
-
-      end
-
-      def generate_random_string length = nil
+      def self.generate length = nil
         if length.nil?
           length = Random.new.rand 5...15
         end

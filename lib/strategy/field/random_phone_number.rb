@@ -6,7 +6,7 @@ module DataAnon
       class RandomPhoneNumber
 
         def initialize
-          @number_util = DataAnon::Utils::NumberUtils.new
+
         end
 
         def anonymize field
@@ -16,7 +16,7 @@ module DataAnon
             if /\d/.match(char).nil?
               @anonymized_phone_number += char
             else
-              @anonymized_phone_number += @number_util.generate_random_int(0,9).to_s
+              @anonymized_phone_number += DataAnon::Utils::RandomInt.generate(0,9).to_s
             end
           end
 

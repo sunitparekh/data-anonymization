@@ -2,9 +2,6 @@ module DataAnon
   module Strategy
     module Field
       class RandomString
-        def initialize
-          @string_util = DataAnon::Utils::StringUtils.new
-        end
 
         def anonymize field
 
@@ -13,7 +10,7 @@ module DataAnon
           anonymized_string = ""
 
           string_words.each do |word|
-            anonymized_string = anonymized_string + @string_util.generate_random_string(word.length) + " "
+            anonymized_string = anonymized_string + DataAnon::Utils::RandomString.generate(word.length) + " "
           end
 
           anonymized_string.strip

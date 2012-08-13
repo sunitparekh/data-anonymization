@@ -8,16 +8,11 @@ describe DataAnon::Strategy::Field::RandomEmail do
 
   describe 'anonymized email must be different from original email' do
 
-    let(:anonymized_value) {RandomEmail.new().anonymize(field)}
+    let(:anonymized_value) {RandomEmail.new.anonymize(field)}
 
     it {anonymized_value.should_not equal field.value}
-  end
-
-  describe 'anonymized email should be a valid email address' do
-
-    let(:anonymized_value) {RandomEmail.new().anonymize(field)}
-
     it {anonymized_value.should match '^\S+@\S+\.\S+$'}
+
   end
 
 end

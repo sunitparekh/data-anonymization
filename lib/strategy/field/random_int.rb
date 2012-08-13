@@ -8,11 +8,11 @@ module DataAnon
         def initialize from = 0, to = 100
           @from = from
           @to = to
-          @number_util = DataAnon::Utils::NumberUtils.new
+
         end
 
         def anonymize field
-          @number_util.generate_random_int(@from,@to)
+          DataAnon::Utils::RandomInt.generate(@from,@to)
         end
 
       end
