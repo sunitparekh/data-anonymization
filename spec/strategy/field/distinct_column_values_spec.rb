@@ -2,6 +2,11 @@ require "spec_helper"
 
 describe DataAnon::Strategy::Field::DistinctColumnValues do
 
+  before(:each) do
+    source = {:adapter => 'sqlite3', :database => 'sample-data/chinook.sqlite'}
+    DataAnon::Utils::SourceDatabase.establish_connection source
+  end
+
   DistinctColumnValues = DataAnon::Strategy::Field::DistinctColumnValues
   let(:field) { DataAnon::Core::Field.new('name', 'Abcd', 1, nil) }
 

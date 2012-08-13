@@ -42,6 +42,25 @@ module DataAnon
         end
       end
 
+      def dest_table
+        @dest_table ||= Utils::DestinationTable.create @name, @primary_key
+      end
+
+      def source_table
+        @source_table ||= Utils::SourceTable.create @name, @primary_key
+      end
+
+      def process
+        logger.debug "Processing table #{@name} with fields strategies #{@fields}"
+        progress_logger.info "Table: #{@name} (#{source_table.count} records) "
+        index = 1
+        source_table.find_each(:batch_size => 100) do |record|
+          progress_logger.info "."
+          process_record index, record
+          index += 1
+        end
+        progress_logger.info " DONE\n"
+      end
 
     end
   end
