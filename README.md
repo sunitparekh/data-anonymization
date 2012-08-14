@@ -183,7 +183,7 @@ anonymize('LastName').using FieldStrategy::RandomFullName.new
 anonymize('LastName').using FieldStrategy::RandomLastName.new('my_first_names.txt', 'my_last_names.txt')
 ```
 
-### RandomInt
+### RandomInteger
 ### RandomIntegerDelta
 ### RandomFloatDelta
 
