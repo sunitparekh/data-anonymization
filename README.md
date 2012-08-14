@@ -6,7 +6,7 @@ Install gem using:
 
     $ gem install data-anonymization
 
-Create ruby program using data-anonymization DSL as following (my_dsl.rb):
+Create ruby program using data-anonymization DSL as following `my_dsl.rb`:
 
 ```ruby
 require 'data-anonymization'
@@ -72,6 +72,15 @@ database 'DatabaseName' do
 end
 ```
 
+## DataAnon::Core::Field
+The object that gets passed along with the field strategies.
+
+has following for attribute accessor
+- `name` current field/column name
+- `value` current field/column value
+- `row_number` current row number
+- `ar_record` active record of the current row under processing
+
 ## Field Strategies
 
 ### LoremIpsum
@@ -94,7 +103,7 @@ anonymize('UserName').using DataAnon::Strategy::Field::RandomString.new
 ```
 
 ### StringTemplate
-Allows to templatize the string values
+Simple string evaluation with DataAnon::Core::Field in scope.
 
 
 ### DateTimeDelta
