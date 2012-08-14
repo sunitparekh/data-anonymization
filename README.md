@@ -104,7 +104,7 @@ anonymize('UserName').using DataAnon::Strategy::Field::RandomString.new
 ```
 
 ### StringTemplate
-Simple string evaluation with [DataAnon::Core::Field]:[#dataanon-core-field] in scope.
+Simple string evaluation with [DataAnon::Core::Field](#dataanon-core-field) in scope.
 
 
 ### DateTimeDelta
