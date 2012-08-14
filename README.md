@@ -14,7 +14,6 @@ Create ruby program using data-anonymization DSL as following `my_dsl.rb`:
 
 ```ruby
 require 'data-anonymization'
-DF = DataAnon::Strategy::Field
 
 database 'DatabaseName' do
   strategy DataAnon::Strategy::Blacklist  # whitelist (default) or blacklist

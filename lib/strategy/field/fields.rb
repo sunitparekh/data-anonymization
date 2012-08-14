@@ -1,25 +1,41 @@
 require 'strategy/field/whitelist'
-require 'strategy/field/select_from_file'
-require 'strategy/field/string_template'
-require 'strategy/field/random_string'
-require 'strategy/field/random_int'
 require 'strategy/field/random_boolean'
-require 'strategy/field/anonymize_time'
-require 'strategy/field/random_integer_delta'
-require 'strategy/field/random_float_delta'
-require 'strategy/field/select_from_list'
-require 'strategy/field/distinct_column_values'
-require 'strategy/field/lorem_ipsum'
-require 'strategy/field/gmail_template'
-require 'strategy/field/date_time_delta'
-require 'strategy/field/default_anon'
-require 'strategy/field/random_email'
-require 'strategy/field/random_mailinator_email'
-require 'strategy/field/random_phone_number'
-require 'strategy/field/random_first_name'
-require 'strategy/field/random_last_name'
-require 'strategy/field/random_full_name'
-require 'strategy/field/random_user_name'
 require 'strategy/field/anonymous'
+
+# string
+require 'strategy/field/string/lorem_ipsum'
+require 'strategy/field/string/string_template'
+require 'strategy/field/string/random_string'
+
+require 'strategy/field/string/select_from_file'
+require 'strategy/field/string/select_from_list'
+require 'strategy/field/string/distinct_column_values'
+
+# number
+require 'strategy/field/number/random_int'
+require 'strategy/field/number/random_integer_delta'
+require 'strategy/field/number/random_float_delta'
+
+# contact
+require 'strategy/field/contact/random_phone_number'
+
+# datetime
+require 'strategy/field/datetime/anonymize_time'
+require 'strategy/field/datetime/date_time_delta'
+
+# email
+require 'strategy/field/email/random_email'
+require 'strategy/field/email/gmail_template'
+require 'strategy/field/email/random_mailinator_email'
+
+# name
+require 'strategy/field/name/random_first_name'
+require 'strategy/field/name/random_last_name'
+require 'strategy/field/name/random_full_name'
+require 'strategy/field/name/random_user_name'
+
+
+
+require 'strategy/field/default_anon'
 
 FieldStrategy = DataAnon::Strategy::Field
