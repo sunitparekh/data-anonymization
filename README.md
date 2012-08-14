@@ -72,7 +72,7 @@ database 'DatabaseName' do
 end
 ```
 
-## [DataAnon::Core::Field]
+## DataAnon::Core::Field
 The object that gets passed along with the field strategies.
 
 has following attribute accessor
@@ -104,7 +104,7 @@ anonymize('UserName').using DataAnon::Strategy::Field::RandomString.new
 ```
 
 ### StringTemplate
-Simple string evaluation with [DataAnon::Core::Field] in scope.
+Simple string evaluation with [DataAnon::Core::Field]:[#dataanon-core-field] in scope.
 
 
 ### DateTimeDelta
