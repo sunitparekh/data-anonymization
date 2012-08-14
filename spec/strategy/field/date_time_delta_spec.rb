@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe DataAnon::Strategy::Field::DateTimeDelta do
+describe FieldStrategy::DateTimeDelta do
 
-  DateTimeDelta = DataAnon::Strategy::Field::DateTimeDelta
+  DateTimeDelta = FieldStrategy::DateTimeDelta
   let(:field) { DataAnon::Core::Field.new('date', DateTime.new(2000,1,1), 1, nil) }
 
   describe 'datetime should not remain the same' do

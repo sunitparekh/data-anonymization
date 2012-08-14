@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe DataAnon::Strategy::Field::RandomFullName do
+describe FieldStrategy::RandomFullName do
 
-  RandomFullName = DataAnon::Strategy::Field::RandomFullName
+  RandomFullName = FieldStrategy::RandomFullName
   let(:field) {DataAnon::Core::Field.new('name','Fake User',1,nil)}
 
   describe 'anonymized name should be the same as original' do

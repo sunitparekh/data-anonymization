@@ -1,7 +1,6 @@
 require 'strategy/field/whitelist'
 require 'strategy/field/select_from_file'
 require 'strategy/field/string_template'
-require 'strategy/field/user_name_template'
 require 'strategy/field/random_string'
 require 'strategy/field/random_int'
 require 'strategy/field/random_boolean'

@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe DataAnon::Strategy::Field::RandomInt do
+describe FieldStrategy::RandomInt do
 
-  RandomInt = DataAnon::Strategy::Field::RandomInt
+  RandomInt = FieldStrategy::RandomInt
   let(:field) { DataAnon::Core::Field.new('age', 25, 1, nil) }
 
   describe 'verify age range between 18 and 70' do

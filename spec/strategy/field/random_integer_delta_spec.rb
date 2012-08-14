@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe DataAnon::Strategy::Field::RandomIntegerDelta do
+describe FieldStrategy::RandomIntegerDelta do
 
-  RandomIntegerDelta = DataAnon::Strategy::Field::RandomIntegerDelta
+  RandomIntegerDelta = FieldStrategy::RandomIntegerDelta
   let(:field) {DataAnon::Core::Field.new('integer_field',100,1,nil)}
 
   describe "anonymized value returned should be an integer" do

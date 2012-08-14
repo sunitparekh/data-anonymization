@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe DataAnon::Strategy::Field::LoremIpsum do
+describe FieldStrategy::LoremIpsum do
 
-  LoremIpsum = DataAnon::Strategy::Field::LoremIpsum
+  LoremIpsum = FieldStrategy::LoremIpsum
   let(:field) { DataAnon::Core::Field.new('state', 'New Delhi', 1, nil) }
 
   describe 'should return same length value using default text' do

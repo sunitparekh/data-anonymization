@@ -15,8 +15,6 @@ describe "End 2 End RDBMS Whitelist Acceptance Test using SQLite database" do
 
   it "should anonymize customer table record " do
 
-    DF = DataAnon::Strategy::Field
-
     database "Customer" do
       strategy DataAnon::Strategy::Whitelist
       source_db source_connection_spec
@@ -25,11 +23,11 @@ describe "End 2 End RDBMS Whitelist Acceptance Test using SQLite database" do
       table 'customers' do
         primary_key 'cust_id'
         whitelist 'cust_id', 'address', 'zipcode'
-        anonymize('first_name').using DF::RandomFirstName.new
-        anonymize('last_name').using DF::RandomLastName.new
-        anonymize('state').using DF::SelectFromList.new(['Gujrat','Karnataka'])
-        anonymize('phone').using DF::RandomPhoneNumber.new
-        anonymize('email').using DF::StringTemplate.new('test+#{row_number}@gmail.com')
+        anonymize('first_name').using FieldStrategy::RandomFirstName.new
+        anonymize('last_name').using FieldStrategy::RandomLastName.new
+        anonymize('state').using FieldStrategy::SelectFromList.new(['Gujrat','Karnataka'])
+        anonymize('phone').using FieldStrategy::RandomPhoneNumber.new
+        anonymize('email').using FieldStrategy::StringTemplate.new('test+#{row_number}@gmail.com')
       end
     end
 

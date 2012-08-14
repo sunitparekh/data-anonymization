@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe DataAnon::Strategy::Field::Whitelist do
+describe FieldStrategy::Whitelist do
 
-  Whitelist = DataAnon::Strategy::Field::Whitelist
+  Whitelist = FieldStrategy::Whitelist
 
   describe 'should return same string value as whitelist' do
     let(:field) { DataAnon::Core::Field.new('state', 'New Delhi', 1, nil) }

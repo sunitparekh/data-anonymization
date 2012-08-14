@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe DataAnon::Strategy::Field::AnonymizeTime do
+describe FieldStrategy::AnonymizeTime do
 
-  AnonymizeTime = DataAnon::Strategy::Field::AnonymizeTime
+  AnonymizeTime = FieldStrategy::AnonymizeTime
   let(:field) { DataAnon::Core::Field.new('date', Time.new(2000,1,1,12,12,12), 1, nil) }
 
   describe 'providing true only for month should randomize only the month field' do

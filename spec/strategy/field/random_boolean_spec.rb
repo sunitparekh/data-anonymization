@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe DataAnon::Strategy::Field::RandomBoolean do
+describe FieldStrategy::RandomBoolean do
 
-  RandomBoolean = DataAnon::Strategy::Field::RandomBoolean
+  RandomBoolean = FieldStrategy::RandomBoolean
   let(:field) {DataAnon::Core::Field.new('boolean_field',true,1,nil)}
 
   describe 'anonymized value should be a boolean' do

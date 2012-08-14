@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe DataAnon::Strategy::Field::StringTemplate do
+describe FieldStrategy::StringTemplate do
 
-  StringTemplate = DataAnon::Strategy::Field::StringTemplate
+  StringTemplate = FieldStrategy::StringTemplate
   let(:field) { DataAnon::Core::Field.new('state', 'New Delhi', 3456, nil) }
 
   describe 'should return same string value as StringTemplate' do

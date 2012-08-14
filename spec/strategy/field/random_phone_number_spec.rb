@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe DataAnon::Strategy::Field::RandomPhoneNumber do
+describe FieldStrategy::RandomPhoneNumber do
 
-  RandomPhoneNumber = DataAnon::Strategy::Field::RandomPhoneNumber
+  RandomPhoneNumber = FieldStrategy::RandomPhoneNumber
   let(:field) {DataAnon::Core::Field.new('phone_number',"+0 (123) 456-7890",1,nil)}
 
   describe 'anonymized phone number should not be the same as original phone number' do

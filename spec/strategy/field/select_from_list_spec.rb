@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe DataAnon::Strategy::Field::SelectFromList do
+describe FieldStrategy::SelectFromList do
 
-  SelectFromList = DataAnon::Strategy::Field::SelectFromList
+  SelectFromList = FieldStrategy::SelectFromList
   let(:field) { DataAnon::Core::Field.new('state', 'New Delhi', 1, nil) }
 
   describe 'more than one values in predefined list' do

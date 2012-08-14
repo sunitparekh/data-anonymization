@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe DataAnon::Strategy::Field::RandomEmail do
+describe FieldStrategy::RandomEmail do
 
-  RandomEmail = DataAnon::Strategy::Field::RandomEmail
+  RandomEmail = FieldStrategy::RandomEmail
   let(:field) {DataAnon::Core::Field.new('email','real@email.com',1,nil)}
 
 

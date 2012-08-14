@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe DataAnon::Strategy::Field::RandomMailinatorEmail do
+describe FieldStrategy::RandomMailinatorEmail do
 
-  RandomMailinatorEmail = DataAnon::Strategy::Field::RandomMailinatorEmail
+  RandomMailinatorEmail = FieldStrategy::RandomMailinatorEmail
   let(:field) {DataAnon::Core::Field.new('email','user@company.com',1,nil)}
 
   describe 'anonymized email should not be the same as original email' do

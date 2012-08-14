@@ -1,13 +1,13 @@
 require "spec_helper"
 
-describe DataAnon::Strategy::Field::DistinctColumnValues do
+describe FieldStrategy::DistinctColumnValues do
 
   before(:each) do
     source = {:adapter => 'sqlite3', :database => 'sample-data/chinook.sqlite'}
     DataAnon::Utils::SourceDatabase.establish_connection source
   end
 
-  DistinctColumnValues = DataAnon::Strategy::Field::DistinctColumnValues
+  DistinctColumnValues = FieldStrategy::DistinctColumnValues
   let(:field) { DataAnon::Core::Field.new('name', 'Abcd', 1, nil) }
 
   describe 'more than one values in predefined list' do

@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe DataAnon::Strategy::Field::GmailTemplate do
+describe FieldStrategy::GmailTemplate do
 
-  GmailTemplate = DataAnon::Strategy::Field::GmailTemplate
+  GmailTemplate = FieldStrategy::GmailTemplate
   let(:field) {DataAnon::Core::Field.new('email','user@company.com',456,nil)}
 
   describe 'generated email must be compliant with the provided template' do

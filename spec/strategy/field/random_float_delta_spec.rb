@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe DataAnon::Strategy::Field::RandomFloatDelta do
+describe FieldStrategy::RandomFloatDelta do
 
-  RandomFloatDelta = DataAnon::Strategy::Field::RandomFloatDelta
+  RandomFloatDelta = FieldStrategy::RandomFloatDelta
   let(:field) {DataAnon::Core::Field.new('float_field',5.5,1,nil)}
 
   describe 'anonymized float should not be the same as original value' do

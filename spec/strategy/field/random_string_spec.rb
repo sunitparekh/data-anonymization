@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe DataAnon::Strategy::Field::RandomString do
+describe FieldStrategy::RandomString do
 
-  RandomString = DataAnon::Strategy::Field::RandomString
+  RandomString = FieldStrategy::RandomString
 
   describe 'anonymized string must not be the same as original string' do
     let(:field) {DataAnon::Core::Field.new('string_field','fakeString',1,nil)}
