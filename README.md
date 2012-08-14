@@ -104,12 +104,41 @@ anonymize('UserName').using DataAnon::Strategy::Field::RandomString.new
 ```
 
 ### StringTemplate
-Simple string evaluation with [DataAnon::Core::Field](#dataanon-core-field) in scope.
-
+Simple string evaluation with [DataAnon::Core::Field](#dataanon-core-field) in scope. Can be used for email, username anonymization.
+Make sure to put the string in 'single quote' else it will get evaluated inline.
+```ruby
+anonymize('UserName').using DataAnon::Strategy::Field::StringTemplate.new('user#{row_number}')
+```
+```ruby
+anonymize('Email').using DataAnon::Strategy::Field::StringTemplate.new('valid.address+#{row_number}@gmail.com')
+```
+```ruby
+anonymize('Email').using DataAnon::Strategy::Field::StringTemplate.new('useremail#{row_number}@mailinator.com')
+```
 
 ### DateTimeDelta
+Shifts data randomly within given range. Default shifts date within 10 days + or - and shifts time within 30 minutes.
+```ruby
+anonymize('DateOfBirth').using DataAnon::Strategy::Field::DateTimeDelta.new
+```
+```ruby
+# shifts date within 20 days and time within 50 minutes
+anonymize('DateOfBirth').using DataAnon::Strategy::Field::DateTimeDelta.new(20, 50)
+```
+
 ### RandomEmail
+Generates email randomly using the given HOSTNAME and TLD.
+By defaults generates hostname randomly along with email id.
+```ruby
+anonymize('DateOfBirth').using DataAnon::Strategy::Field::RandomEmail.new('thoughtworks','com')
+```
+
 ### RandomMailinatorEmail
+Generates random email using mailinator hostname. e.g. <randomstring>@mailinator.com
+```ruby
+anonymize('DateOfBirth').using DataAnon::Strategy::Field::RandomMailinatorEmail.new
+```
+
 ### RandomUserName
 ### RandomFirstName
 ### RandomLastName
