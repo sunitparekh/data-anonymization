@@ -4,11 +4,9 @@ module DataAnon
 
       class RandomFullName
 
-        def initialize
-
-          @first_name_anonymizer = DataAnon::Strategy::Field::RandomFirstName.new()
-          @last_name_anonymizer = DataAnon::Strategy::Field::RandomLastName.new()
-
+        def initialize first_names = nil, last_names = nil
+          @first_name_anonymizer = DataAnon::Strategy::Field::RandomFirstName.new(first_names)
+          @last_name_anonymizer = DataAnon::Strategy::Field::RandomLastName.new(last_names)
         end
 
         def anonymize field

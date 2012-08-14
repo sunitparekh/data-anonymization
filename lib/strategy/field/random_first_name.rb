@@ -4,17 +4,13 @@ module DataAnon
 
       class RandomFirstName
 
-        def initialize
-
+        def initialize file_path = nil
+          file = file_path || DataAnon::Utils::Resource.file('first_names.txt')
+          @names = File.read(file).split
         end
 
         def anonymize field
-
-          project_home =  File.join(File.dirname(__FILE__), '../../../')
-          name_list = File.read("#{project_home}resources/first_names.txt").split
-          size = name_list.size
-
-          return name_list[rand(size)]
+          return @names[rand(@names.size)]
         end
       end
     end

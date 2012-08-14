@@ -34,6 +34,9 @@ Run using:
 
     $ ruby my_dsl.rb
 
+### Share feedback
+Please use Github [issues](https://github.com/sunitparekh/data-anonymization/issues) to share feedback, feature suggestions or found any issues.
+
 Read more to learn all the features of the tool...
 
 ## What is data anonymization?
@@ -104,7 +107,7 @@ anonymize('UserName').using DataAnon::Strategy::Field::RandomString.new
 ```
 
 ### StringTemplate
-Simple string evaluation with [DataAnon::Core::Field](#dataanon-core-field) in scope. Can be used for email, username anonymization.
+Simple string evaluation within [DataAnon::Core::Field](#dataanon-core-field) context. Can be used for email, username anonymization.
 Make sure to put the string in 'single quote' else it will get evaluated inline.
 ```ruby
 anonymize('UserName').using DataAnon::Strategy::Field::StringTemplate.new('user#{row_number}')
@@ -154,6 +157,7 @@ anonymize('DateOfBirth').using DataAnon::Strategy::Field::RandomMailinatorEmail.
 - - -
 
 ## Write you own field strategies
+field parameter in following code is [DataAnon::Core::Field](#dataanon-core-field)
 
 ```ruby
 class MyFieldStrategy
@@ -219,6 +223,12 @@ DataAnon::Utils::Logging.progress_logger.level = Logger::WARN
 DataAnon::Utils::Logging.logger.level = Logger::INFO
 ```
 
+## Changelog
+
+
+### 0.1.1 (August 13, 2012)
+
+1. First initial release
 
 ## What's plan ahead?
 
@@ -238,5 +248,9 @@ DataAnon::Utils::Logging.logger.level = Logger::INFO
 [MIT License](https://github.com/sunitparekh/data-anonymization/blob/master/LICENSE.txt)
 
 ## Credits
+
+- [ThoughtWorks Inc](http://www.thoughtworks.com), for allowing us to build this tool and make if open source.
+- [Birinder](https://twitter.com/birinder_) and [Panda](https://twitter.com/sarbashrestha) for reviewing the documentation.
+
 
 
