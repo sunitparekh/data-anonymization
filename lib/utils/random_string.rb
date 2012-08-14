@@ -3,11 +3,11 @@ module DataAnon
     class RandomString
 
       def self.generate length = nil
-        if length.nil?
-          length = Random.new.rand 5...15
-        end
-
-        rand(36**length).to_s(36)
+        length ||= Random.new.rand 5...15
+        chars = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789'
+        random_string = ''
+        length.times { random_string << chars[rand(chars.size)] }
+        random_string
       end
     end
   end

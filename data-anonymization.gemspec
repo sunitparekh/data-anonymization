@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Tool to create anonymized production data dump to use for PREF and other TEST environments.}
   gem.homepage      = "http://sunitparekh.github.com/data-anonymization"
 
-  gem.files         = `git ls-files`.split($/)
+  gem.files         = `git ls-files`.split($/).select { |f| !f.match(/^sample-data/) }
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
