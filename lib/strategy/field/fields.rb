@@ -19,6 +19,8 @@ require 'strategy/field/number/random_float_delta'
 
 # contact
 require 'strategy/field/contact/random_phone_number'
+require 'strategy/field/contact/random_address'
+require 'strategy/field/contact/random_zipcode'
 
 # datetime
 require 'strategy/field/datetime/anonymize_time'
