@@ -76,6 +76,7 @@ end
 The object that gets passed along with the field strategies.
 
 has following for attribute accessor
+
 - `name` current field/column name
 - `value` current field/column value
 - `row_number` current row number
