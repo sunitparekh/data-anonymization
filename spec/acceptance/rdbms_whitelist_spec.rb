@@ -27,7 +27,7 @@ describe "End 2 End RDBMS Whitelist Acceptance Test using SQLite database" do
         whitelist 'cust_id', 'address', 'zipcode'
         anonymize('first_name').using DF::RandomFirstName.new
         anonymize('last_name').using DF::RandomLastName.new
-        anonymize('state').using DF::RandomSelection.new(['Gujrat','Karnataka'])
+        anonymize('state').using DF::SelectFromList.new(['Gujrat','Karnataka'])
         anonymize('phone').using DF::RandomPhoneNumber.new
         anonymize('email').using DF::StringTemplate.new('test+#{row_number}@gmail.com')
       end

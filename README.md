@@ -147,9 +147,41 @@ anonymize('DateOfBirth').using DataAnon::Strategy::Field::RandomMailinatorEmail.
 ```
 
 ### RandomUserName
+Generates random user name of same length.
+```ruby
+anonymize('DateOfBirth').using DataAnon::Strategy::Field::RandomUserName.new
+```
+
 ### RandomFirstName
+Randomly picks up first name from the predefined list in the file. Default [file](https://raw.github.com/sunitparekh/data-anonymization/master/resources/first_names.txt) is part of the gem.
+File should contain first name on each line.
+```ruby
+anonymize('FirstName').using DataAnon::Strategy::Field::RandomFirstName.new
+```
+```ruby
+anonymize('FirstName').using DataAnon::Strategy::Field::RandomFirstName.new('my_first_names.txt')
+```
+
 ### RandomLastName
+Randomly picks up last name from the predefined list in the file. Default [file](https://raw.github.com/sunitparekh/data-anonymization/master/resources/last_names.txt) is part of the gem.
+File should contain last name on each line.
+```ruby
+anonymize('LastName').using DataAnon::Strategy::Field::RandomLastName.new
+```
+```ruby
+anonymize('LastName').using DataAnon::Strategy::Field::RandomLastName.new('my_last_names.txt')
+```
+
 ### RandomFullName
+Generates full name using the RandomFirstName and RandomLastName strategies.
+It also creates the s
+```ruby
+anonymize('LastName').using DataAnon::Strategy::Field::RandomFullName.new
+```
+```ruby
+anonymize('LastName').using DataAnon::Strategy::Field::RandomLastName.new('my_first_names.txt', 'my_last_names.txt')
+```
+
 ### RandomInt
 ### RandomIntegerDelta
 ### RandomFloatDelta
@@ -189,7 +221,7 @@ write your own anonymous field strategies within DSL,
 ## Default field strategies
 
 ```ruby
-# Work in progress...
+# Work in progress... TO BE COMPLETED
 DEFAULT_STRATEGIES = {:string => FS::LoremIpsum.new,
                       :integer => FS::RandomInt.new(18,70),
                       :datetime => FS::DateTimeDelta.new,
@@ -231,17 +263,22 @@ DataAnon::Utils::Logging.logger.level = Logger::INFO
 
 #### 0.1.2 (August 14, 2012)
 
-1. Removed large sample data file from the gem
-2. Refactored RandomFirstName, RandomLastName and RandomFullName to allow user specified names file
-
-#### 0.1.1 (August 13, 2012)
-
 1. First initial release
 
-## What's plan ahead?
+## Roadmap
+
+#### 0.2.0 (Mid August 2012)
+
+1. Complete list of all the field strategies planned supporting all data types
+
+#### 0.3.0 (End August 2012)
 
 1. Run anonymization in parallel threads (performance enchantments)
-2. MongoDB anonymization support (NoSQL document based database support)
+
+#### 0.4.0 (Early Sep 2012)
+
+1. MongoDB anonymization support (NoSQL document based database support)
+
 
 ## Want to contribute?
 
