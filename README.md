@@ -6,6 +6,10 @@ Install gem using:
 
     $ gem install data-anonymization
 
+Install required database adapter library for active record:
+
+    $ gem install sqlite3
+
 Create ruby program using data-anonymization DSL as following `my_dsl.rb`:
 
 ```ruby

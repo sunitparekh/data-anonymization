@@ -2,6 +2,7 @@
     "repo":  "sunitparekh/data-anonymization",
     "name": "Data Anonymization",
     "theme": "v1",
+    "color": "#336699",
     "travis": true,
     "twitter": ["dataanon"],
     "google_analytics":"UA-34000799-1"
