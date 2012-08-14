@@ -3,13 +3,12 @@ module DataAnon
     module Field
       class GmailTemplate
 
-        def initialize gmail_address = nil
-          @gmail_address = gmail_address
+        def initialize username = 'someusername'
+          @username = username
         end
 
         def anonymize field
-          username = @gmail_address[0,@gmail_address.index('@')]
-          "#{username}+#{field.row_number}@gmail.com"
+          "#{@username}+#{field.row_number}@gmail.com"
         end
       end
     end
