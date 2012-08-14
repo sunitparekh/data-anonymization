@@ -1,13 +1,13 @@
 require "spec_helper"
 
-describe FieldStrategy::RandomInt do
+describe FieldStrategy::RandomInteger do
 
-  RandomInt = FieldStrategy::RandomInt
+  RandomInteger = FieldStrategy::RandomInteger
   let(:field) { DataAnon::Core::Field.new('age', 25, 1, nil) }
 
   describe 'verify age range between 18 and 70' do
 
-    let(:anonymized_int) { RandomInt.new(18, 70).anonymize(field) }
+    let(:anonymized_int) { RandomInteger.new(18, 70).anonymize(field) }
 
     it { anonymized_int.should >= 18 }
     it { anonymized_int.should <= 70 }
@@ -16,7 +16,7 @@ describe FieldStrategy::RandomInt do
 
   describe 'default range between 0 and 100' do
 
-    let(:anonymized_int) { RandomInt.new.anonymize(field) }
+    let(:anonymized_int) { RandomInteger.new.anonymize(field) }
 
     it { anonymized_int.should >= 0 }
     it { anonymized_int.should <= 100 }

@@ -4,11 +4,13 @@ module DataAnon
 
       class DefaultAnon
 
-        FS = DataAnon::Strategy::Field
-        DEFAULT_STRATEGIES = {:string => FS::LoremIpsum.new,
-                              :integer => FS::RandomInt.new(18,70),
-                              :datetime => FS::DateTimeDelta.new,
-                              :boolean => FS::RandomBoolean.new
+        DEFAULT_STRATEGIES = {:string => FieldStrategy::LoremIpsum.new,
+                              :integer => FieldStrategy::RandomIntegerDelta.new(5),
+                              :float => FieldStrategy::RandomFloatDelta.new(5.0),
+                              :datetime => FieldStrategy::DateTimeDelta.new,
+                              :time => FieldStrategy::TimeDelta.new,
+                              :date => FieldStrategy::DateDelta.new,
+                              :boolean => FieldStrategy::RandomBoolean.new
         }
 
         def initialize user_defaults
@@ -16,7 +18,7 @@ module DataAnon
         end
 
         def anonymize field
-          strategy = @user_defaults[field.value.class.to_s.downcase.to_sym] || FS::Whitelist.new
+          strategy = @user_defaults[field.value.class.to_s.downcase.to_sym] || FieldStrategy::Whitelist.new
           strategy.anonymize field
         end
 

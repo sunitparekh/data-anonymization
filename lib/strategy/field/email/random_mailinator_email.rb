@@ -9,9 +9,7 @@ module DataAnon
         end
 
         def anonymize field
-
           return @email_anonymizer.anonymize(field)
-
         end
       end
     end

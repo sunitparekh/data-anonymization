@@ -5,8 +5,8 @@ module DataAnon
 
         DEFAULT_DELTA = 10.0
 
-        def initialize delta = nil
-          @delta = delta || DEFAULT_DELTA
+        def initialize delta = DEFAULT_DELTA
+          @delta = delta
         end
 
         def anonymize field

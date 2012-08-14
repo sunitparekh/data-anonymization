@@ -10,7 +10,7 @@ describe FieldStrategy::GmailTemplate do
     it { anonymized_email.should eq('someusername+456@gmail.com') }
   end
 
-  describe 'generated email must be compliant with the provided template' do
+  describe 'generated email using given username' do
     let(:anonymized_email) { GmailTemplate.new("fake").anonymize(field) }
     it { anonymized_email.should eq('fake+456@gmail.com') }
   end

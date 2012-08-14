@@ -12,7 +12,7 @@ require 'strategy/field/string/select_from_list'
 require 'strategy/field/string/distinct_column_values'
 
 # number
-require 'strategy/field/number/random_int'
+require 'strategy/field/number/random_integer'
 require 'strategy/field/number/random_integer_delta'
 require 'strategy/field/number/random_float_delta'
 
@@ -21,7 +21,11 @@ require 'strategy/field/contact/random_phone_number'
 
 # datetime
 require 'strategy/field/datetime/anonymize_time'
+require 'strategy/field/datetime/anonymize_datetime'
+require 'strategy/field/datetime/anonymize_date'
 require 'strategy/field/datetime/date_time_delta'
+require 'strategy/field/datetime/time_delta'
+require 'strategy/field/datetime/date_delta'
 
 # email
 require 'strategy/field/email/random_email'
@@ -36,6 +40,7 @@ require 'strategy/field/name/random_user_name'
 
 
 
+FieldStrategy = DataAnon::Strategy::Field
+
 require 'strategy/field/default_anon'
 
-FieldStrategy = DataAnon::Strategy::Field

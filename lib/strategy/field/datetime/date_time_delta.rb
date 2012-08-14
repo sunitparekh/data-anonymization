@@ -13,9 +13,9 @@ module DataAnon
         end
 
         def anonymize field
-          day_adjustment = @day_delta==0? 0 : (DataAnon::Utils::RandomInt.generate(-@day_delta,@day_delta))
-          minute_adjustment = @minute_delta==0? 0 :  (DataAnon::Utils::RandomInt.generate(-@minute_delta,@minute_delta))
-          return field.value + day_adjustment.days + minute_adjustment.minutes
+          day_adjustment = DataAnon::Utils::RandomInt.generate(-@day_delta,@day_delta)
+          minute_adjustment = DataAnon::Utils::RandomInt.generate(-@minute_delta,@minute_delta)
+          return field.value + (day_adjustment.days + minute_adjustment.minutes)
         end
 
       end

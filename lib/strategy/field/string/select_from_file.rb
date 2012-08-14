@@ -9,7 +9,6 @@ module DataAnon
         end
 
         def anonymize field
-          return @values[0] if @values.length == 1
           return @values[DataAnon::Utils::RandomInt.generate(0,(@values.length - 1))]
         end
 

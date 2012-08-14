@@ -3,7 +3,7 @@ module DataAnon
     module Field
 
 
-      class RandomInt
+      class RandomInteger
 
         def initialize from = 0, to = 100
           @from = from
