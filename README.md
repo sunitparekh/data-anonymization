@@ -225,8 +225,12 @@ DataAnon::Utils::Logging.logger.level = Logger::INFO
 
 ## Changelog
 
+#### 0.1.2 (August 14, 2012)
 
-### 0.1.1 (August 13, 2012)
+1. Removed large sample data file from the gem
+2. Refactored RandomFirstName, RandomLastName and RandomFullName to allow user specified names file
+
+#### 0.1.1 (August 13, 2012)
 
 1. First initial release
 
