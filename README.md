@@ -22,10 +22,12 @@ database 'DatabaseName' do
   # database config as active record connection hash
   source_db :adapter => 'sqlite3', :database => 'sample-data/chinook-empty.sqlite'
 
+  # User -> table name
   table 'User' do
+    # id, DateOfBirth, FirstName, LastName, UserName, Password -> table column names
     primary_key 'id'
-    anonymize 'DateOfBirth' # uses default anonymization based on data types
-    anonymize('UserName').using DF::StringTemplate.new('user#{row_number}')
+    anonymize 'DateOfBirth','FirstName','LastName' # uses default anonymization based on data types
+    anonymize('UserName').using FieldStrategy::StringTemplate.new('user#{row_number}')
     anonymize('Password') { |field| "password" }
   end
 
@@ -95,91 +97,91 @@ has following attribute accessor
 Default anonymization strategy for `string` content. Uses default 'Lorem ipsum...' text or text supplied in strategy to generate same length string.
 
 ```ruby
-anonymize('UserName').using DataAnon::Strategy::Field::LoremIpsum.new
+anonymize('UserName').using FieldStrategy::LoremIpsum.new
 ```
 ```ruby
-anonymize('UserName').using DataAnon::Strategy::Field::LoremIpsum.new("very large string....")
+anonymize('UserName').using FieldStrategy::LoremIpsum.new("very large string....")
 ```
 ```ruby
-anonymize('UserName').using DataAnon::Strategy::Field::LoremIpsum.new(File.read('my_file.txt'))
+anonymize('UserName').using FieldStrategy::LoremIpsum.new(File.read('my_file.txt'))
 ```
 
 ### RandomString
 Generates random string of same length.
 ```ruby
-anonymize('UserName').using DataAnon::Strategy::Field::RandomString.new
+anonymize('UserName').using FieldStrategy::RandomString.new
 ```
 
 ### StringTemplate
 Simple string evaluation within [DataAnon::Core::Field](#dataanon-core-field) context. Can be used for email, username anonymization.
 Make sure to put the string in 'single quote' else it will get evaluated inline.
 ```ruby
-anonymize('UserName').using DataAnon::Strategy::Field::StringTemplate.new('user#{row_number}')
+anonymize('UserName').using FieldStrategy::StringTemplate.new('user#{row_number}')
 ```
 ```ruby
-anonymize('Email').using DataAnon::Strategy::Field::StringTemplate.new('valid.address+#{row_number}@gmail.com')
+anonymize('Email').using FieldStrategy::StringTemplate.new('valid.address+#{row_number}@gmail.com')
 ```
 ```ruby
-anonymize('Email').using DataAnon::Strategy::Field::StringTemplate.new('useremail#{row_number}@mailinator.com')
+anonymize('Email').using FieldStrategy::StringTemplate.new('useremail#{row_number}@mailinator.com')
 ```
 
 ### DateTimeDelta
 Shifts data randomly within given range. Default shifts date within 10 days + or - and shifts time within 30 minutes.
 ```ruby
-anonymize('DateOfBirth').using DataAnon::Strategy::Field::DateTimeDelta.new
+anonymize('DateOfBirth').using FieldStrategy::DateTimeDelta.new
 ```
 ```ruby
 # shifts date within 20 days and time within 50 minutes
-anonymize('DateOfBirth').using DataAnon::Strategy::Field::DateTimeDelta.new(20, 50)
+anonymize('DateOfBirth').using FieldStrategy::DateTimeDelta.new(20, 50)
 ```
 
 ### RandomEmail
 Generates email randomly using the given HOSTNAME and TLD.
 By defaults generates hostname randomly along with email id.
 ```ruby
-anonymize('DateOfBirth').using DataAnon::Strategy::Field::RandomEmail.new('thoughtworks','com')
+anonymize('DateOfBirth').using FieldStrategy::RandomEmail.new('thoughtworks','com')
 ```
 
 ### RandomMailinatorEmail
 Generates random email using mailinator hostname. e.g. <randomstring>@mailinator.com
 ```ruby
-anonymize('DateOfBirth').using DataAnon::Strategy::Field::RandomMailinatorEmail.new
+anonymize('DateOfBirth').using FieldStrategy::RandomMailinatorEmail.new
 ```
 
 ### RandomUserName
 Generates random user name of same length.
 ```ruby
-anonymize('DateOfBirth').using DataAnon::Strategy::Field::RandomUserName.new
+anonymize('DateOfBirth').using FieldStrategy::RandomUserName.new
 ```
 
 ### RandomFirstName
 Randomly picks up first name from the predefined list in the file. Default [file](https://raw.github.com/sunitparekh/data-anonymization/master/resources/first_names.txt) is part of the gem.
 File should contain first name on each line.
 ```ruby
-anonymize('FirstName').using DataAnon::Strategy::Field::RandomFirstName.new
+anonymize('FirstName').using FieldStrategy::RandomFirstName.new
 ```
 ```ruby
-anonymize('FirstName').using DataAnon::Strategy::Field::RandomFirstName.new('my_first_names.txt')
+anonymize('FirstName').using FieldStrategy::RandomFirstName.new('my_first_names.txt')
 ```
 
 ### RandomLastName
 Randomly picks up last name from the predefined list in the file. Default [file](https://raw.github.com/sunitparekh/data-anonymization/master/resources/last_names.txt) is part of the gem.
 File should contain last name on each line.
 ```ruby
-anonymize('LastName').using DataAnon::Strategy::Field::RandomLastName.new
+anonymize('LastName').using FieldStrategy::RandomLastName.new
 ```
 ```ruby
-anonymize('LastName').using DataAnon::Strategy::Field::RandomLastName.new('my_last_names.txt')
+anonymize('LastName').using FieldStrategy::RandomLastName.new('my_last_names.txt')
 ```
 
 ### RandomFullName
 Generates full name using the RandomFirstName and RandomLastName strategies.
 It also creates the s
 ```ruby
-anonymize('LastName').using DataAnon::Strategy::Field::RandomFullName.new
+anonymize('LastName').using FieldStrategy::RandomFullName.new
 ```
 ```ruby
-anonymize('LastName').using DataAnon::Strategy::Field::RandomLastName.new('my_first_names.txt', 'my_last_names.txt')
+anonymize('LastName').using FieldStrategy::RandomLastName.new('my_first_names.txt', 'my_last_names.txt')
 ```
 
 ### RandomInt
@@ -234,7 +236,7 @@ Overriding default field strategies,
 ```ruby
 database 'Chinook' do
   ...
-  default_field_strategies  :string => DataAnon::Strategy::Field::RandomString.new
+  default_field_strategies  :string => FieldStrategy::RandomString.new
   ...
 end
 ```

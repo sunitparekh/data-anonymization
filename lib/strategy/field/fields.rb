@@ -22,3 +22,5 @@ require 'strategy/field/random_last_name'
 require 'strategy/field/random_full_name'
 require 'strategy/field/random_user_name'
 require 'strategy/field/anonymous'
+
+FieldStrategy = DataAnon::Strategy::Field

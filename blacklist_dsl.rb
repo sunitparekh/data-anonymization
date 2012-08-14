@@ -2,8 +2,6 @@ system "bundle exec ruby whitelist_dsl.rb"
 
 require 'data-anonymization'
 
-FS = DataAnon::Strategy::Field
-
 DataAnon::Utils::Logging.logger.level = Logger::INFO
 
 database 'Chinook' do
@@ -12,7 +10,7 @@ database 'Chinook' do
 
   table 'MediaType' do
     primary_key 'MediaTypeId'
-    anonymize('Name').using FS::StringTemplate.new('Media Type 100#{row_number}')
+    anonymize('Name').using FieldStrategy::StringTemplate.new('Media Type 100#{row_number}')
   end
 
 end
