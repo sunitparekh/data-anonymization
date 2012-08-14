@@ -2,7 +2,7 @@ module DataAnon
   module Strategy
     module Field
 
-      class DistinctColumnValues
+      class SelectFromDatabase
         include Utils::Logging
 
         def initialize table_name, field_name

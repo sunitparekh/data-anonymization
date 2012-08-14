@@ -3,9 +3,7 @@ module DataAnon
     module Field
       class RandomFloatDelta
 
-        DEFAULT_DELTA = 10.0
-
-        def initialize delta = DEFAULT_DELTA
+        def initialize delta = 10.0
           @delta = delta
         end
 

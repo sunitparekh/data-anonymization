@@ -3,11 +3,8 @@ module DataAnon
     module Field
       class RandomIntegerDelta
 
-        DEFAULT_DELTA = 10
-
-        def initialize delta = DEFAULT_DELTA
+        def initialize delta = 10
           @delta = delta
-
         end
 
         def anonymize field

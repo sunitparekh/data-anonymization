@@ -39,10 +39,8 @@ Run using:
 
     $ ruby my_dsl.rb
 
-### Share feedback
-Please use Github [issues](https://github.com/sunitparekh/data-anonymization/issues) to share feedback, feature suggestions or found any issues.
-
-Read more to learn all the features of the tool...
+#### Share feedback
+Please use Github [issues](https://github.com/sunitparekh/data-anonymization/issues) to share feedback, feature suggestions and report issues.
 
 ## What is data anonymization?
 
@@ -124,6 +122,21 @@ anonymize('Email').using FieldStrategy::StringTemplate.new('valid.address+#{row_
 anonymize('Email').using FieldStrategy::StringTemplate.new('useremail#{row_number}@mailinator.com')
 ```
 
+### SelectFromList
+Select randomly one of the values specified.
+```ruby
+anonymize('State').using FieldStrategy::SelectFromList.new(['New York','Georgia',...])
+```
+```ruby
+anonymize('NameTitle').using FieldStrategy::SelectFromList.new(['Mr','Mrs','Dr',...])
+```
+
+### SelectFromFile
+Similar to SelectFromList only difference is the list of values are picked up from file. Classical usage is like states field anonymization.
+```ruby
+anonymize('State').using FieldStrategy::SelectFromFile.new('states.txt')
+```
+
 ### DateTimeDelta
 Shifts data randomly within given range. Default shifts date within 10 days + or - and shifts time within 30 minutes.
 ```ruby
@@ -138,19 +151,19 @@ anonymize('DateOfBirth').using FieldStrategy::DateTimeDelta.new(20, 50)
 Generates email randomly using the given HOSTNAME and TLD.
 By defaults generates hostname randomly along with email id.
 ```ruby
-anonymize('DateOfBirth').using FieldStrategy::RandomEmail.new('thoughtworks','com')
+anonymize('Email').using FieldStrategy::RandomEmail.new('thoughtworks','com')
 ```
 
 ### RandomMailinatorEmail
 Generates random email using mailinator hostname. e.g. <randomstring>@mailinator.com
 ```ruby
-anonymize('DateOfBirth').using FieldStrategy::RandomMailinatorEmail.new
+anonymize('Email').using FieldStrategy::RandomMailinatorEmail.new
 ```
 
 ### RandomUserName
 Generates random user name of same length.
 ```ruby
-anonymize('DateOfBirth').using FieldStrategy::RandomUserName.new
+anonymize('Username').using FieldStrategy::RandomUserName.new
 ```
 
 ### RandomFirstName
@@ -177,21 +190,29 @@ anonymize('LastName').using FieldStrategy::RandomLastName.new('my_last_names.txt
 Generates full name using the RandomFirstName and RandomLastName strategies.
 It also creates the s
 ```ruby
-anonymize('LastName').using FieldStrategy::RandomFullName.new
+anonymize('FullName').using FieldStrategy::RandomFullName.new
 ```
 ```ruby
-anonymize('LastName').using FieldStrategy::RandomLastName.new('my_first_names.txt', 'my_last_names.txt')
+anonymize('FullName').using FieldStrategy::RandomLastName.new('my_first_names.txt', 'my_last_names.txt')
 ```
 
 ### RandomInteger
+Generates random integer number between given two numbers. Default range is 0 to 100.
+```ruby
+anonymize('Age').using FieldStrategy::RandomInteger.new(18,70)
+```
+
 ### RandomIntegerDelta
+Shifts the current value randomly within given delta + and -. Default is 10
+```ruby
+anonymize('Age').using FieldStrategy::RandomIntegerDelta.new(2)
+```
+
 ### RandomFloatDelta
-
-- - -
-
-
-
-- - -
+Shifts the current value randomly within given delta + and -. Default is 10.0
+```ruby
+anonymize('Points').using FieldStrategy::RandomFloatDelta.new(2.5)
+```
 
 ## Write you own field strategies
 field parameter in following code is [DataAnon::Core::Field](#dataanon-core-field)

@@ -10,7 +10,7 @@ require 'strategy/field/string/random_string'
 
 require 'strategy/field/string/select_from_file'
 require 'strategy/field/string/select_from_list'
-require 'strategy/field/string/distinct_column_values'
+require 'strategy/field/string/select_from_database'
 
 # number
 require 'strategy/field/number/random_integer'
