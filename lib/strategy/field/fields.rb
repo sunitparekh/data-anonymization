@@ -1,5 +1,6 @@
 require 'strategy/field/whitelist'
 require 'strategy/field/random_boolean'
+
 require 'strategy/field/anonymous'
 
 # string
