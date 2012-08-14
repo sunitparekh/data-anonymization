@@ -40,7 +40,7 @@ module DataAnon
           day = @anonymize_day? DataAnon::Utils::RandomInt.generate(1,31) : provided_time.day
           hour = @anonymize_hour? DataAnon::Utils::RandomInt.generate(1,24) : provided_time.hour
           min = @anonymize_min? DataAnon::Utils::RandomInt.generate(1,60) : provided_time.min
-          sec = @anonymize_sec? DataAnon::Utils::RandomInt.generate (1,60) : provided_time.sec
+          sec = @anonymize_sec? DataAnon::Utils::RandomInt.generate(1,60) : provided_time.sec
 
           create_object(day, hour, min, month, sec, year)
         end
