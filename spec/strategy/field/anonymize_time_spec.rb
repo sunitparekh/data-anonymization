@@ -20,6 +20,4 @@ describe DataAnon::Strategy::Field::AnonymizeTime do
     }
   end
 
-
-
 end

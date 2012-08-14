@@ -30,19 +30,17 @@ module DataAnon
           @anonymize_min = anonymize_min
           @anonymize_sec = anonymize_sec
 
-          @number_util = DataAnon::Utils::NumberUtils.new
-
         end
 
         def anonymize field
 
           provided_time = field.value
           year = provided_time.year
-          month = @anonymize_month? @number_util.generate_random_int(1,12) : provided_time.month
-          day = @anonymize_day? @number_util.generate_random_int(1,31) : provided_time.day
-          hour = @anonymize_hour? @number_util.generate_random_int(1,24) : provided_time.hour
-          min = @anonymize_min? @number_util.generate_random_int(1,60) : provided_time.min
-          sec = @anonymize_sec? @number_util.generate_random_int(1,60) : provided_time.sec
+          month = @anonymize_month? DataAnon::Utils::RandomInt.generate(1,12) : provided_time.month
+          day = @anonymize_day? DataAnon::Utils::RandomInt.generate(1,31) : provided_time.day
+          hour = @anonymize_hour? DataAnon::Utils::RandomInt.generate(1,24) : provided_time.hour
+          min = @anonymize_min? DataAnon::Utils::RandomInt.generate(1,60) : provided_time.min
+          sec = @anonymize_sec? DataAnon::Utils::RandomInt.generate (1,60) : provided_time.sec
 
           create_object(day, hour, min, month, sec, year)
         end
