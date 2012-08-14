@@ -72,10 +72,10 @@ database 'DatabaseName' do
 end
 ```
 
-## DataAnon::Core::Field
+## [DataAnon::Core::Field]
 The object that gets passed along with the field strategies.
 
-has following for attribute accessor
+has following attribute accessor
 
 - `name` current field/column name
 - `value` current field/column value
@@ -104,7 +104,7 @@ anonymize('UserName').using DataAnon::Strategy::Field::RandomString.new
 ```
 
 ### StringTemplate
-Simple string evaluation with DataAnon::Core::Field in scope.
+Simple string evaluation with [DataAnon::Core::Field] in scope.
 
 
 ### DateTimeDelta
@@ -129,12 +129,9 @@ Simple string evaluation with DataAnon::Core::Field in scope.
 ```ruby
 class MyFieldStrategy
 
+    # method anonymize is what required
     def anonymize field
-      # write your code here, "field" parameter has
-      # name - current field name
-      # value - current field value
-      # row_number - current row number
-      # ar_record - active record of the current row under processing
+      # write your code here
     end
 
 end
