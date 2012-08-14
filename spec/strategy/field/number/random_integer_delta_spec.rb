@@ -8,9 +8,7 @@ describe FieldStrategy::RandomIntegerDelta do
   describe "anonymized value returned should be an integer" do
     let(:anonymized_integer) {RandomIntegerDelta.new(10).anonymize(field)}
 
-    it { is_integer = anonymized_integer.is_a? Integer
-         is_integer.should be true
-    }
+    it { anonymized_integer.should be_kind_of Integer }
 
   end
 
