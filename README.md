@@ -150,6 +150,22 @@ anonymize('DateOfBirth').using FieldStrategy::AnonymizeDateTime.new
 anonymize('DateOfBirth').using FieldStrategy::AnonymizeDateTime.new(true,false,true,false)
 ```
 
+```ruby
+
+# anonymizes only the month field
+anonymize('DateOfBirth').using FieldStrategy::AnonymizeDateTime.only_month
+
+# anonymizes only the day field
+anonymize('DateOfBirth').using FieldStrategy::AnonymizeDateTime.only_day
+
+# anonymizes only the hour field
+anonymize('DateOfBirth').using FieldStrategy::AnonymizeDateTime.only_hour
+
+# anonymizes only the minute field
+anonymize('DateOfBirth').using FieldStrategy::AnonymizeDateTime.only_minute
+
+```
+
 ### AnonymizeTime
 Exactly similar to the above DateTime strategy, except that the returned object is of type `Time`
 
@@ -163,6 +179,18 @@ anonymize('DateOfBirth').using FieldStrategy::AnonymizeDate.new
 ```ruby
 # anonymizes month and leaves day unchanged
 anonymize('DateOfBirth').using FieldStrategy::AnonymizeDate.new(true,false)
+```
+
+In addition to customizing which fields you want anonymized, there are some helper methods which allow for quick anonymization
+
+```ruby
+
+# anonymizes only the month field
+anonymize('DateOfBirth').using FieldStrategy::AnonymizeDate.only_month
+
+# anonymizes only the day field
+anonymize('DateOfBirth').using FieldStrategy::AnonymizeDate.only_day
+
 ```
 
 ### DateTimeDelta
@@ -182,7 +210,7 @@ Exactly similar to the above DateTime strategy, except that the returned object 
 
 Shifts date randomly within given delta range. Default shits date within 10 days + or -
 ```ruby
-anonymize('DateOfBirth).using FieldStrategy::AnonymizeDate.new
+anonymize('DateOfBirth').using FieldStrategy::AnonymizeDate.new
 ```
 
 ```ruby
