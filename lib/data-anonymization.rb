@@ -2,6 +2,7 @@ require "version"
 
 require "utils/logging"
 require "utils/random_int"
+require "utils/random_float"
 require "utils/random_string"
 require "utils/geojson_parser"
 require "utils/resource"

@@ -414,7 +414,7 @@ DataAnon::Utils::Logging.logger.level = Logger::INFO
 
 #### 0.5.0
 
-1. MongoDB anonymization support (NoSQL document based database support)
+1. Generate DSL from database and build schema from source as part of Whitelist approach.
 
 
 ## Want to contribute?
