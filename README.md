@@ -44,7 +44,7 @@ Please use Github [issues](https://github.com/sunitparekh/data-anonymization/iss
 
 ## What is data anonymization?
 
-For almost all the project it is a need to have production data dump in order to run performance tests, rehearsal production releases and debugging production issues.
+For almost all projects there is a need to have production data dump in order to run performance tests, rehearsal production releases and debugging production issues.
 However, getting production data and using it is not feasible due to multiple reasons, one of them being that personal user data would be exposed. And thus arises the need for data anonymization.
 This tool helps you to get anonymized production data dump using either Blacklist or Whitelist strategies.
 
