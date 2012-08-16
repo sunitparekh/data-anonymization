@@ -1,5 +1,5 @@
 # Data::Anonymization
-Tool to create anonymized production data dump to use for PREF and other TEST environments.
+Tool to create anonymized production data dump to use for PERF and other TEST environments.
 
 ## Getting started
 Install gem using (use `pre` option to tryout edge version):
@@ -324,10 +324,13 @@ write your own anonymous field strategies within DSL,
 
 ```ruby
 # Work in progress... TO BE COMPLETED
-DEFAULT_STRATEGIES = {:string => FS::LoremIpsum.new,
-                      :integer => FS::RandomInt.new(18,70),
-                      :datetime => FS::DateTimeDelta.new,
-                      :boolean => FS::RandomBoolean.new
+DEFAULT_STRATEGIES = {:string => FieldStrategy::LoremIpsum.new,
+                      :integer => FieldStrategy::RandomIntegerDelta.new(5),
+                      :float => FieldStrategy::RandomFloatDelta.new(5.0),
+                      :datetime => FieldStrategy::DateTimeDelta.new,
+                      :time => FieldStrategy::TimeDelta.new,
+                      :date => FieldStrategy::DateDelta.new,
+                      :boolean => FieldStrategy::RandomBoolean.new
 }
 ```
 
@@ -349,10 +352,11 @@ end
 
 ## Logging
 
-`Progress Logger` provides progress of anonymization execution table by table.
+How do I switch off the progress bar?
 
 ```ruby
-DataAnon::Utils::Logging.progress_logger.level = Logger::WARN
+# add following line in your ruby file
+ENV['show_progress'] = 'false'
 ```
 
 `Logger` provides debug level messages including database queries of active record.
@@ -369,15 +373,19 @@ DataAnon::Utils::Logging.logger.level = Logger::INFO
 
 ## Roadmap
 
-#### 0.2.0 (Mid August 2012)
+#### 0.2.0
 
 1. Complete list of all the field strategies planned supporting all data types
 
-#### 0.3.0 (End August 2012)
+#### 0.3.0
 
 1. Run anonymization in parallel threads (performance enchantments)
 
-#### 0.4.0 (Early Sep 2012)
+#### 0.4.0
+
+1. MongoDB anonymization support (NoSQL document based database support)
+
+#### 0.5.0
 
 1. MongoDB anonymization support (NoSQL document based database support)
 
@@ -396,7 +404,7 @@ DataAnon::Utils::Logging.logger.level = Logger::INFO
 
 ## Credits
 
-- [ThoughtWorks Inc](http://www.thoughtworks.com), for allowing us to build this tool and make if open source.
+- [ThoughtWorks Inc](http://www.thoughtworks.com), for allowing us to build this tool and make it open source.
 - [Birinder](https://twitter.com/birinder_) and [Panda](https://twitter.com/sarbashrestha) for reviewing the documentation.
 
 
