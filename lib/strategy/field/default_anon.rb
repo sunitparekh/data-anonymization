@@ -15,12 +15,13 @@ module DataAnon
                               :falseclass => FieldStrategy::RandomBoolean.new
         }
 
-        def initialize user_defaults
+        def initialize user_defaults = {}
           @user_defaults = DEFAULT_STRATEGIES.merge user_defaults
         end
 
         def anonymize field
-          strategy = @user_defaults[field.value.class.to_s.downcase.to_sym] || FieldStrategy::Whitelist.new
+          strategy = @user_defaults[field.value.class.to_s.downcase.to_sym]
+          raise "No strategy defined for datatype #{field.value.class}" unless strategy
           strategy.anonymize field
         end
 
