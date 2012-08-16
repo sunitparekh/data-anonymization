@@ -10,7 +10,7 @@ module DataAnon
           self.new true, false, false, false
         end
 
-        def self.only_date
+        def self.only_day
           self.new false, true, false, false
         end
 

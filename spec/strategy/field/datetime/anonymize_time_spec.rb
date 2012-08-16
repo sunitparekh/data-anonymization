@@ -20,7 +20,7 @@ describe FieldStrategy::AnonymizeTime do
 
   describe 'providing true only for date should randomize only the date field' do
 
-    let(:anonymized_time) { AnonymizeTime.only_date.anonymize(field) }
+    let(:anonymized_time) { AnonymizeTime.only_day.anonymize(field) }
 
     it { anonymized_time.year.should be 2000 }
     it { anonymized_time.month.should be 1}
