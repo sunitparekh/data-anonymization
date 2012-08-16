@@ -138,34 +138,65 @@ Similar to SelectFromList only difference is the list of values are picked up fr
 anonymize('State').using FieldStrategy::SelectFromFile.new('states.txt')
 ```
 
+### SelectFromDatabase
+Similar to SelectFromList with difference is the list of values are collected from the database table using distinct column query.
+```ruby
+# values are collected using `select distinct state from customers` query
+anonymize('State').using FieldStrategy::SelectFromDatabase.new('customers','state')
+```
+
+### RandomAddress
+Generates address using the [geojson](http://www.geojson.org/geojson-spec.html) format file. The default US/UK file chooses randomly from 300 addresses.
+The large data set can be downloaded from [here](http://www.infochimps.com/datasets/simplegeo-places-dump)
+```ruby
+anonymize('Address').using FieldStrategy::RandomAddress.region_US
+```
+```ruby
+anonymize('Address').using FieldStrategy::RandomAddress.region_UK
+```
+```ruby
+# get your own geo_json file and use it
+anonymize('Address').using FieldStrategy::RandomAddress.new('my_geo_json.json')
+```
+
+### RandomZipcode
+Similar to RandomAddress, generates zipcode using the [geojson](http://www.geojson.org/geojson-spec.html) format file. The default US/UK file chooses randomly from 300 addresses.
+The large data set can be downloaded from [here](http://www.infochimps.com/datasets/simplegeo-places-dump)
+```ruby
+anonymize('Address').using FieldStrategy::RandomZipcode.region_US
+```
+```ruby
+anonymize('Address').using FieldStrategy::RandomZipcode.region_UK
+```
+```ruby
+# get your own geo_json file and use it
+anonymize('Address').using FieldStrategy::RandomZipcode.new('my_geo_json.json')
+```
+
+### RandomPhoneNumber
+Keeping the format same it changes each digit in the string with random digit.
+```ruby
+anonymize('PhoneNumber').using FieldStrategy::RandomPhoneNumber.new
+```
+
 ### AnonymizeDateTime
 Anonymizes each field(except year and seconds) within the natural range (e.g. hour between 1-24 and day within the month) based on true/false
 input for that field. By default, all fields are anonymized.
-```ruby
-anonymize('DateOfBirth').using FieldStrategy::AnonymizeDateTime.new
-```
-
 ```ruby
 #anonymizes month and hour fields, leaving the day and minute fields untouched
 anonymize('DateOfBirth').using FieldStrategy::AnonymizeDateTime.new(true,false,true,false)
 ```
 
 In addition to customizing which fields you want anonymized, there are some helper methods which allow for quick anonymization
-
 ```ruby
-
 # anonymizes only the month field
 anonymize('DateOfBirth').using FieldStrategy::AnonymizeDateTime.only_month
-
 # anonymizes only the day field
 anonymize('DateOfBirth').using FieldStrategy::AnonymizeDateTime.only_day
-
 # anonymizes only the hour field
 anonymize('DateOfBirth').using FieldStrategy::AnonymizeDateTime.only_hour
-
 # anonymizes only the minute field
 anonymize('DateOfBirth').using FieldStrategy::AnonymizeDateTime.only_minute
-
 ```
 
 ### AnonymizeTime
@@ -175,24 +206,16 @@ Exactly similar to the above DateTime strategy, except that the returned object 
 Anonmizes day and month fields within natural range based on true/false input for that field. By defaut both fields are
 anonymized
 ```ruby
-anonymize('DateOfBirth').using FieldStrategy::AnonymizeDate.new
-```
-
-```ruby
 # anonymizes month and leaves day unchanged
 anonymize('DateOfBirth').using FieldStrategy::AnonymizeDate.new(true,false)
 ```
 
 In addition to customizing which fields you want anonymized, there are some helper methods which allow for quick anonymization
-
 ```ruby
-
 # anonymizes only the month field
 anonymize('DateOfBirth').using FieldStrategy::AnonymizeDate.only_month
-
 # anonymizes only the day field
 anonymize('DateOfBirth').using FieldStrategy::AnonymizeDate.only_day
-
 ```
 
 ### DateTimeDelta
@@ -214,7 +237,6 @@ Shifts date randomly within given delta range. Default shits date within 10 days
 ```ruby
 anonymize('DateOfBirth').using FieldStrategy::AnonymizeDate.new
 ```
-
 ```ruby
 # shifts date within 25 days
 anonymize('DateOfBirth').using FieldStrategy::DateDelta.new(25)
@@ -366,6 +388,11 @@ DataAnon::Utils::Logging.logger.level = Logger::INFO
 ```
 
 ## Changelog
+
+#### 0.2.0.pre
+
+1. Added the progress bar using 'powerbar' gem. Which also shows the ETA for each table.
+2. Added More strategies
 
 #### 0.1.2 (August 14, 2012)
 
