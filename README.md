@@ -137,6 +137,33 @@ Similar to SelectFromList only difference is the list of values are picked up fr
 anonymize('State').using FieldStrategy::SelectFromFile.new('states.txt')
 ```
 
+### AnonymizeDateTime
+Anonymizes each field(except year and seconds) within the natural range (e.g. hour between 1-24 and day within the month) based on true/false
+input for that field. By default, all fields are anonymized.
+```ruby
+anonymize('DateOfBirth').using FieldStrategy::AnonymizeDateTime.new
+```
+
+```ruby
+#anonymizes month and hour fields, leaving the day and minute fields untouched
+anonymize('DateOfBirth').using FieldStrategy::AnonymizeDateTime.new(true,false,true,false)
+```
+
+### AnonymizeTime
+Exactly similar to the above DateTime strategy, except that the returned object is of type `Time`
+
+### AnonymizeDate
+Anonmizes day and month fields within natural range based on true/false input for that field. By defaut both fields are
+anonymized
+```ruby
+anonymize('DateOfBirth').using FieldStrategy::AnonymizeDate.new
+```
+
+```ruby
+# anonymizes month and leaves day unchanged
+anonymize('DateOfBirth').using FieldStrategy::AnonymizeDate.new(true,false)
+```
+
 ### DateTimeDelta
 Shifts data randomly within given range. Default shifts date within 10 days + or - and shifts time within 30 minutes.
 ```ruby
@@ -147,11 +174,33 @@ anonymize('DateOfBirth').using FieldStrategy::DateTimeDelta.new
 anonymize('DateOfBirth').using FieldStrategy::DateTimeDelta.new(20, 50)
 ```
 
+### TimeDelta
+Exactly similar to the above DateTime strategy, except that the returned object is of type `Time`
+
+### DateDelta
+
+Shifts date randomly within given delta range. Default shits date within 10 days + or -
+```ruby
+anonymize('DateOfBirth).using FieldStrategy::AnonymizeDate.new
+```
+
+```ruby
+# shifts date within 25 days
+anonymize('DateOfBirth').using FieldStrategy::DateDelta.new(25)
+```
+
 ### RandomEmail
 Generates email randomly using the given HOSTNAME and TLD.
 By defaults generates hostname randomly along with email id.
 ```ruby
 anonymize('Email').using FieldStrategy::RandomEmail.new('thoughtworks','com')
+```
+
+### GmailTemplate
+Generates a valid unique gmail address by taking advantage of the gmail + strategy. Takes in a valid gmail username and
+generates emails of the form username+<number>@gmail.com
+```ruby
+anonymize('Email').using FieldStrategy::GmailTemplate.new('username')
 ```
 
 ### RandomMailinatorEmail
@@ -161,7 +210,7 @@ anonymize('Email').using FieldStrategy::RandomMailinatorEmail.new
 ```
 
 ### RandomUserName
-Generates random user name of same length.
+Generates random user name of same length as original user name.
 ```ruby
 anonymize('Username').using FieldStrategy::RandomUserName.new
 ```
