@@ -9,7 +9,7 @@ module DataAnon
         end
 
         def anonymize field
-          return @values[DataAnon::Utils::RandomInt.generate(0,(@values.length - 1))]
+          @values.sample
         end
 
       end

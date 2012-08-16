@@ -21,9 +21,9 @@ database 'DatabaseName' do
   # database config as active record connection hash
   source_db :adapter => 'sqlite3', :database => 'sample-data/chinook-empty.sqlite'
 
-  # User -> table name
+  # User -> table name (case sensitive)
   table 'User' do
-    # id, DateOfBirth, FirstName, LastName, UserName, Password -> table column names
+    # id, DateOfBirth, FirstName, LastName, UserName, Password -> table column names (case sensitive)
     primary_key 'id'
     anonymize 'DateOfBirth','FirstName','LastName' # uses default anonymization based on data types
     anonymize('UserName').using FieldStrategy::StringTemplate.new('user#{row_number}')
@@ -310,10 +310,16 @@ Shifts the current value randomly within given delta + and -. Default is 10
 anonymize('Age').using FieldStrategy::RandomIntegerDelta.new(2)
 ```
 
+### RandomFloat
+Generates random float number between given two numbers. Default range is 0.0 to 100.0
+```ruby
+anonymize('points').using FieldStrategy::RandomInteger.new(3.0,5.0)
+```
+
 ### RandomFloatDelta
 Shifts the current value randomly within given delta + and -. Default is 10.0
 ```ruby
-anonymize('Points').using FieldStrategy::RandomFloatDelta.new(2.5)
+anonymize('points').using FieldStrategy::RandomFloatDelta.new(2.5)
 ```
 
 ## Write you own field strategies
@@ -347,12 +353,14 @@ write your own anonymous field strategies within DSL,
 ```ruby
 # Work in progress... TO BE COMPLETED
 DEFAULT_STRATEGIES = {:string => FieldStrategy::LoremIpsum.new,
-                      :integer => FieldStrategy::RandomIntegerDelta.new(5),
+                      :fixnum => FieldStrategy::RandomIntegerDelta.new(5),
+                      :bignum => FieldStrategy::RandomIntegerDelta.new(5000),
                       :float => FieldStrategy::RandomFloatDelta.new(5.0),
                       :datetime => FieldStrategy::DateTimeDelta.new,
                       :time => FieldStrategy::TimeDelta.new,
                       :date => FieldStrategy::DateDelta.new,
-                      :boolean => FieldStrategy::RandomBoolean.new
+                      :trueclass => FieldStrategy::RandomBoolean.new,
+                      :falseclass => FieldStrategy::RandomBoolean.new
 }
 ```
 

@@ -5,12 +5,14 @@ module DataAnon
       class DefaultAnon
 
         DEFAULT_STRATEGIES = {:string => FieldStrategy::LoremIpsum.new,
-                              :integer => FieldStrategy::RandomIntegerDelta.new(5),
+                              :fixnum => FieldStrategy::RandomIntegerDelta.new(5),
+                              :bignum => FieldStrategy::RandomIntegerDelta.new(5000),
                               :float => FieldStrategy::RandomFloatDelta.new(5.0),
                               :datetime => FieldStrategy::DateTimeDelta.new,
                               :time => FieldStrategy::TimeDelta.new,
                               :date => FieldStrategy::DateDelta.new,
-                              :boolean => FieldStrategy::RandomBoolean.new
+                              :trueclass => FieldStrategy::RandomBoolean.new,
+                              :falseclass => FieldStrategy::RandomBoolean.new
         }
 
         def initialize user_defaults

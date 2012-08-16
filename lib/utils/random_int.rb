@@ -4,7 +4,7 @@ module DataAnon
 
       def self.generate min, max
         return 0 if (min == 0 && max == 0)
-        rand min...max
+        Random.new.rand min...max
       end
     end
   end
