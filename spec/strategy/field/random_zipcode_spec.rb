@@ -6,7 +6,7 @@ describe DataAnon::Strategy::Field::RandomZipcode do
   let(:field) {DataAnon::Core::Field.new('zipcode','12345',1,nil)}
 
   describe 'anonymized zipcode should be different from original zipcode' do
-    let(:anonymized_zipcode) {RandomZipcode.new.anonymize(field)}
+    let(:anonymized_zipcode) {RandomZipcode.region_US.anonymize(field)}
     it {anonymized_zipcode.should_not eq("12345")}
   end
 end
