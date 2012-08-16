@@ -150,6 +150,8 @@ anonymize('DateOfBirth').using FieldStrategy::AnonymizeDateTime.new
 anonymize('DateOfBirth').using FieldStrategy::AnonymizeDateTime.new(true,false,true,false)
 ```
 
+In addition to customizing which fields you want anonymized, there are some helper methods which allow for quick anonymization
+
 ```ruby
 
 # anonymizes only the month field
