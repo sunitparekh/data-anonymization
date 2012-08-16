@@ -1,3 +1,5 @@
+require 'powerbar'
+
 module DataAnon
   module Strategy
     class Base
@@ -51,15 +53,16 @@ module DataAnon
       end
 
       def process
+        progress_bar = PowerBar.new unless ENV['show_progress'] && ENV['show_progress'] == 'false'
         logger.debug "Processing table #{@name} with fields strategies #{@fields}"
-        progress_logger.info "Table: #{@name} (#{source_table.count} records) "
+        total = source_table.count
         index = 1
+        progress_bar.show(:msg => "Table: #{@name}", :done => index, :total => total) if progress_bar
         source_table.find_each(:batch_size => 100) do |record|
-          progress_logger.info "."
           process_record index, record
           index += 1
+          progress_bar.show(:msg => "Table: #{@name}", :done => index, :total => total) if (index % 1000 == 0) && progress_bar
         end
-        progress_logger.info " DONE\n"
       end
 
     end

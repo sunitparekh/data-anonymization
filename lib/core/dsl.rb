@@ -4,7 +4,7 @@ module DataAnon
       include Utils::Logging
 
       def database(name, &block)
-        logger.debug "#{name} : Database"
+        logger.debug "Processing Database: #{name}"
         DataAnon::Core::Database.new(name).instance_eval &block
       end
 

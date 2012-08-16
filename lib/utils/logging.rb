@@ -15,15 +15,6 @@ module DataAnon
         @@logger
       end
 
-      def progress_logger
-        @@progress_logger ||= (self.progress_logger = Logger.new(STDOUT) )
-      end
-
-      def progress_logger= logger
-        logger.formatter = proc { |severity, datetime, progname, msg| msg }
-        @@progress_logger = logger
-      end
-
     end
   end
 end

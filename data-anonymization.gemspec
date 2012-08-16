@@ -21,4 +21,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency('activesupport', '~> 3.2.8')
   gem.add_dependency('rgeo', '~> 0.3.15')
   gem.add_dependency('rgeo-geojson', '~> 0.2.3')
+  gem.add_dependency('powerbar', '~> 1.0.8')
 end
