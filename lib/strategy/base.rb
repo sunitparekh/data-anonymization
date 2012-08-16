@@ -63,6 +63,7 @@ module DataAnon
           index += 1
           progress_bar.show(:msg => "Table: #{@name}", :done => index, :total => total) if (index % 1000 == 0) && progress_bar
         end
+        progress_bar.close if progress_bar
       end
 
     end
