@@ -397,10 +397,11 @@ DataAnon::Utils::Logging.logger.level = Logger::INFO
 
 ## Changelog
 
-#### 0.2.0.pre
+#### 0.2.0
 
 1. Added the progress bar using 'powerbar' gem. Which also shows the ETA for each table.
 2. Added More strategies
+3. Fixed default anonymization strategies for boolean and integer values
 
 #### 0.1.2 (August 14, 2012)
 
