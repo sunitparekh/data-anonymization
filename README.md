@@ -386,7 +386,6 @@ write your own anonymous field strategies within DSL,
   end
 ```
 
-
 ## Default field strategies
 
 ```ruby
