@@ -143,6 +143,12 @@ Similar to SelectFromList only difference is the list of values are picked up fr
 anonymize('State').using FieldStrategy::SelectFromFile.new('states.txt')
 ```
 
+### FormattedStringNumber
+Keeping the format same it changes each digit in the string with random digit.
+```ruby
+anonymize('CreditCardNumber').using FieldStrategy::FormattedStringNumber.new
+```
+
 ### SelectFromDatabase
 Similar to SelectFromList with difference is the list of values are collected from the database table using distinct column query.
 ```ruby
