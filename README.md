@@ -430,7 +430,7 @@ DataAnon::Utils::Logging.logger.level = Logger::INFO
 
 ## Changelog
 
-#### 0.2.0
+#### 0.2.0 (August 16, 2012)
 
 1. Added the progress bar using 'powerbar' gem. Which also shows the ETA for each table.
 2. Added More strategies
@@ -442,10 +442,6 @@ DataAnon::Utils::Logging.logger.level = Logger::INFO
 1. First initial release
 
 ## Roadmap
-
-#### 0.2.0
-
-1. Complete list of all the field strategies planned supporting all data types
 
 #### 0.3.0
 
