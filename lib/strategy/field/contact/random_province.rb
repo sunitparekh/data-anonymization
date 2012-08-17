@@ -3,10 +3,10 @@ module DataAnon
     module Field
 
 
-      class RandomAddress  < GeojsonBase
+      class RandomProvince < GeojsonBase
 
         def initialize file_path
-          @values = DataAnon::Utils::GeojsonParser.address(file_path)
+          @values = DataAnon::Utils::GeojsonParser.province(file_path)
         end
 
       end

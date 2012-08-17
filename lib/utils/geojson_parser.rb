@@ -13,6 +13,18 @@ module DataAnon
         self.new(file_path).parse 'postcode'
       end
 
+      def self.province file_path
+        self.new(file_path).parse 'province'
+      end
+
+      def self.city file_path
+        self.new(file_path).parse 'city'
+      end
+
+      def self.country file_path
+        self.new(file_path).parse 'country'
+      end
+
       def initialize file_path
         @places = File.read(file_path).split(/\n/)
       end

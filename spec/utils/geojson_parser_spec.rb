@@ -8,14 +8,30 @@ describe "Geo Json Parser" do
     let(:result_list) {DataAnon::Utils::GeojsonParser.address(SAMPLE_DATA_FILE_PATH)}
 
     it {result_list.length.should be 1}
-    it {result_list[0].should eq("R. Arandu, 205, 04562-030  Brooklyn Novo")}
+    it {result_list[0].should eq("333 Willoughby Ave")}
   end
 
   describe "parser should return list of zip codes when zipcode method is called" do
     let(:result_list) {DataAnon::Utils::GeojsonParser.zipcode(SAMPLE_DATA_FILE_PATH)}
 
     it {result_list.length.should be 1}
-    it {result_list[0].should eq("1110")}
+    it {result_list[0].should eq("99801")}
+
+  end
+
+  describe "parser should return list of province when province method is called" do
+    let(:result_list) {DataAnon::Utils::GeojsonParser.province(SAMPLE_DATA_FILE_PATH)}
+
+    it {result_list.length.should be 1}
+    it {result_list[0].should eq("AK")}
+
+  end
+
+  describe "parser should return list of cities when city method is called" do
+    let(:result_list) {DataAnon::Utils::GeojsonParser.city(SAMPLE_DATA_FILE_PATH)}
+
+    it {result_list.length.should be 1}
+    it {result_list[0].should eq("Juneau")}
 
   end
 
