@@ -2,7 +2,7 @@
 Tool to create anonymized production data dump to use for PERF and other TEST environments.
 
 ## Getting started
-Install gem using (use `pre` option to tryout edge version):
+Install gem using:
 
     $ gem install data-anonymization
 
