@@ -32,7 +32,7 @@ describe "End 2 End RDBMS Whitelist Acceptance Test using SQLite database" do
     end
 
     DataAnon::Utils::DestinationDatabase.establish_connection dest_connection_spec
-    dest_table = DataAnon::Utils::DestinationTable.create 'customers', 'cust_id'
+    dest_table = DataAnon::Utils::DestinationTable.create 'customers', ['cust_id']
     new_rec = dest_table.find(CustomerSample::SAMPLE_DATA[:cust_id])
     new_rec.first_name.should_not be("Sunit")
     new_rec.last_name.should_not be("Parekh")

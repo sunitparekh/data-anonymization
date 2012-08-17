@@ -16,9 +16,14 @@ module DataAnon
         self
       end
 
-      def primary_key field
-        @primary_key = field
+      def primary_key *fields
+        @primary_keys = fields
       end
+
+      def is_primary_key? field
+        @primary_keys.select { |key| field.downcase == key.downcase }.length > 0
+      end
+
 
       def whitelist *fields
         fields.each { |f| @fields[f.downcase] = DataAnon::Strategy::Field::Whitelist.new }
@@ -45,25 +50,26 @@ module DataAnon
       end
 
       def dest_table
-        @dest_table ||= Utils::DestinationTable.create @name, @primary_key
+        @dest_table ||= Utils::DestinationTable.create @name, @primary_keys
       end
 
       def source_table
-        @source_table ||= Utils::SourceTable.create @name, @primary_key
+        @source_table ||= Utils::SourceTable.create @name, @primary_keys
       end
 
       def process
-        progress_bar = PowerBar.new unless ENV['show_progress'] && ENV['show_progress'] == 'false'
         logger.debug "Processing table #{@name} with fields strategies #{@fields}"
         total = source_table.count
-        index = 1
-        progress_bar.show(:msg => "Table: #{@name}", :done => index, :total => total) if progress_bar
-        source_table.find_each(:batch_size => 100) do |record|
-          process_record index, record
-          index += 1
-          progress_bar.show(:msg => "Table: #{@name}", :done => index, :total => total) if (index % 1000 == 0) && progress_bar
+        if total > 0
+          index = 1
+          progress_bar = DataAnon::Utils::ProgressBar.new @name, total
+          source_table.all.each do |record|
+            process_record index, record
+            index += 1
+            progress_bar.show(index)
+          end
+          progress_bar.close
         end
-        progress_bar.close if progress_bar
       end
 
     end

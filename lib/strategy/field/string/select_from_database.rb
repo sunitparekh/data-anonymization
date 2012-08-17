@@ -6,7 +6,7 @@ module DataAnon
         include Utils::Logging
 
         def initialize table_name, field_name
-          source = Utils::SourceTable.create table_name
+          source = Utils::SourceTable.create table_name, []
           @values = source.select(field_name).uniq.collect { |record| record[field_name]}
           logger.debug "For field strategy #{table_name}:#{field_name} using values #{@values} "
 

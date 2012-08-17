@@ -22,7 +22,7 @@ describe "End 2 End RDBMS Blacklist Acceptance Test using SQLite database" do
     end
 
     DataAnon::Utils::SourceDatabase.establish_connection connection_spec
-    source = DataAnon::Utils::SourceTable.create 'customers', 'cust_id'
+    source = DataAnon::Utils::SourceTable.create 'customers', ['cust_id']
     new_rec = source.find(CustomerSample::SAMPLE_DATA[:cust_id])
     new_rec['email'].should == 'test+1@gmail.com'
 

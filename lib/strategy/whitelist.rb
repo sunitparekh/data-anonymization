@@ -5,14 +5,16 @@ module DataAnon
       def process_record(index, record)
         dest_record_map = {}
         record.attributes.each do |field_name, field_value|
-          unless field_value.nil? || field_name.downcase == @primary_key.downcase
+          unless field_value.nil? || is_primary_key?(field_name)
             field = DataAnon::Core::Field.new(field_name, field_value, index, record)
             field_strategy = @fields[field_name.downcase] || DataAnon::Strategy::Field::DefaultAnon.new(@user_strategies)
             dest_record_map[field_name] = field_strategy.anonymize(field)
           end
         end
         dest_record = dest_table.new dest_record_map
-        dest_record[@primary_key] = record[@primary_key]
+        @primary_keys.each do |key|
+          dest_record[key] = record[key]
+        end
         dest_record.save!
       end
 

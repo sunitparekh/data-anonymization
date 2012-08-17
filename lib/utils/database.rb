@@ -1,4 +1,5 @@
 require 'active_record'
+require 'composite_primary_keys'
 require 'logger'
 
 module DataAnon
@@ -23,10 +24,11 @@ module DataAnon
 
     class BaseTable
 
-      def self.create_table table_name, primary_key, database
+      def self.create_table  database, table_name, primary_keys
         Class.new(database) do
           self.table_name = table_name
-          self.primary_key = primary_key
+          self.primary_keys = primary_keys if primary_keys.length > 1
+          self.primary_key = primary_keys[0] if primary_keys.length == 1
           self.mass_assignment_sanitizer = MassAssignmentIgnoreSanitizer.new(self)
         end
       end
@@ -35,16 +37,16 @@ module DataAnon
 
     class SourceTable < BaseTable
 
-      def self.create table_name, primary_key = nil
-        create_table table_name, primary_key, SourceDatabase
+      def self.create table_name, primary_key
+        create_table  SourceDatabase, table_name, primary_key
       end
 
     end
 
     class DestinationTable < BaseTable
 
-      def self.create table_name, primary_key = nil
-        create_table table_name, primary_key, DestinationDatabase
+      def self.create table_name, primary_key
+        create_table DestinationDatabase, table_name, primary_key
       end
 
     end

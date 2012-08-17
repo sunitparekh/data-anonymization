@@ -24,7 +24,7 @@ database 'DatabaseName' do
   # User -> table name (case sensitive)
   table 'User' do
     # id, DateOfBirth, FirstName, LastName, UserName, Password -> table column names (case sensitive)
-    primary_key 'id'
+    primary_key 'id' # composite key is also supported
     anonymize 'DateOfBirth','FirstName','LastName' # uses default anonymization based on data types
     anonymize('UserName').using FieldStrategy::StringTemplate.new('user#{row_number}')
     anonymize('Password') { |field| "password" }
@@ -38,6 +38,11 @@ end
 Run using:
 
     $ ruby my_dsl.rb
+
+## Examples
+
+1. [Whitelist](https://github.com/sunitparekh/data-anonymization/blob/master/whitelist_dsl.rb)
+2. [Blacklist](https://github.com/sunitparekh/data-anonymization/blob/master/blacklist_dsl.rb)
 
 #### Share feedback
 Please use Github [issues](https://github.com/sunitparekh/data-anonymization/issues) to share feedback, feature suggestions and report issues.
@@ -374,12 +379,6 @@ database 'Chinook' do
 end
 ```
 
-## Examples
-
-1. [Whitelist](https://github.com/sunitparekh/data-anonymization/blob/master/whitelist_dsl.rb)
-2. [Blacklist](https://github.com/sunitparekh/data-anonymization/blob/master/blacklist_dsl.rb)
-
-
 ## Logging
 
 How do I switch off the progress bar?
@@ -402,6 +401,7 @@ DataAnon::Utils::Logging.logger.level = Logger::INFO
 1. Added the progress bar using 'powerbar' gem. Which also shows the ETA for each table.
 2. Added More strategies
 3. Fixed default anonymization strategies for boolean and integer values
+4. Added support for composite primary key
 
 #### 0.1.2 (August 14, 2012)
 

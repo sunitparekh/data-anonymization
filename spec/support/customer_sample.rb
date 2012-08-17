@@ -34,7 +34,7 @@ class CustomerSample
 
   def self.insert_record connection_spec, data_hash = SAMPLE_DATA
     DataAnon::Utils::TempDatabase.establish_connection connection_spec
-    source = DataAnon::Utils::BaseTable.create_table 'customers', 'cust_id',DataAnon::Utils::TempDatabase
+    source = DataAnon::Utils::BaseTable.create_table DataAnon::Utils::TempDatabase, 'customers', 'cust_id'
     cust = source.new data_hash
     cust.cust_id = data_hash[:cust_id]
     cust.save!
