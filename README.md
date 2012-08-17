@@ -472,6 +472,7 @@ DataAnon::Utils::Logging.logger.level = Logger::INFO
 
 - [ThoughtWorks Inc](http://www.thoughtworks.com), for allowing us to build this tool and make it open source.
 - [Birinder](https://twitter.com/birinder_) and [Panda](https://twitter.com/sarbashrestha) for reviewing the documentation.
+- [Dan Abel](http://www.linkedin.com/pub/dan-abel/0/61b/9b0) for introducing me to Blacklist and Whitelist approach for data anonymization.
 
 
 
