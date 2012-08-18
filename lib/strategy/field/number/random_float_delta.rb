@@ -8,13 +8,8 @@ module DataAnon
         end
 
         def anonymize field
-           return range(field.value-@delta,field.value+@delta)
+          return field.value + DataAnon::Utils::RandomFloat.generate(-@delta, +@delta)
         end
-
-        def range (min, max)
-          Random.new.rand * (max-min) + min
-        end
-
 
       end
     end

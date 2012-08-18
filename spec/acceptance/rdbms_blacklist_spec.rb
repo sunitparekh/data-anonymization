@@ -18,6 +18,7 @@ describe "End 2 End RDBMS Blacklist Acceptance Test using SQLite database" do
       table 'customers' do
         primary_key 'cust_id'
         anonymize('email').using FieldStrategy::StringTemplate.new('test+#{row_number}@gmail.com')
+        anonymize 'terms_n_condition', 'age'
       end
     end
 

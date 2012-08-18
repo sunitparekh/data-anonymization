@@ -41,8 +41,10 @@ Run using:
 
 ## Examples
 
-1. [Whitelist](https://github.com/sunitparekh/data-anonymization/blob/master/whitelist_dsl.rb)
-2. [Blacklist](https://github.com/sunitparekh/data-anonymization/blob/master/blacklist_dsl.rb)
+1. [Whitelist using Chinoook sample database](https://github.com/sunitparekh/data-anonymization/blob/master/whitelist_dsl.rb)
+2. [Blacklist using Chinoook sample database](https://github.com/sunitparekh/data-anonymization/blob/master/blacklist_dsl.rb)
+3. [Whitelist with composite primary key using DellStore sample database](https://github.com/sunitparekh/test-anonymization/blob/master/dell_whitelist.rb)
+4. [Blacklist with composite primary key using DellStore sample database](https://github.com/sunitparekh/test-anonymization/blob/master/dell_blacklist.rb)
 
 #### Share feedback
 Please use Github [issues](https://github.com/sunitparekh/data-anonymization/issues) to share feedback, feature suggestions and report issues.
@@ -50,14 +52,14 @@ Please use Github [issues](https://github.com/sunitparekh/data-anonymization/iss
 ## What is data anonymization?
 
 For almost all projects there is a need to have production data dump in order to run performance tests, rehearsal production releases and debugging production issues.
-However, getting production data and using it is not feasible due to multiple reasons, one of them being that personal user data would be exposed. And thus arises the need for data anonymization.
+However, getting production data and using it is not feasible due to multiple reasons, one of them primary reason is user personal data. Hence, there is a need for data anonymization.
 This tool helps you to get anonymized production data dump using either Blacklist or Whitelist strategies.
 
 ## Anonymization Strategies
 
 ### Blacklist
 This approach essentially leaves all fields unchanged with the exception of those specified by the user, which are scrambled/anonymized (hence the name blacklist).
-Blacklist create a copy of prod database and chooses the fields to be anonymized like e.g. username, password, email, name, geo location etc. based on user specification Most of the fields had different rules e.g. password as always set to same value for all users, email needs to be valid.
+For `Blacklist` create a copy of prod database and chooses the fields to be anonymized like e.g. username, password, email, name, geo location etc. based on user specification Most of the fields had different rules e.g. password as always set to same value for all users, email needs to be valid.
 The problem with this approach is that when new fields are added they will not be anonymized by default. Human error in omitting users personal data could be damaging.
 
 ```ruby
@@ -83,6 +85,12 @@ database 'DatabaseName' do
   ...
 end
 ```
+
+## Tips
+
+1. In Whitelist approach make source database connection READONLY.
+2. Change [default field strategies](#default-field-strategies) to avoid using same strategy again and again in your DSL.
+3.
 
 ## DataAnon::Core::Field
 The object that gets passed along with the field strategies.
@@ -472,6 +480,8 @@ DataAnon::Utils::Logging.logger.level = Logger::INFO
 - [ThoughtWorks Inc](http://www.thoughtworks.com), for allowing us to build this tool and make it open source.
 - [Birinder](https://twitter.com/birinder_) and [Panda](https://twitter.com/sarbashrestha) for reviewing the documentation.
 - [Dan Abel](http://www.linkedin.com/pub/dan-abel/0/61b/9b0) for introducing me to Blacklist and Whitelist approach for data anonymization.
+- [Chirga Doshi](https://twitter.com/chiragsdoshi) for encouraging me to get this done.
+- [Aditya Karle](https://twitter.com/adityakarle) for the Logo. (Coming Soon...)
 
 
 

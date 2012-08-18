@@ -11,7 +11,6 @@ describe FieldStrategy::DateDelta do
     let(:date_difference) {anonymized_value - field.value}
 
     it { anonymized_value.should be_kind_of Date}
-    it { anonymized_value.should_not == Date.new(2011,4,7) }
     it { date_difference.should be_between(-5.days, 5.days) }
   end
 

@@ -12,6 +12,11 @@ class CustomerSample
         t.string :zipcode
         t.string :phone
         t.string :email
+        t.string :blog_url
+        t.boolean :terms_n_condition
+        t.integer :age
+        t.float :latitude
+        t.float :longitude
       end
     end
   end
@@ -30,7 +35,8 @@ class CustomerSample
   SAMPLE_DATA = {:cust_id => 100, :first_name => "Sunit", :last_name => "Parekh",
                  :birth_date => Date.new(1977,7,8), :address => "F 501 Shanti Nagar",
                  :state => "Maharastra", :zipcode => "411048", :phone => "9923700662",
-                 :email => "parekh.sunit@gmail.com"}
+                 :email => "parekh.sunit@gmail.com", :terms_n_condition => true,
+                 :age => 34, :longitude => -74.044636, :latitude => +40.689060}
 
   def self.insert_record connection_spec, data_hash = SAMPLE_DATA
     DataAnon::Utils::TempDatabase.establish_connection connection_spec
