@@ -5,7 +5,9 @@ module DataAnon
 
       def database(name, &block)
         logger.debug "Processing Database: #{name}"
-        DataAnon::Core::Database.new(name).instance_eval &block
+        database = DataAnon::Core::Database.new(name)
+        database.instance_eval &block
+        database.anonymize
       end
 
     end

@@ -7,6 +7,7 @@ module DataAnon
         @name = name
         @strategy = DataAnon::Strategy::Whitelist
         @user_defaults = {}
+        @tables = {}
       end
 
       def strategy strategy
@@ -26,7 +27,12 @@ module DataAnon
       end
 
       def table (name, &block)
-        @strategy.new(name, @user_defaults).process_fields(&block).process
+        table = @strategy.new(name, @user_defaults).process_fields(&block)
+        @tables[name] = table
+      end
+
+      def anonymize
+        @tables.each { |key,value| value.process }
       end
 
 
