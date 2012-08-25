@@ -9,6 +9,7 @@ module DataAnon
         @user_defaults = {}
         @tables = []
         @execution_strategy = DataAnon::Core::Sequential
+        ENV['parallel_execution'] = 'false'
       end
 
       def strategy strategy
@@ -17,6 +18,7 @@ module DataAnon
 
       def execution_strategy execution_strategy
         @execution_strategy = execution_strategy
+        ENV['parallel_execution'] = 'true' if execution_strategy == DataAnon::Parallel::Table
       end
 
       def source_db connection_spec
