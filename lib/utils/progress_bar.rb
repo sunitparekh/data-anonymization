@@ -1,3 +1,5 @@
+require 'powerbar'
+
 module DataAnon
   module Utils
 

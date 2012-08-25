@@ -1,14 +1,14 @@
-require 'powerbar'
-
 module DataAnon
   module Strategy
     class Base
       include Utils::Logging
 
-      def initialize name, user_strategies
+      def initialize source_database, destination_database, name, user_strategies
         @name = name
         @user_strategies = user_strategies
         @fields = {}
+        @source_database = source_database
+        @destination_database = destination_database
       end
 
       def process_fields &block
@@ -50,11 +50,15 @@ module DataAnon
       end
 
       def dest_table
-        @dest_table ||= Utils::DestinationTable.create @name, @primary_keys
+        return @dest_table unless @dest_table.nil?
+        DataAnon::Utils::DestinationDatabase.establish_connection @destination_database if @destination_database
+        @dest_table = Utils::DestinationTable.create @name, @primary_keys
       end
 
       def source_table
-        @source_table ||= Utils::SourceTable.create @name, @primary_keys
+        return @source_table unless @source_table.nil?
+        DataAnon::Utils::SourceDatabase.establish_connection @source_database
+        @source_table = Utils::SourceTable.create @name, @primary_keys
       end
 
       def process

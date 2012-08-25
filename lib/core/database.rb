@@ -7,19 +7,24 @@ module DataAnon
         @name = name
         @strategy = DataAnon::Strategy::Whitelist
         @user_defaults = {}
-        @tables = {}
+        @tables = []
+        @execution_strategy = DataAnon::Core::Sequential
       end
 
       def strategy strategy
         @strategy = strategy
       end
 
+      def execution_strategy execution_strategy
+        @execution_strategy = execution_strategy
+      end
+
       def source_db connection_spec
-        DataAnon::Utils::SourceDatabase.establish_connection connection_spec
+        @source_database = connection_spec
       end
 
       def destination_db connection_spec
-        DataAnon::Utils::DestinationDatabase.establish_connection connection_spec
+        @destination_database = connection_spec
       end
 
       def default_field_strategies default_strategies
@@ -27,15 +32,20 @@ module DataAnon
       end
 
       def table (name, &block)
-        table = @strategy.new(name, @user_defaults).process_fields(&block)
-        @tables[name] = table
+        table = @strategy.new(@source_database, @destination_database, name, @user_defaults).process_fields(&block)
+        @tables<< table
       end
 
       def anonymize
-        @tables.each { |key,value| value.process }
+        @execution_strategy.new.anonymize @tables
       end
 
+    end
 
+    class Sequential
+      def anonymize tables
+        tables.each { |table| table.process }
+      end
     end
 
   end
