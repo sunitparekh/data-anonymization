@@ -46,6 +46,37 @@ Run using:
 3. [Whitelist with composite primary key using DellStore sample database](https://github.com/sunitparekh/test-anonymization/blob/master/dell_whitelist.rb)
 4. [Blacklist with composite primary key using DellStore sample database](https://github.com/sunitparekh/test-anonymization/blob/master/dell_blacklist.rb)
 
+## Changelog
+
+#### 0.3.0 (Not released yet) [Github master branch](git://github.com/sunitparekh/data-anonymization.git)
+
+Major changes:
+
+1. Added support for Parallel table execution
+
+Please see the [Github 0.3.0 milestone page](https://github.com/sunitparekh/data-anonymization/issues?milestone=1&page=1&state=open) for more details on changes/fixes in release 0.3.0
+
+#### 0.2.0 (August 16, 2012)
+
+1. Added the progress bar using 'powerbar' gem. Which also shows the ETA for each table.
+2. Added More strategies
+3. Fixed default anonymization strategies for boolean and integer values
+4. Added support for composite primary key
+
+#### 0.1.2 (August 14, 2012)
+
+1. First initial release
+
+## Roadmap
+
+#### 0.4.0
+
+1. MongoDB anonymization support (NoSQL document based database support)
+
+#### 0.5.0
+
+1. Generate DSL from database and build schema from source as part of Whitelist approach.
+
 #### Share feedback
 Please use Github [issues](https://github.com/sunitparekh/data-anonymization/issues) to share feedback, feature suggestions and report issues.
 
@@ -90,7 +121,20 @@ end
 
 1. In Whitelist approach make source database connection READONLY.
 2. Change [default field strategies](#default-field-strategies) to avoid using same strategy again and again in your DSL.
-3.
+3. To run anonymization in parallel at Table level, provided no FK constraint on tables use DataAnon::Parallel::Table strategy
+
+## Running in Parallel
+Currently provides capability of running anonymization in parallel at table level provided no FK constraints on tables.
+It uses [Parallel gem](https://github.com/grosser/parallel) provided by Michael Grosser.
+By default it starts multiple parallel ruby processes processing table one by one.
+```ruby
+database 'DellStore' do
+  strategy DataAnon::Strategy::Whitelist
+  execution_strategy DataAnon::Parallel::Table  # by default sequential table processing
+  ...
+end
+```
+
 
 ## DataAnon::Core::Field
 The object that gets passed along with the field strategies.
@@ -435,34 +479,6 @@ ENV['show_progress'] = 'false'
 DataAnon::Utils::Logging.logger.level = Logger::INFO
 ```
 
-## Changelog
-
-#### 0.2.0 (August 16, 2012)
-
-1. Added the progress bar using 'powerbar' gem. Which also shows the ETA for each table.
-2. Added More strategies
-3. Fixed default anonymization strategies for boolean and integer values
-4. Added support for composite primary key
-
-#### 0.1.2 (August 14, 2012)
-
-1. First initial release
-
-## Roadmap
-
-#### 0.3.0
-
-1. Run anonymization in parallel threads (performance enchantments)
-
-#### 0.4.0
-
-1. MongoDB anonymization support (NoSQL document based database support)
-
-#### 0.5.0
-
-1. Generate DSL from database and build schema from source as part of Whitelist approach.
-
-
 ## Want to contribute?
 
 1. Fork it
@@ -482,6 +498,7 @@ DataAnon::Utils::Logging.logger.level = Logger::INFO
 - [Dan Abel](http://www.linkedin.com/pub/dan-abel/0/61b/9b0) for introducing me to Blacklist and Whitelist approach for data anonymization.
 - [Chirga Doshi](https://twitter.com/chiragsdoshi) for encouraging me to get this done.
 - [Aditya Karle](https://twitter.com/adityakarle) for the Logo. (Coming Soon...)
+- [Michael Grosser](http://grosser.it/) for Parallel gem.
 
 
 
