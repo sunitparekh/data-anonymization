@@ -82,15 +82,16 @@ Please use Github [issues](https://github.com/sunitparekh/data-anonymization/iss
 
 ## What is data anonymization?
 
-For almost all projects there is a need to have production data dump in order to run performance tests, rehearsal production releases and debugging production issues.
-However, getting production data and using it is not feasible due to multiple reasons, one of them primary reason is user personal data. Hence, there is a need for data anonymization.
+For almost all projects there is a need for production data dump in order to run performance tests, rehearse production releases and debug production issues.
+However, getting production data and using it is not feasible due to multiple reasons, primary being privacy concerns for user data. And thus the need for data anonymization.
 This tool helps you to get anonymized production data dump using either Blacklist or Whitelist strategies.
 
 ## Anonymization Strategies
 
 ### Blacklist
 This approach essentially leaves all fields unchanged with the exception of those specified by the user, which are scrambled/anonymized (hence the name blacklist).
-For `Blacklist` create a copy of prod database and chooses the fields to be anonymized like e.g. username, password, email, name, geo location etc. based on user specification Most of the fields had different rules e.g. password as always set to same value for all users, email needs to be valid.
+For `Blacklist` create a copy of prod database and chooses the fields to be anonymized like e.g. username, password, email, name, geo location etc. based on user specification. Most of the fields have different rules e.g. password should be set to same value for all users, email needs to be valid.
+
 The problem with this approach is that when new fields are added they will not be anonymized by default. Human error in omitting users personal data could be damaging.
 
 ```ruby
@@ -103,9 +104,9 @@ end
 
 ### Whitelist
 This approach, by default scrambles/anonymizes all fields except a list of fields which are allowed to copied as is. Hence the name whitelist.
-By default all data needs to be anonymized. So from production database sanitizing the data record by record and insert anonymized data into destination database. Source database need only be readonly.
-All fields would be anonymized using default anonymization strategies based on the datatype, unless an anonymization strategy is specified. For instance special strategies could be used for emails, passwords, usernames etc.
-A list of whitelisted fields which implies that it's okay to copy the data as is and anonymization isn't required.
+By default all data needs to be anonymized. So from production database data is sanitized record by record and inserted as anonymized data into destination database. Source database needs to be readonly.
+All fields would be anonymized using default anonymization strategy which is based on the datatype, unless a special anonymization strategy is specified. For instance special strategies could be used for emails, passwords, usernames etc.
+A whitelisted field implies that it's okay to copy the data as is and anonymization isn't required.
 This way any new field will be anonymized by default and if we need them as is, add it to the whitelist explicitly. This prevents any human error and protects sensitive information.
 
 ```ruby
@@ -498,7 +499,5 @@ DataAnon::Utils::Logging.logger.level = Logger::INFO
 - [Dan Abel](http://www.linkedin.com/pub/dan-abel/0/61b/9b0) for introducing me to Blacklist and Whitelist approach for data anonymization.
 - [Chirga Doshi](https://twitter.com/chiragsdoshi) for encouraging me to get this done.
 - [Aditya Karle](https://twitter.com/adityakarle) for the Logo. (Coming Soon...)
-- [Michael Grosser](http://grosser.it/) for Parallel gem.
-
 
 
