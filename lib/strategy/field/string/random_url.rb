@@ -5,7 +5,7 @@ module DataAnon
 
         def anonymize field
 
-          url = field
+          url = field.value
           randomized_url = ""
           protocols = url.scan(/http:\/\/|www\./)
           protocols.each do |token|
@@ -22,7 +22,7 @@ module DataAnon
             marker_position = special_char_index + 1
           end
 
-          p randomized_url
+          randomized_url
         end
       end
     end
