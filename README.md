@@ -80,7 +80,7 @@ Please see the [Github 0.3.0 milestone page](https://github.com/sunitparekh/data
 
 1. Generate DSL from database and build schema from source as part of Whitelist approach.
 
-#### Share feedback
+## Share feedback
 
 Please use Github [issues](https://github.com/sunitparekh/data-anonymization/issues) to share feedback, feature suggestions and report issues.
 
