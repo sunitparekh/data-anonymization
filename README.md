@@ -48,7 +48,7 @@ Run using:
 
 ## Changelog
 
-#### 0.3.0 (Not released yet) [Github master branch](git://github.com/sunitparekh/data-anonymization.git)
+#### 0.3.0 (Sep 4, 2012)
 
 Major changes:
 
