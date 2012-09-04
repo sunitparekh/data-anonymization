@@ -2,8 +2,8 @@
 Tool to create anonymized production data dump to use for PERF and other TEST environments.
 
 [<img src="https://secure.travis-ci.org/sunitparekh/data-anonymization.png?branch=master">](http://travis-ci.org/sunitparekh/data-anonymization)
-![Dependency Status](https://gemnasium.com/sunitparekh/data-anonymization.png?travis)
-![Code Climate](https://codeclimate.com/badge.png)
+[<img src="https://gemnasium.com/sunitparekh/data-anonymization.png?travis">](https://gemnasium.com/sunitparekh/data-anonymization)
+[<img src="https://codeclimate.com/badge.png">](https://codeclimate.com/github/sunitparekh/data-anonymization)
 
 ## Getting started
 
