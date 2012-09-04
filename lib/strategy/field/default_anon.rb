@@ -22,7 +22,7 @@ module DataAnon
 
         def anonymize field
           strategy = @user_defaults[field.value.class.to_s.downcase.to_sym]
-          raise "No strategy defined for datatype #{field.value.class}" unless strategy
+          raise "No strategy defined for datatype #{field.value.class}. Use 'default_field_strategies' option in your script. Refer to  http://sunitparekh.github.com/data-anonymization/#default-field-strategies for more details. " unless strategy
           strategy.anonymize field
         end
 
