@@ -2,9 +2,10 @@ module DataAnon
   module Utils
     class RandomString
 
-      def self.generate length = nil
+      RANDOM_STRING_CHARS = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789'
+
+      def self.generate length = nil, chars = RANDOM_STRING_CHARS
         length ||= Random.new.rand 5...15
-        chars = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789'
         random_string = ''
         length.times { random_string << chars[rand(chars.size)] }
         random_string
