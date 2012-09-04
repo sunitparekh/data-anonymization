@@ -29,6 +29,7 @@ module DataAnon
           self.table_name = table_name
           self.primary_keys = primary_keys if primary_keys.length > 1
           self.primary_key = primary_keys[0] if primary_keys.length == 1
+          self.inheritance_column = :_type_disabled
           self.mass_assignment_sanitizer = MassAssignmentIgnoreSanitizer.new(self)
         end
       end
