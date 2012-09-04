@@ -19,6 +19,7 @@ require 'strategy/field/number/random_integer'
 require 'strategy/field/number/random_float'
 require 'strategy/field/number/random_integer_delta'
 require 'strategy/field/number/random_float_delta'
+require 'strategy/field/number/random_big_decimal_delta'
 
 # contact
 require 'strategy/field/contact/geojson_base'

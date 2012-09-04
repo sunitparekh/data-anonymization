@@ -32,6 +32,13 @@ describe FieldStrategy::DefaultAnon do
     it { anonymized_value.should be_kind_of Fixnum  }
   end
 
+  describe 'anonymized bignum value' do
+    let(:field) {DataAnon::Core::Field.new('int_field',2348723489723847382947,1,nil)}
+    let(:anonymized_value) {DefaultAnon.new.anonymize(field)}
+
+    it { anonymized_value.should be_kind_of Bignum  }
+  end
+
   describe 'anonymized string value' do
     let(:field) {DataAnon::Core::Field.new('string_field','String',1,nil)}
     let(:anonymized_value) {DefaultAnon.new.anonymize(field)}

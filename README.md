@@ -53,6 +53,8 @@ Run using:
 Major changes:
 
 1. Added support for Parallel table execution
+2. Change in default String strategy from LoremIpsum to RandomString based on end user feedback.
+3. Fixed issue with table column name 'type' as this is default name for STI in activerecord.
 
 Please see the [Github 0.3.0 milestone page](https://github.com/sunitparekh/data-anonymization/issues?milestone=1&page=1&state=open) for more details on changes/fixes in release 0.3.0
 
