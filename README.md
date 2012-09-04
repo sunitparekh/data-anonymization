@@ -2,6 +2,7 @@
 Tool to create anonymized production data dump to use for PERF and other TEST environments.
 
 ## Getting started
+
 Install gem using:
 
     $ gem install data-anonymization
@@ -56,7 +57,7 @@ Major changes:
 2. Change in default String strategy from LoremIpsum to RandomString based on end user feedback.
 3. Fixed issue with table column name 'type' as this is default name for STI in activerecord.
 
-Please see the [Github 0.3.0 milestone page](https://github.com/sunitparekh/data-anonymization/issues?milestone=1&page=1&state=open) for more details on changes/fixes in release 0.3.0
+Please see the [Github 0.3.0 milestone page](https://github.com/sunitparekh/data-anonymization/issues?milestone=1&state=closed) for more details on changes/fixes in release 0.3.0
 
 #### 0.2.0 (August 16, 2012)
 
@@ -80,6 +81,7 @@ Please see the [Github 0.3.0 milestone page](https://github.com/sunitparekh/data
 1. Generate DSL from database and build schema from source as part of Whitelist approach.
 
 #### Share feedback
+
 Please use Github [issues](https://github.com/sunitparekh/data-anonymization/issues) to share feedback, feature suggestions and report issues.
 
 ## What is data anonymization?
@@ -157,15 +159,18 @@ Default anonymization strategy for `string` content. Uses default 'Lorem ipsum..
 ```ruby
 anonymize('UserName').using FieldStrategy::LoremIpsum.new
 ```
+
 ```ruby
 anonymize('UserName').using FieldStrategy::LoremIpsum.new("very large string....")
 ```
+
 ```ruby
 anonymize('UserName').using FieldStrategy::LoremIpsum.new(File.read('my_file.txt'))
 ```
 
 ### RandomString
 Generates random string of same length.
+
 ```ruby
 anonymize('UserName').using FieldStrategy::RandomString.new
 ```
@@ -173,39 +178,47 @@ anonymize('UserName').using FieldStrategy::RandomString.new
 ### StringTemplate
 Simple string evaluation within [DataAnon::Core::Field](#dataanon-core-field) context. Can be used for email, username anonymization.
 Make sure to put the string in 'single quote' else it will get evaluated inline.
+
 ```ruby
 anonymize('UserName').using FieldStrategy::StringTemplate.new('user#{row_number}')
 ```
+
 ```ruby
 anonymize('Email').using FieldStrategy::StringTemplate.new('valid.address+#{row_number}@gmail.com')
 ```
+
 ```ruby
 anonymize('Email').using FieldStrategy::StringTemplate.new('useremail#{row_number}@mailinator.com')
 ```
 
 ### SelectFromList
 Select randomly one of the values specified.
+
 ```ruby
 anonymize('State').using FieldStrategy::SelectFromList.new(['New York','Georgia',...])
 ```
+
 ```ruby
 anonymize('NameTitle').using FieldStrategy::SelectFromList.new(['Mr','Mrs','Dr',...])
 ```
 
 ### SelectFromFile
 Similar to SelectFromList only difference is the list of values are picked up from file. Classical usage is like states field anonymization.
+
 ```ruby
 anonymize('State').using FieldStrategy::SelectFromFile.new('states.txt')
 ```
 
 ### FormattedStringNumber
 Keeping the format same it changes each digit in the string with random digit.
+
 ```ruby
 anonymize('CreditCardNumber').using FieldStrategy::FormattedStringNumber.new
 ```
 
 ### SelectFromDatabase
 Similar to SelectFromList with difference is the list of values are collected from the database table using distinct column query.
+
 ```ruby
 # values are collected using `select distinct state from customers` query
 anonymize('State').using FieldStrategy::SelectFromDatabase.new('customers','state')
@@ -214,12 +227,15 @@ anonymize('State').using FieldStrategy::SelectFromDatabase.new('customers','stat
 ### RandomAddress
 Generates address using the [geojson](http://www.geojson.org/geojson-spec.html) format file. The default US/UK file chooses randomly from 300 addresses.
 The large data set can be downloaded from [here](http://www.infochimps.com/datasets/simplegeo-places-dump)
+
 ```ruby
 anonymize('Address').using FieldStrategy::RandomAddress.region_US
 ```
+
 ```ruby
 anonymize('Address').using FieldStrategy::RandomAddress.region_UK
 ```
+
 ```ruby
 # get your own geo_json file and use it
 anonymize('Address').using FieldStrategy::RandomAddress.new('my_geo_json.json')
@@ -228,12 +244,15 @@ anonymize('Address').using FieldStrategy::RandomAddress.new('my_geo_json.json')
 ### RandomCity
 Similar to RandomAddress, generates city using the [geojson](http://www.geojson.org/geojson-spec.html) format file. The default US/UK file chooses randomly from 300 addresses.
 The large data set can be downloaded from [here](http://www.infochimps.com/datasets/simplegeo-places-dump)
+
 ```ruby
 anonymize('City').using FieldStrategy::RandomCity.region_US
 ```
+
 ```ruby
 anonymize('City').using FieldStrategy::RandomCity.region_UK
 ```
+
 ```ruby
 # get your own geo_json file and use it
 anonymize('City').using FieldStrategy::RandomCity.new('my_geo_json.json')
@@ -242,12 +261,15 @@ anonymize('City').using FieldStrategy::RandomCity.new('my_geo_json.json')
 ### RandomProvince
 Similar to RandomAddress, generates province using the [geojson](http://www.geojson.org/geojson-spec.html) format file. The default US/UK file chooses randomly from 300 addresses.
 The large data set can be downloaded from [here](http://www.infochimps.com/datasets/simplegeo-places-dump)
+
 ```ruby
 anonymize('Province').using FieldStrategy::RandomProvince.region_US
 ```
+
 ```ruby
 anonymize('Province').using FieldStrategy::RandomProvince.region_UK
 ```
+
 ```ruby
 # get your own geo_json file and use it
 anonymize('Province').using FieldStrategy::RandomProvince.new('my_geo_json.json')
@@ -256,12 +278,15 @@ anonymize('Province').using FieldStrategy::RandomProvince.new('my_geo_json.json'
 ### RandomZipcode
 Similar to RandomAddress, generates zipcode using the [geojson](http://www.geojson.org/geojson-spec.html) format file. The default US/UK file chooses randomly from 300 addresses.
 The large data set can be downloaded from [here](http://www.infochimps.com/datasets/simplegeo-places-dump)
+
 ```ruby
 anonymize('Address').using FieldStrategy::RandomZipcode.region_US
 ```
+
 ```ruby
 anonymize('Address').using FieldStrategy::RandomZipcode.region_UK
 ```
+
 ```ruby
 # get your own geo_json file and use it
 anonymize('Address').using FieldStrategy::RandomZipcode.new('my_geo_json.json')
@@ -269,6 +294,7 @@ anonymize('Address').using FieldStrategy::RandomZipcode.new('my_geo_json.json')
 
 ### RandomPhoneNumber
 Keeping the format same it changes each digit in the string with random digit.
+
 ```ruby
 anonymize('PhoneNumber').using FieldStrategy::RandomPhoneNumber.new
 ```
@@ -276,12 +302,14 @@ anonymize('PhoneNumber').using FieldStrategy::RandomPhoneNumber.new
 ### AnonymizeDateTime
 Anonymizes each field(except year and seconds) within the natural range (e.g. hour between 1-24 and day within the month) based on true/false
 input for that field. By default, all fields are anonymized.
+
 ```ruby
 #anonymizes month and hour fields, leaving the day and minute fields untouched
 anonymize('DateOfBirth').using FieldStrategy::AnonymizeDateTime.new(true,false,true,false)
 ```
 
 In addition to customizing which fields you want anonymized, there are some helper methods which allow for quick anonymization
+
 ```ruby
 # anonymizes only the month field
 anonymize('DateOfBirth').using FieldStrategy::AnonymizeDateTime.only_month
@@ -299,12 +327,14 @@ Exactly similar to the above DateTime strategy, except that the returned object 
 ### AnonymizeDate
 Anonmizes day and month fields within natural range based on true/false input for that field. By defaut both fields are
 anonymized
+
 ```ruby
 # anonymizes month and leaves day unchanged
 anonymize('DateOfBirth').using FieldStrategy::AnonymizeDate.new(true,false)
 ```
 
 In addition to customizing which fields you want anonymized, there are some helper methods which allow for quick anonymization
+
 ```ruby
 # anonymizes only the month field
 anonymize('DateOfBirth').using FieldStrategy::AnonymizeDate.only_month
@@ -314,9 +344,11 @@ anonymize('DateOfBirth').using FieldStrategy::AnonymizeDate.only_day
 
 ### DateTimeDelta
 Shifts data randomly within given range. Default shifts date within 10 days + or - and shifts time within 30 minutes.
+
 ```ruby
 anonymize('DateOfBirth').using FieldStrategy::DateTimeDelta.new
 ```
+
 ```ruby
 # shifts date within 20 days and time within 50 minutes
 anonymize('DateOfBirth').using FieldStrategy::DateTimeDelta.new(20, 50)
@@ -326,11 +358,12 @@ anonymize('DateOfBirth').using FieldStrategy::DateTimeDelta.new(20, 50)
 Exactly similar to the above DateTime strategy, except that the returned object is of type `Time`
 
 ### DateDelta
-
 Shifts date randomly within given delta range. Default shits date within 10 days + or -
+
 ```ruby
 anonymize('DateOfBirth').using FieldStrategy::AnonymizeDate.new
 ```
+
 ```ruby
 # shifts date within 25 days
 anonymize('DateOfBirth').using FieldStrategy::DateDelta.new(25)
@@ -339,6 +372,7 @@ anonymize('DateOfBirth').using FieldStrategy::DateDelta.new(25)
 ### RandomEmail
 Generates email randomly using the given HOSTNAME and TLD.
 By defaults generates hostname randomly along with email id.
+
 ```ruby
 anonymize('Email').using FieldStrategy::RandomEmail.new('thoughtworks','com')
 ```
@@ -346,18 +380,21 @@ anonymize('Email').using FieldStrategy::RandomEmail.new('thoughtworks','com')
 ### GmailTemplate
 Generates a valid unique gmail address by taking advantage of the gmail + strategy. Takes in a valid gmail username and
 generates emails of the form username+<number>@gmail.com
+
 ```ruby
 anonymize('Email').using FieldStrategy::GmailTemplate.new('username')
 ```
 
 ### RandomMailinatorEmail
 Generates random email using mailinator hostname. e.g. <randomstring>@mailinator.com
+
 ```ruby
 anonymize('Email').using FieldStrategy::RandomMailinatorEmail.new
 ```
 
 ### RandomUserName
 Generates random user name of same length as original user name.
+
 ```ruby
 anonymize('Username').using FieldStrategy::RandomUserName.new
 ```
@@ -365,9 +402,11 @@ anonymize('Username').using FieldStrategy::RandomUserName.new
 ### RandomFirstName
 Randomly picks up first name from the predefined list in the file. Default [file](https://raw.github.com/sunitparekh/data-anonymization/master/resources/first_names.txt) is part of the gem.
 File should contain first name on each line.
+
 ```ruby
 anonymize('FirstName').using FieldStrategy::RandomFirstName.new
 ```
+
 ```ruby
 anonymize('FirstName').using FieldStrategy::RandomFirstName.new('my_first_names.txt')
 ```
@@ -375,9 +414,11 @@ anonymize('FirstName').using FieldStrategy::RandomFirstName.new('my_first_names.
 ### RandomLastName
 Randomly picks up last name from the predefined list in the file. Default [file](https://raw.github.com/sunitparekh/data-anonymization/master/resources/last_names.txt) is part of the gem.
 File should contain last name on each line.
+
 ```ruby
 anonymize('LastName').using FieldStrategy::RandomLastName.new
 ```
+
 ```ruby
 anonymize('LastName').using FieldStrategy::RandomLastName.new('my_last_names.txt')
 ```
@@ -385,33 +426,39 @@ anonymize('LastName').using FieldStrategy::RandomLastName.new('my_last_names.txt
 ### RandomFullName
 Generates full name using the RandomFirstName and RandomLastName strategies.
 It also creates the s
+
 ```ruby
 anonymize('FullName').using FieldStrategy::RandomFullName.new
 ```
+
 ```ruby
 anonymize('FullName').using FieldStrategy::RandomLastName.new('my_first_names.txt', 'my_last_names.txt')
 ```
 
 ### RandomInteger
 Generates random integer number between given two numbers. Default range is 0 to 100.
+
 ```ruby
 anonymize('Age').using FieldStrategy::RandomInteger.new(18,70)
 ```
 
 ### RandomIntegerDelta
 Shifts the current value randomly within given delta + and -. Default is 10
+
 ```ruby
 anonymize('Age').using FieldStrategy::RandomIntegerDelta.new(2)
 ```
 
 ### RandomFloat
 Generates random float number between given two numbers. Default range is 0.0 to 100.0
+
 ```ruby
 anonymize('points').using FieldStrategy::RandomInteger.new(3.0,5.0)
 ```
 
 ### RandomFloatDelta
 Shifts the current value randomly within given delta + and -. Default is 10.0
+
 ```ruby
 anonymize('points').using FieldStrategy::RandomFloatDelta.new(2.5)
 ```
@@ -444,11 +491,11 @@ write your own anonymous field strategies within DSL,
 ## Default field strategies
 
 ```ruby
-# Work in progress... TO BE COMPLETED
-DEFAULT_STRATEGIES = {:string => FieldStrategy::LoremIpsum.new,
+DEFAULT_STRATEGIES = {:string => FieldStrategy::RandomString.new,
                       :fixnum => FieldStrategy::RandomIntegerDelta.new(5),
                       :bignum => FieldStrategy::RandomIntegerDelta.new(5000),
                       :float => FieldStrategy::RandomFloatDelta.new(5.0),
+                      :bigdecimal => FieldStrategy::RandomBigDecimalDelta.new(500.0),
                       :datetime => FieldStrategy::DateTimeDelta.new,
                       :time => FieldStrategy::TimeDelta.new,
                       :date => FieldStrategy::DateDelta.new,
@@ -457,7 +504,7 @@ DEFAULT_STRATEGIES = {:string => FieldStrategy::LoremIpsum.new,
 }
 ```
 
-Overriding default field strategies,
+Overriding default field strategies & can be used to provide default strategy for missing data type.
 
 ```ruby
 database 'Chinook' do
@@ -497,7 +544,7 @@ DataAnon::Utils::Logging.logger.level = Logger::INFO
 ## Credits
 
 - [ThoughtWorks Inc](http://www.thoughtworks.com), for allowing us to build this tool and make it open source.
-- [Birinder](https://twitter.com/birinder_) and [Panda](https://twitter.com/sarbashrestha) for reviewing the documentation.
+- [Panda](https://twitter.com/sarbashrestha) for reviewing the documentation.
 - [Dan Abel](http://www.linkedin.com/pub/dan-abel/0/61b/9b0) for introducing me to Blacklist and Whitelist approach for data anonymization.
 - [Chirga Doshi](https://twitter.com/chiragsdoshi) for encouraging me to get this done.
 - [Aditya Karle](https://twitter.com/adityakarle) for the Logo. (Coming Soon...)
