@@ -1,0 +1,21 @@
+require 'data-anonymization'
+
+DataAnon::Utils::Logging.logger.level = Logger::INFO
+
+database 'Template' do
+
+  strategy DataAnon::Strategy::Whitelist
+  source_db :adapter => "<%= "#{@configuration_hash[:adapter]}" %>", :database => "<%= "#{@configuration_hash[:database]}" %>"
+  destination_db :adapter => "<%= "#{@configuration_hash[:adapter]}" %>", :database => "<%= "#{@configuration_hash[:database]}" %>"
+
+  <% @tables.each do |table| %>
+  table <%= table %> do
+    primary_key '<%= @ar_object.connection.primary_key("#{table}") %>'
+    <%- @ar_object.connection.indexes("#{table}").each do |index| -%>
+    whitelist '<%= index.columns.first %>'
+    <%- end -%>
+  end
+  <% end %>
+
+end
+
