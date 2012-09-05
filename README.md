@@ -4,7 +4,6 @@ Tool to create anonymized production data dump to use for PERF and other TEST en
 [<img src="https://secure.travis-ci.org/sunitparekh/data-anonymization.png?branch=master">](http://travis-ci.org/sunitparekh/data-anonymization)
 [<img src="https://gemnasium.com/sunitparekh/data-anonymization.png?travis">](https://gemnasium.com/sunitparekh/data-anonymization)
 [<img src="https://codeclimate.com/badge.png">](https://codeclimate.com/github/sunitparekh/data-anonymization)
-[<img src="https://si0.twimg.com/a/1346446870/images/resources/twitter-bird-light-bgs.png" height="35" width="35">](https://twitter.com/share?text=Checkout+simple_ruby_DSL+based+data+anonymization+tool+for+getting+production+data+dump&url=http:%2F%2Fsunitparekh.github.com%2Fdata-anonymization&via=dataanon&hashtags=dataanon)
 
 ## Getting started
 
@@ -44,6 +43,10 @@ end
 Run using:
 
     $ ruby my_dsl.rb
+
+## Liked it? please share
+
+[<img src="https://si0.twimg.com/a/1346446870/images/resources/twitter-bird-light-bgs.png" height="35" width="35">](https://twitter.com/share?text=Checkout+simple_ruby_DSL+based+data+anonymization+tool+for+getting+production+data+dump&url=http:%2F%2Fsunitparekh.github.com%2Fdata-anonymization&via=dataanon&hashtags=dataanon)
 
 ## Examples
 
