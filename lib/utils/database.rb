@@ -14,6 +14,10 @@ module DataAnon
       self.abstract_class = true
     end
 
+    class DisableReferentialIntegrityDatabase < ActiveRecord::Base
+      self.abstract_class = true
+    end
+
     class SourceDatabase < ActiveRecord::Base
       self.abstract_class = true
     end

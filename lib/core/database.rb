@@ -39,7 +39,14 @@ module DataAnon
       end
 
       def anonymize
-        @execution_strategy.new.anonymize @tables
+        DisableReferentialIntegrityDatabase.establish_connection anon_db_connection
+        DisableReferentialIntegrityDatabase.connection.disable_referential_integrity do
+          @execution_strategy.new.anonymize @tables
+        end
+      end
+
+      def anon_db_connection
+        @strategy == DataAnon::Strategy::Whitelist ? @destination_database : @source_database
       end
 
     end
