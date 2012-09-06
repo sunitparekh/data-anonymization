@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = "http://sunitparekh.github.com/data-anonymization"
 
   gem.files         = `git ls-files`.split($/).select { |f| !f.match(/^sample-data/) }
-  gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
+  gem.executables   = "datanon"
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
@@ -24,4 +24,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency('rgeo-geojson', '~> 0.2.3')
   gem.add_dependency('powerbar', '~> 1.0.8')
   gem.add_dependency('parallel', '~> 0.5.18')
+  gem.add_dependency('thor', '~> 0.16.0')
 end

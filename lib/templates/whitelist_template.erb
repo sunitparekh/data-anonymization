@@ -9,7 +9,7 @@ database 'Template' do
   destination_db <%= DataAnon::Utils::TemplateHelper.destination_connection_specs @configuration_hash %>
 
   <% @tables.each do |table| %>
-  table <%= table %> do
+  table '<%= table %>' do
     primary_key '<%= @ar_object.connection.primary_key("#{table}") %>'
     <%- @ar_object.connection.indexes("#{table}").each do |index| -%>
     whitelist '<%= index.columns.first %>'
