@@ -1,5 +1,6 @@
 require 'active_record'
 require 'erb'
+require 'data-anonymization'
 
 class Anonymization < Thor
   include Thor::Actions
@@ -19,12 +20,12 @@ class Anonymization < Thor
 
   def generate_dsl
 
-    @configuration_hash = {:adapter => options[:adapter],
-                           :host => options[:host],
-                           :port => options[:port].to_i,
-                           :database => options[:database],
-                           :username => options[:username],
-                           :password => options[:password]
+    @configuration_hash = {:adapter => options["adapter"],
+                           :host => options["host"],
+                           :port => options["port"],
+                           :database => options["database"],
+                           :username => options["username"],
+                           :password => options["password"]
                           }
 
     @ar_object = ActiveRecord::Base.establish_connection(@configuration_hash)
