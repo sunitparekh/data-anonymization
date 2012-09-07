@@ -2,30 +2,17 @@
 # encoding: UTF-8
 
 require 'thor'
-require 'active_record'
-require 'erb'
 require 'data-anonymization'
 
-class DSLGen < Thor
+class AnonymizationCLI < Thor
 
   include Thor::Actions
 
-  def self.source_root
-    File.dirname(__FILE__)
-  end
-
   desc "generate_dsl", "Generates a base anonymization script using the whitelist strategy using the database schema"
-
-  method_option :adapter, :required => true, :aliases => "-a", :desc => "Activerecord database adapter to be used [required]"
-  method_option :host, :required => true, :aliases => "-h", :desc => "Source Database host [required]"
-  method_option :database, :required => true, :aliases => "-d", :desc => "Database name [required]"
-  method_option :port, :aliases => "-p", :desc => "Port to connect to. If not provided default port provided by AR will be used"
-  method_option :username, :aliases => "-u", :desc => "Username"
-  method_option :password, :aliases => "-pwd", :desc => "Password"
 
   def generate_dsl
 
-    @configuration_hash = {:adapter => options["adapter"],
+    configuration_hash = {:adapter => options["adapter"],
                            :host => options["host"],
                            :port => options["port"],
                            :database => options["database"],
@@ -33,21 +20,17 @@ class DSLGen < Thor
                            :password => options["password"]
                           }
 
-    @ar_object = ActiveRecord::Base.establish_connection(@configuration_hash)
-
-    @tables = @ar_object.connection.tables
-
-    erb = ERB.new( File.new(DSLGen.source_root + "/../lib/templates/whitelist_template.erb").read, nil, '-')
-
     create_file "whitelist_generated.rb"
-    File.open('whitelist_generated.rb', 'w') do |f|
-      f.write erb.result(binding)
-      f.close
-    end
-
-  rescue Mysql2::Error
-    puts "\e[31mActiverecord was unable to establish a connection to the specified database. Please check the configuration options and try again.\e[0m"
+    DataAnon::ThorHelpers::DSLGenerator.new.generate_whitelist_script(configuration_hash)
   end
+
+  method_option :adapter, :required => true, :aliases => "-a", :desc => "Activerecord database adapter to be used [required]", :for => :generate_dsl
+  method_option :host, :required => true, :aliases => "-h", :desc => "Source Database host [required]", :for => :generate_dsl
+  method_option :database, :required => true, :aliases => "-d", :desc => "Database name [required]", :for => :generate_dsl
+  method_option :port, :aliases => "-p", :desc => "Port to connect to. If not provided default port provided by AR will be used", :for => :generate_dsl
+  method_option :username, :aliases => "-u", :desc => "Username", :for => :generate_dsl
+  method_option :password, :aliases => "-pwd", :desc => "Password", :for => :generate_dsl
+
 end
 
-DSLGen.start
+AnonymizationCLI.start

@@ -10,7 +10,7 @@ database 'Template' do
 
   <% @tables.each do |table| %>
   table '<%= table %>' do
-    primary_key '<%= @ar_object.connection.primary_key("#{table}") %>'
+    primary_key '<%= @ar_object.connection.primary_key("#{table}").nil? ? "<No primary key found. Possible composite key. Please enter the value>" : @ar_object.connection.primary_key("#{table}") %>'
     <%- @ar_object.connection.indexes("#{table}").each do |index| -%>
     whitelist '<%= index.columns.first %>'
     <%- end -%>
