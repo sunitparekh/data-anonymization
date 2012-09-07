@@ -35,8 +35,9 @@ module DataAnon
 
       def table (name, &block)
         table = @strategy.new(@source_database, @destination_database, name, @user_defaults).process_fields(&block)
-        @tables<< table
+        @tables << table
       end
+      alias :collection :table
 
       def anonymize
         @execution_strategy.new.anonymize @tables

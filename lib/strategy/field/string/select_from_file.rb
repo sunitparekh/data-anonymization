@@ -9,6 +9,7 @@ module DataAnon
         end
 
         def anonymize field
+          return @values.sample(field.value.length) if field.value.kind_of? Array
           @values.sample
         end
 

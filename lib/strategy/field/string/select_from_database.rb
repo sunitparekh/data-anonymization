@@ -2,7 +2,7 @@ module DataAnon
   module Strategy
     module Field
 
-      class SelectFromDatabase
+      class SelectFromDatabase < SelectFromFile
         include Utils::Logging
 
         def initialize table_name, field_name, connection_spec
@@ -11,10 +11,6 @@ module DataAnon
           @values = source.select(field_name).uniq.collect { |record| record[field_name]}
           logger.debug "For field strategy #{table_name}:#{field_name} using values #{@values} "
 
-        end
-
-        def anonymize field
-          @values[DataAnon::Utils::RandomInt.generate(0,(@values.length - 1))]
         end
 
       end

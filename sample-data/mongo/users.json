@@ -1,0 +1,38 @@
+[
+    {
+        "user_id": "sunitparekh",
+        "date_of_birth": { "$date":1346740765000 },
+        "email":"parekh.sunit@gmail.com",
+        "password":"TfqIK8Pd8GlbMDFZCX4l/5EtnOkfLCeynOL85tJQuxum&382knaflk@@",
+        "failed_attempts":0,
+        "first_name":"Sunit",
+        "last_name":"Parekh",
+        "password_reset_answer":"manza",
+        "password_reset_question":"My new car modal?",
+        "updated_at":{ "$date":1346740767000 }
+    },
+    {
+        "user_id": "satyamag",
+        "date_of_birth":{ "$date":1346740765000 },
+        "email":"satyamag@gmail.com",
+        "password":"$2a$10$2YTfqIK8Pd8GlbMDFZCvGOcJYLkQs7Hlpal4YF99iSh9yhnWPggZG",
+        "failed_attempts":1,
+        "first_name":"Satyam",
+        "last_name":"Agarwal",
+        "password_reset_answer":"iphone",
+        "password_reset_question":"My phone?",
+        "updated_at":{ "$date":1346740767000 }
+    },
+    {
+        "user_id": "anandagrawal",
+        "date_of_birth":{ "$date":1346740765000 },
+        "email":"anandagrawal84@gmail.com",
+        "password":"Tz548O0RWusldVAWkwqfzO3jK/X4l/5EtnOkfLCeynOL85tJQuxum",
+        "failed_attempts":0,
+        "first_name":"Anand",
+        "last_name":"Agrawal",
+        "password_reset_answer":"android",
+        "password_reset_question":"My phone?",
+        "updated_at":{ "$date":1346740767000 }
+    }
+]

@@ -1,0 +1,41 @@
+[
+    {
+        "name":"Free",
+        "features":[
+            {
+                "max_storage": 21474836480,
+                "type":"AmazonS3",
+                "users": { "max" : 1, "additional" : false }
+            },
+            {
+                "max_storage": 21474836480,
+                "type":"DropBox",
+                "users": { "max" : 1, "additional" : false }
+            }
+        ],
+        "term":"month",
+        "public_sharing": false,
+        "photo_sharing": true,
+        "created_at":{ "$date":1346740765000 }
+    },
+    {
+        "name":"Team",
+        "plan_aliases":["Business","Paid"],
+        "features":[
+            {
+                "max_storage": 53687091200,
+                "type":"AmazonS3",
+                "users": { "max" : 5, "additional" : true }
+            },
+            {
+                "max_storage": 53687091200,
+                "type":"DropBox",
+                "users": { "max" : 5, "additional" : true }
+            }
+        ],
+        "term":"month",
+        "public_sharing": true,
+        "photo_sharing": true,
+        "created_at":{ "$date":1346740765000 }
+    }
+]

@@ -1,4 +1,5 @@
 require 'strategy/base'
 require 'strategy/whitelist'
 require 'strategy/blacklist'
+require 'strategy/mongodb/whitelist'
 require 'strategy/field/fields'
