@@ -1,10 +1,8 @@
 require 'data-anonymization'
 
 require 'mongo'
-require 'json'
 Mongo::Connection.from_uri("mongodb://localhost/test").drop_database('test')
 Mongo::Connection.from_uri("mongodb://localhost/dest").drop_database('dest')
-
 system "mongoimport -d test --drop -c users --jsonArray ./sample-data/mongo/users.json"
 system "mongoimport -d test --drop -c plans --jsonArray ./sample-data/mongo/plans.json"
 

@@ -41,34 +41,43 @@ module DataAnon
           dest_collection.insert anonymize_document(document, index, @fields)
         end
 
-        def anonymize_document document, index, document_fields = {}
+        def anonymize_document document, index, field_strategies = {}
           anonymized_document = {}
           document.each do |field_name, field_value|
+            field_strategy = field_strategies[field_name.downcase]
             unless field_value.nil?
               field = DataAnon::Core::Field.new(field_name, field_value, index, document)
-              if sub_document? field.value
-                anonymized_document[field.name] = anonymize_document(field.value,index, document_fields[field.name])
-              elsif field.value.kind_of? Array
-                if sub_document? field.value[0]
-                  anonymized_document[field.name] = field.value.collect { |value| anonymize_document(value,index, document_fields[field.name]) }
-                else
-                  anonymized_document[field.name] = anonymize_field(document_fields, field)
-                end
-              else
-                anonymized_document[field.name] = anonymize_field(document_fields, field)
-              end
+              anonymized_document[field.name] = anonymize_field1(field, field_strategy)
             end
           end
           anonymized_document
         end
 
-        def anonymize_field(document_fields, field)
-          field_strategy = document_fields[field.name.downcase] || DataAnon::Strategy::Field::DefaultAnon.new(@user_strategies)
+        def anonymize_field1(field, field_strategy)
+          if sub_document? field
+            anonymize_document(field.value, field.row_number, field_strategy)
+          elsif sub_documents? field
+            anonymize_array(field_strategy, field)
+          else
+            anonymize_field(field_strategy, field)
+          end
+        end
+
+        def anonymize_array(field_strategy, field)
+          field.value.collect { |value| anonymize_document(value, field.row_number, field_strategy) }
+        end
+
+        def anonymize_field(field_strategy, field)
+          field_strategy = field_strategy || DataAnon::Strategy::Field::DefaultAnon.new(@user_strategies)
           field_strategy.anonymize(field)
         end
 
-        def sub_document?(field_value)
-          field_value.kind_of? Hash
+        def sub_documents?(field)
+          field.value.kind_of?(Array) && field.value[0].kind_of?(Hash)
+        end
+
+        def sub_document?(field)
+          field.value.kind_of? Hash
         end
 
       end
