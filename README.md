@@ -50,10 +50,18 @@ Liked it? please share
 
 ## Examples
 
-1. [Whitelist using Chinoook sample database](https://github.com/sunitparekh/data-anonymization/blob/master/whitelist_dsl.rb)
-2. [Blacklist using Chinoook sample database](https://github.com/sunitparekh/data-anonymization/blob/master/blacklist_dsl.rb)
-3. [Whitelist with composite primary key using DellStore sample database](https://github.com/sunitparekh/test-anonymization/blob/master/dell_whitelist.rb)
-4. [Blacklist with composite primary key using DellStore sample database](https://github.com/sunitparekh/test-anonymization/blob/master/dell_blacklist.rb)
+SQLite database
+[Whitelist](https://github.com/sunitparekh/data-anonymization/blob/master/examples/whitelist_dsl.rb)
+[Blacklist](https://github.com/sunitparekh/data-anonymization/blob/master/examples/blacklist_dsl.rb)
+
+MongoDB
+[Whitelist](https://github.com/sunitparekh/test-anonymization/blob/master/mongodb_whitelist_dsl.rb)
+[Blacklist](https://github.com/sunitparekh/test-anonymization/blob/master/mongodb_blacklist_dsl.rb)
+
+Postgresql database having *composite* primary key
+[Whitelist](https://github.com/sunitparekh/test-anonymization/blob/master/dell_whitelist.rb)
+[Blacklist](https://github.com/sunitparekh/test-anonymization/blob/master/dell_blacklist.rb)
+
 
 ## Changelog
 
