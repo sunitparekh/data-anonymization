@@ -51,16 +51,19 @@ Liked it? please share
 ## Examples
 
 SQLite database
-[Whitelist](https://github.com/sunitparekh/data-anonymization/blob/master/examples/whitelist_dsl.rb)
-[Blacklist](https://github.com/sunitparekh/data-anonymization/blob/master/examples/blacklist_dsl.rb)
+
+1. [Whitelist](https://github.com/sunitparekh/data-anonymization/blob/master/examples/whitelist_dsl.rb)
+2. [Blacklist](https://github.com/sunitparekh/data-anonymization/blob/master/examples/blacklist_dsl.rb)
 
 MongoDB
-[Whitelist](https://github.com/sunitparekh/data-anonymization/blob/master/examples/mongodb_whitelist_dsl.rb)
-[Blacklist](https://github.com/sunitparekh/data-anonymization/blob/master/examples/mongodb_blacklist_dsl.rb)
 
-Postgresql database having *composite* primary key
-[Whitelist](https://github.com/sunitparekh/test-anonymization/blob/master/dell_whitelist.rb)
-[Blacklist](https://github.com/sunitparekh/test-anonymization/blob/master/dell_blacklist.rb)
+1. [Whitelist](https://github.com/sunitparekh/data-anonymization/blob/master/examples/mongodb_whitelist_dsl.rb)
+2. [Blacklist](https://github.com/sunitparekh/data-anonymization/blob/master/examples/mongodb_blacklist_dsl.rb)
+
+Postgresql database having **composite primary key**
+
+1. [Whitelist](https://github.com/sunitparekh/test-anonymization/blob/master/dell_whitelist.rb)
+2. [Blacklist](https://github.com/sunitparekh/test-anonymization/blob/master/dell_blacklist.rb)
 
 
 ## Changelog
@@ -68,6 +71,7 @@ Postgresql database having *composite* primary key
 #### 0.5.0 (under development, point Gemfile to Github repo)
 
 Major changes:
+
 1. MongoDB support
 2. Command line utility to generate whitelist DSL for RDBMS (reduces pain for writing whitelist dsl)
 
