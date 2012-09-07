@@ -65,6 +65,14 @@ Postgresql database having *composite* primary key
 
 ## Changelog
 
+#### 0.5.0 (under development, point Gemfile to Github repo)
+
+Major changes:
+1. MongoDB support
+2. Command line utility to generate whitelist DSL for RDBMS (reduces pain for writing whitelist dsl)
+
+Please see the [Github 0.5.0 milestone page](https://github.com/sunitparekh/data-anonymization/issues?milestone=2&state=open) for more details on changes/fixes in release 0.5.0
+
 #### 0.3.0 (Sep 4, 2012)
 
 Major changes:
@@ -88,13 +96,7 @@ Please see the [Github 0.3.0 milestone page](https://github.com/sunitparekh/data
 
 ## Roadmap
 
-#### 0.4.0
-
-1. MongoDB anonymization support (NoSQL document based database support)
-
-#### 0.5.0
-
-1. Generate DSL from database and build schema from source as part of Whitelist approach.
+MVP done. Fix defects and support queries, suggestions, enhancements logged in Github issues :-)
 
 ## Share feedback
 
