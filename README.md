@@ -55,8 +55,8 @@ SQLite database
 [Blacklist](https://github.com/sunitparekh/data-anonymization/blob/master/examples/blacklist_dsl.rb)
 
 MongoDB
-[Whitelist](https://github.com/sunitparekh/test-anonymization/blob/master/mongodb_whitelist_dsl.rb)
-[Blacklist](https://github.com/sunitparekh/test-anonymization/blob/master/mongodb_blacklist_dsl.rb)
+[Whitelist](https://github.com/sunitparekh/data-anonymization/blob/master/examples/mongodb_whitelist_dsl.rb)
+[Blacklist](https://github.com/sunitparekh/data-anonymization/blob/master/examples/mongodb_blacklist_dsl.rb)
 
 Postgresql database having *composite* primary key
 [Whitelist](https://github.com/sunitparekh/test-anonymization/blob/master/dell_whitelist.rb)
