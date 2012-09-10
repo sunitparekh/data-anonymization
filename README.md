@@ -353,7 +353,7 @@ has following attribute accessor
 <td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomUserName">RandomUserName</a></td>
 <td align="left">Generates random user name of same length as original user name.</td>
 </tr>
-</table><h2>
+</table>
 
 
 ## Write you own field strategies
