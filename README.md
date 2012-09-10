@@ -166,13 +166,13 @@ has following attribute accessor
 Data Type | Name | Usage 
 :--------:|:----: | :----- 
 String | [LoremIpsum [Default]]((http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/LoremIpsum)) | Generates a random Lorep Ipsum String
-| [RandomString](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomString) | Generates a random string of equal length 
-| [StringTemplate](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/StringTemplate) | Generates a string based on provided template 
-| [SelectFromList]((http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/SelectFromList) | Randomly selects a string from a provided list 
-| [SelectFromFile](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/SelectFromFile) | Randomly selects a string from a provided file
-| [FormattedStringNumber](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/FormattedStringNumber) | Randomize digits in a string while maintaining the format
-| [SelectFromDatabase](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/SelectFromDatabase) | Selects randomly from the result of a query on a database
-| [RandomURL](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomUrl) | Anonymizes a URL while mainting the structure
+String | [RandomString](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomString) | Generates a random string of equal length 
+String | [StringTemplate](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/StringTemplate) | Generates a string based on provided template 
+String | [SelectFromList]((http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/SelectFromList) | Randomly selects a string from a provided list 
+String | [SelectFromFile](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/SelectFromFile) | Randomly selects a string from a provided file
+String | [FormattedStringNumber](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/FormattedStringNumber) | Randomize digits in a string while maintaining the format
+String | [SelectFromDatabase](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/SelectFromDatabase) | Selects randomly from the result of a query on a database
+String | [RandomURL](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomUrl) | Anonymizes a URL while mainting the structure
 
 ### RandomAddress
 Generates address using the [geojson](http://www.geojson.org/geojson-spec.html) format file. The default US/UK file chooses randomly from 300 addresses.
