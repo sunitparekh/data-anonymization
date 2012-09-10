@@ -50,12 +50,32 @@ Liked it? please share
 
 ## Examples
 
-1. [Whitelist using Chinoook sample database](https://github.com/sunitparekh/data-anonymization/blob/master/whitelist_dsl.rb)
-2. [Blacklist using Chinoook sample database](https://github.com/sunitparekh/data-anonymization/blob/master/blacklist_dsl.rb)
-3. [Whitelist with composite primary key using DellStore sample database](https://github.com/sunitparekh/test-anonymization/blob/master/dell_whitelist.rb)
-4. [Blacklist with composite primary key using DellStore sample database](https://github.com/sunitparekh/test-anonymization/blob/master/dell_blacklist.rb)
+SQLite database
+
+1. [Whitelist](https://github.com/sunitparekh/data-anonymization/blob/master/examples/whitelist_dsl.rb)
+2. [Blacklist](https://github.com/sunitparekh/data-anonymization/blob/master/examples/blacklist_dsl.rb)
+
+MongoDB
+
+1. [Whitelist](https://github.com/sunitparekh/data-anonymization/blob/master/examples/mongodb_whitelist_dsl.rb)
+2. [Blacklist](https://github.com/sunitparekh/data-anonymization/blob/master/examples/mongodb_blacklist_dsl.rb)
+
+Postgresql database having **composite primary key**
+
+1. [Whitelist](https://github.com/sunitparekh/test-anonymization/blob/master/dell_whitelist.rb)
+2. [Blacklist](https://github.com/sunitparekh/test-anonymization/blob/master/dell_blacklist.rb)
+
 
 ## Changelog
+
+#### 0.5.0 (under development, point Gemfile to Github repo)
+
+Major changes:
+
+1. MongoDB support
+2. Command line utility to generate whitelist DSL for RDBMS (reduces pain for writing whitelist dsl)
+
+Please see the [Github 0.5.0 milestone page](https://github.com/sunitparekh/data-anonymization/issues?milestone=2&state=open) for more details on changes/fixes in release 0.5.0
 
 #### 0.3.0 (Sep 4, 2012)
 
@@ -80,13 +100,7 @@ Please see the [Github 0.3.0 milestone page](https://github.com/sunitparekh/data
 
 ## Roadmap
 
-#### 0.4.0
-
-1. MongoDB anonymization support (NoSQL document based database support)
-
-#### 0.5.0
-
-1. Generate DSL from database and build schema from source as part of Whitelist approach.
+MVP done. Fix defects and support queries, suggestions, enhancements logged in Github issues :-)
 
 ## Share feedback
 
