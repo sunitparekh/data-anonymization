@@ -2,6 +2,14 @@ module DataAnon
   module Strategy
     module Field
 
+      # Generates full name using the RandomFirstName and RandomLastName strategies.
+      #
+      #    !!!ruby
+      #    anonymize('FullName').using FieldStrategy::RandomFullName.new
+      #
+      #    !!!ruby
+      #    anonymize('FullName').using FieldStrategy::RandomLastName.new('my_first_names.txt', 'my_last_names.txt')
+
       class RandomFullName
 
         def initialize first_names = nil, last_names = nil

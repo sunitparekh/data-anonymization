@@ -2,6 +2,11 @@ module DataAnon
   module Strategy
     module Field
 
+      # Generates random email using mailinator hostname. e.g. <randomstring>@mailinator.com
+      #
+      #    !!!ruby
+      #    anonymize('Email').using FieldStrategy::RandomMailinatorEmail.new
+
       class RandomMailinatorEmail
 
         def initialize

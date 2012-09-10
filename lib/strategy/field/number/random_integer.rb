@@ -2,6 +2,10 @@ module DataAnon
   module Strategy
     module Field
 
+      # Generates random integer number between given two numbers. Default range is 0 to 100.
+      #
+      #    !!!ruby
+      #    anonymize('Age').using FieldStrategy::RandomInteger.new(18,70)
 
       class RandomInteger
 

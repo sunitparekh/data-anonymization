@@ -2,6 +2,11 @@ module DataAnon
   module Strategy
     module Field
 
+      # Generates random user name of same length as original user name.
+      #
+      #    !!!ruby
+      #    anonymize('Username').using FieldStrategy::RandomUserName.new
+      #
       class RandomUserName
 
         DEFAULT_MIN_LENGTH = 5

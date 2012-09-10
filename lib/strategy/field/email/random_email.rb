@@ -2,6 +2,12 @@ module DataAnon
   module Strategy
     module Field
 
+      # Generates email randomly using the given HOSTNAME and TLD.
+      # By defaults generates hostname randomly along with email id.
+      #
+      #    !!!ruby
+      #    anonymize('Email').using FieldStrategy::RandomEmail.new('thoughtworks','com')
+      #
       class RandomEmail
 
         TLDS = ['com','org','net','edu','gov','mil','biz','info']

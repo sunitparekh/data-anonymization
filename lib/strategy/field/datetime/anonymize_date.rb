@@ -2,6 +2,22 @@ module DataAnon
   module Strategy
     module Field
 
+      # Anonmizes day and month fields within natural range based on true/false input for that field. By defaut both fields are
+      # anonymized
+      #
+      #    !!!ruby
+      #    # anonymizes month and leaves day unchanged
+      #    anonymize('DateOfBirth').using FieldStrategy::AnonymizeDate.new(true,false)
+      #
+      # In addition to customizing which fields you want anonymized, there are some helper methods which allow for quick anonymization
+      #
+      #                                                                                                                                                                                               ```ruby
+      #    # anonymizes only the month field
+      #    anonymize('DateOfBirth').using FieldStrategy::AnonymizeDate.only_month
+      #    # anonymizes only the day field
+      #    anonymize('DateOfBirth').using FieldStrategy::AnonymizeDate.only_day
+
+
       class AnonymizeDate
 
 
