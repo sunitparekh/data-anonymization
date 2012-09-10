@@ -3,7 +3,7 @@ module DataAnon
     module MongoDB
       class Blacklist < DataAnon::Strategy::MongoDB::Whitelist
 
-        def process_document index, document
+        def process_record index, document
           source_collection.save anonymize_document(document, index, @fields)
         end
 

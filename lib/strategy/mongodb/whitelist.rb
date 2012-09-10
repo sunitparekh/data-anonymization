@@ -13,37 +13,28 @@ module DataAnon
 
         alias :document :collection
 
-        def dest_collection
-          database = @destination_database
-          @dest_collection ||= mongo_collection(database)
-        end
-
         def mongo_collection(database)
           options = database[:options] || {}
           Mongo::Connection.from_uri(database[:mongodb_uri], options)[database[:database]][@name]
+        end
+
+        def dest_collection
+          database = @destination_database
+          @dest_collection ||= mongo_collection(database)
         end
 
         def source_collection
           @source_collection ||= mongo_collection(@source_database)
         end
 
+        alias :source_table :source_collection
+        alias :dest_table :dest_collection
 
-        def process
-          logger.debug "Processing table #{@name}"
-          total = source_collection.count
-          if total > 0
-            index = 1
-            progress_bar = DataAnon::Utils::ProgressBar.new @name, total
-            source_collection.find.each do |document|
-              process_document index, document
-              index += 1
-              progress_bar.show(index)
-            end
-            progress_bar.close
-          end
+        def all_records
+          source_collection.find
         end
 
-        def process_document index, document
+        def process_record index, document
           dest_collection.insert anonymize_document(document, index, @fields)
         end
 

@@ -13,13 +13,13 @@ module DataAnon
           if sub_document?
             @anonymization_strategy.anonymize_document(@field.value, @field.row_number, @field_strategy)
           elsif sub_documents?
-            anonymize_array
+            anonymize_sub_documents
           else
             anonymize_field
           end
         end
 
-        def anonymize_array
+        def anonymize_sub_documents
           @field.value.collect { |value| @anonymization_strategy.anonymize_document(value, @field.row_number, @field_strategy) }
         end
 
