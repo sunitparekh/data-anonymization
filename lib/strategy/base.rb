@@ -65,17 +65,13 @@ module DataAnon
         @source_table = Utils::SourceTable.create @name, @primary_keys
       end
 
-      def all_records
-        source_table.all
-      end
-
       def process
         logger.debug "Processing table #{@name} with fields strategies #{@fields}"
         total = source_table.count
         if total > 0
           index = 1
           progress_bar = DataAnon::Utils::ProgressBar.new @name, total
-          all_records.each do |record|
+          source_table.all.each do |record|
             process_record index, record
             index += 1
             progress_bar.show(index)

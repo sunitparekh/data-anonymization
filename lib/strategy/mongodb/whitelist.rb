@@ -1,5 +1,9 @@
 require 'mongo'
 
+class Mongo::Collection
+  alias :all :find
+end
+
 module DataAnon
   module Strategy
     module MongoDB
@@ -29,10 +33,6 @@ module DataAnon
 
         alias :source_table :source_collection
         alias :dest_table :dest_collection
-
-        def all_records
-          source_collection.find
-        end
 
         def process_record index, document
           dest_collection.insert anonymize_document(document, index, @fields)
