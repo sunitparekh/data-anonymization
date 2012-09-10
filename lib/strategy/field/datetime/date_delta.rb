@@ -10,7 +10,7 @@ module DataAnon
       #    !!!ruby
       #    # shifts date within 25 days
       #    anonymize('DateOfBirth').using FieldStrategy::DateDelta.new(25)
-
+      #
 
       class DateDelta
 

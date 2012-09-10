@@ -11,7 +11,6 @@ module DataAnon
       #    # shifts date within 20 days and time within 50 minutes
       #    anonymize('DateOfBirth').using FieldStrategy::DateTimeDelta.new(20, 50)
 
-
       class DateTimeDelta
 
         DEFAULT_DAY_DELTA = 10

@@ -8,6 +8,7 @@ module DataAnon
       #    !!!ruby
       #    anonymize('Email').using FieldStrategy::RandomEmail.new('thoughtworks','com')
       #
+
       class RandomEmail
 
         TLDS = ['com','org','net','edu','gov','mil','biz','info']

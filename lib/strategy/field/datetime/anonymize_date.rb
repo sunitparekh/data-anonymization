@@ -17,7 +17,6 @@ module DataAnon
       #    # anonymizes only the day field
       #    anonymize('DateOfBirth').using FieldStrategy::AnonymizeDate.only_day
 
-
       class AnonymizeDate
 
 
