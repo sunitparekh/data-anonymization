@@ -33,6 +33,10 @@ module DataAnon
         @fields
       end
 
+      def user_strategies
+        @user_strategies
+      end
+
       def anonymize *fields, &block
         if block.nil?
           fields.each { |f| @fields[f.downcase] = DataAnon::Strategy::Field::DefaultAnon.new(@user_strategies) }

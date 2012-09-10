@@ -12,7 +12,7 @@ module DataAnon
             field_value = document[field_name]
             unless field_value.nil?
               field = DataAnon::Core::Field.new(field_name, field_value, index, document)
-              document[field.name] = anonymize_field1(field, field_strategy)
+              document[field.name] = AnonymizeField.new(field, field_strategy, self).anonymize
             end
           end
           document

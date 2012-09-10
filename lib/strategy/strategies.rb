@@ -1,6 +1,7 @@
 require 'strategy/base'
 require 'strategy/whitelist'
 require 'strategy/blacklist'
+require 'strategy/mongodb/anonymize_field'
 require 'strategy/mongodb/whitelist'
 require 'strategy/mongodb/blacklist'
 require 'strategy/field/fields'
