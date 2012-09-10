@@ -2,6 +2,12 @@ module DataAnon
   module Strategy
     module Field
 
+      # Similar to SelectFromList only difference is the list of values are picked up from file. Classical usage is like states field anonymization.
+      #
+      #    !!!ruby
+      #    anonymize('State').using FieldStrategy::SelectFromFile.new('states.txt')
+      #
+
       class SelectFromFile
 
         def initialize file_path

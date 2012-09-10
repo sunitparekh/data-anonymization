@@ -1,6 +1,12 @@
 module DataAnon
   module Strategy
     module Field
+
+      # Generates random string of same length.
+      #
+      #   !!!ruby
+      #   anonymize('UserName').using FieldStrategy::RandomString.new
+
       class RandomString
 
         def anonymize field

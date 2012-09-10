@@ -50,32 +50,12 @@ Liked it? please share
 
 ## Examples
 
-SQLite database
-
-1. [Whitelist](https://github.com/sunitparekh/data-anonymization/blob/master/examples/whitelist_dsl.rb)
-2. [Blacklist](https://github.com/sunitparekh/data-anonymization/blob/master/examples/blacklist_dsl.rb)
-
-MongoDB
-
-1. [Whitelist](https://github.com/sunitparekh/data-anonymization/blob/master/examples/mongodb_whitelist_dsl.rb)
-2. [Blacklist](https://github.com/sunitparekh/data-anonymization/blob/master/examples/mongodb_blacklist_dsl.rb)
-
-Postgresql database having **composite primary key**
-
-1. [Whitelist](https://github.com/sunitparekh/test-anonymization/blob/master/dell_whitelist.rb)
-2. [Blacklist](https://github.com/sunitparekh/test-anonymization/blob/master/dell_blacklist.rb)
-
+1. [Whitelist using Chinoook sample database](https://github.com/sunitparekh/data-anonymization/blob/master/whitelist_dsl.rb)
+2. [Blacklist using Chinoook sample database](https://github.com/sunitparekh/data-anonymization/blob/master/blacklist_dsl.rb)
+3. [Whitelist with composite primary key using DellStore sample database](https://github.com/sunitparekh/test-anonymization/blob/master/dell_whitelist.rb)
+4. [Blacklist with composite primary key using DellStore sample database](https://github.com/sunitparekh/test-anonymization/blob/master/dell_blacklist.rb)
 
 ## Changelog
-
-#### 0.5.0 (under development, point Gemfile to Github repo)
-
-Major changes:
-
-1. MongoDB support
-2. Command line utility to generate whitelist DSL for RDBMS (reduces pain for writing whitelist dsl)
-
-Please see the [Github 0.5.0 milestone page](https://github.com/sunitparekh/data-anonymization/issues?milestone=2&state=open) for more details on changes/fixes in release 0.5.0
 
 #### 0.3.0 (Sep 4, 2012)
 
@@ -100,7 +80,13 @@ Please see the [Github 0.3.0 milestone page](https://github.com/sunitparekh/data
 
 ## Roadmap
 
-MVP done. Fix defects and support queries, suggestions, enhancements logged in Github issues :-)
+#### 0.4.0
+
+1. MongoDB anonymization support (NoSQL document based database support)
+
+#### 0.5.0
+
+1. Generate DSL from database and build schema from source as part of Whitelist approach.
 
 ## Share feedback
 
@@ -175,76 +161,18 @@ has following attribute accessor
 
 ## Field Strategies
 
-### LoremIpsum
-Default anonymization strategy for `string` content. Uses default 'Lorem ipsum...' text or text supplied in strategy to generate same length string.
+### Text
 
-```ruby
-anonymize('UserName').using FieldStrategy::LoremIpsum.new
-```
-
-```ruby
-anonymize('UserName').using FieldStrategy::LoremIpsum.new("very large string....")
-```
-
-```ruby
-anonymize('UserName').using FieldStrategy::LoremIpsum.new(File.read('my_file.txt'))
-```
-
-### RandomString
-Generates random string of same length.
-
-```ruby
-anonymize('UserName').using FieldStrategy::RandomString.new
-```
-
-### StringTemplate
-Simple string evaluation within [DataAnon::Core::Field](#dataanon-core-field) context. Can be used for email, username anonymization.
-Make sure to put the string in 'single quote' else it will get evaluated inline.
-
-```ruby
-anonymize('UserName').using FieldStrategy::StringTemplate.new('user#{row_number}')
-```
-
-```ruby
-anonymize('Email').using FieldStrategy::StringTemplate.new('valid.address+#{row_number}@gmail.com')
-```
-
-```ruby
-anonymize('Email').using FieldStrategy::StringTemplate.new('useremail#{row_number}@mailinator.com')
-```
-
-### SelectFromList
-Select randomly one of the values specified.
-
-```ruby
-anonymize('State').using FieldStrategy::SelectFromList.new(['New York','Georgia',...])
-```
-
-```ruby
-anonymize('NameTitle').using FieldStrategy::SelectFromList.new(['Mr','Mrs','Dr',...])
-```
-
-### SelectFromFile
-Similar to SelectFromList only difference is the list of values are picked up from file. Classical usage is like states field anonymization.
-
-```ruby
-anonymize('State').using FieldStrategy::SelectFromFile.new('states.txt')
-```
-
-### FormattedStringNumber
-Keeping the format same it changes each digit in the string with random digit.
-
-```ruby
-anonymize('CreditCardNumber').using FieldStrategy::FormattedStringNumber.new
-```
-
-### SelectFromDatabase
-Similar to SelectFromList with difference is the list of values are collected from the database table using distinct column query.
-
-```ruby
-# values are collected using `select distinct state from customers` query
-anonymize('State').using FieldStrategy::SelectFromDatabase.new('customers','state')
-```
+Data Type | Name | Usage 
+:--------:|:----: | :----- 
+String | [LoremIpsum [Default]]((http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/LoremIpsum)) | Generates a random Lorep Ipsum String
+| [RandomString](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomString) | Generates a random string of equal length 
+| [StringTemplate](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/StringTemplate) | Generates a string based on provided template 
+| [SelectFromList]((http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/SelectFromList) | Randomly selects a string from a provided list 
+| [SelectFromFile](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/SelectFromFile) | Randomly selects a string from a provided file
+| [FormattedStringNumber](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/FormattedStringNumber) | Randomize digits in a string while maintaining the format
+| [SelectFromDatabase](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/SelectFromDatabase) | Selects randomly from the result of a query on a database
+| [RandomURL](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomUrl) | Anonymizes a URL while mainting the structure
 
 ### RandomAddress
 Generates address using the [geojson](http://www.geojson.org/geojson-spec.html) format file. The default US/UK file chooses randomly from 300 addresses.

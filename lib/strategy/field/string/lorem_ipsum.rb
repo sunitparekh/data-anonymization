@@ -2,6 +2,15 @@ module DataAnon
   module Strategy
     module Field
 
+      # Default anonymization strategy for `string` content. Uses default 'Lorem ipsum...' text or text supplied in strategy to generate same length string.
+      #    !!!ruby
+      #    anonymize('UserName').using FieldStrategy::LoremIpsum.new
+      #
+      #    !!!ruby
+      #    anonymize('UserName').using FieldStrategy::LoremIpsum.new("very large string....")
+      #
+      #    !!!ruby
+      #    anonymize('UserName').using FieldStrategy::LoremIpsum.new(File.read('my_file.txt'))
 
       class LoremIpsum
 

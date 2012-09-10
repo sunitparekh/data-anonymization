@@ -2,6 +2,10 @@ module DataAnon
   module Strategy
     module Field
 
+      # Keeping the format same it changes each digit in the string with random digit.
+      #
+      #    !!!ruby
+      #    anonymize('CreditCardNumber').using FieldStrategy::FormattedStringNumber.new
 
       class FormattedStringNumber
 
