@@ -161,7 +161,8 @@ has following attribute accessor
 
 ## Field Strategies
 
-Content | Name | Description 
+
+Content | Name | Description
 :--------|:---- | :----- 
 Text | [LoremIpsum](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/LoremIpsum) | Generates a random Lorep Ipsum String
 Text | [RandomString](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomString) | Generates a random string of equal length 
@@ -172,6 +173,7 @@ Text | [FormattedStringNumber](http://rubydoc.info/github/sunitparekh/data-anony
 Text | [SelectFromDatabase](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/SelectFromDatabase) | Selects randomly from the result of a query on a database
 Text | [RandomURL](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomUrl) | Anonymizes a URL while mainting the structure
 
+
 Content | Name | Description 
 :--------|:---- | :----- 
 Number | [RandomInteger](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomInteger) | Generates a random integer between provided limits (default 0 to 100) 
@@ -180,6 +182,7 @@ Number | [RandomFloat](http://rubydoc.info/github/sunitparekh/data-anonymization
 Number | [RandomFloatDelta]((http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomFloatDelta) | Generates a random float within -delta and delta of original float 
 Number | [RandomBigDecimalDelta](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomBigDecimalDelta) | Similar to previous but creates a big decimal object
 
+
 Content | Name | Description 
 :--------|:---- | :----- 
 Address | [RandomAddress](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomAddress) | Randomly selects an address from a geojson flat file [Default US address] 
@@ -187,6 +190,7 @@ City | [RandomCity](http://rubydoc.info/github/sunitparekh/data-anonymization/Da
 Province | [RandomProvince](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomProvince) | Similar to address, picks a random city from a geojson flafile [Default US provinces]   
 Zip code | [RandomZipcode](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomZipcode) | Similar to address, picks a random zipcode from a geojson flafile [Default US zipcodes] 
 Phone number | [RandomPhoneNumber](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomPhoneNumber) | Randomizes a phone number while preserving locale specific fomatting
+
 
 Content | Name | Description 
 :--------|:---- | :----- 
@@ -197,11 +201,13 @@ DateTimeDelta | [DateTimeDelta](http://rubydoc.info/github/sunitparekh/data-anon
 TimeDelta | [TimeDelta](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/TimeDelta) | Exactly similar to above except returned object is of type 'Time'
 DateDelta | [DateDelta](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/DateDelta) | Shifts date randomly within given delta range. Default shits date within 10 days + or -
 
+
 Content | Name | Description 
 :--------|:---- | :----- 
 Email | [RandomEmail](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomEmail) | Generates email randomly using the given HOSTNAME and TLD.
 Email | [GmailTemplate](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/GmailTemplate) | Generates a valid unique gmail address by taking advantage of the gmail + strategy  
 Email | [RandomMailinatorEmail](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomMailinatorEmail) | Generates random email using mailinator hostname. 
+
 
 Content | Name | Description 
 :--------|:---- | :----- 
