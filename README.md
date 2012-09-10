@@ -185,7 +185,7 @@ Content | Name | Description
 Address | [RandomAddress](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomAddress) | Randomly selects an address from a geojson flat file [Default US address] 
 City | [RandomCity](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomCity) | Similar to address, picks a random city from a geojson flafile [Default US cities] 
 Province | [RandomProvince](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomProvince) | Similar to address, picks a random city from a geojson flafile [Default US provinces]   
-Zip code | [RandomZipcode]((http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomZipcode) | Similar to address, picks a random zipcode from a geojson flafile [Default US zipcodes] 
+Zip code | [RandomZipcode](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomZipcode) | Similar to address, picks a random zipcode from a geojson flafile [Default US zipcodes] 
 Phone number | [RandomPhoneNumber](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomPhoneNumber) | Randomizes a phone number while preserving locale specific fomatting
 
 Content | Name | Description 
@@ -193,7 +193,7 @@ Content | Name | Description
 DateTime | [AnonymizeDateTime](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/AnonymizeDateTime) | Anonymizes each field (except year and seconds) within natural range of the field depending on true/false flag provided 
 Time | [AnonymizeTime](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/AnonymizeTime) | Exactly similar to above except returned object is of type 'Time'  
 Date | [AnonymizeDate](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/AnonymizeDate) | Anonymizes day and month within natural ranges based on true/false flag  
-DateTimeDelta | [DateTimeDelta]((http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/DateTimeDelta) | Shifts data randomly within given range. Default shifts date within 10 days + or - and shifts time within 30 minutes.
+DateTimeDelta | [DateTimeDelta](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/DateTimeDelta) | Shifts data randomly within given range. Default shifts date within 10 days + or - and shifts time within 30 minutes.
 TimeDelta | [TimeDelta](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/TimeDelta) | Exactly similar to above except returned object is of type 'Time'
 DateDelta | [DateDelta](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/DateDelta) | Shifts date randomly within given delta range. Default shits date within 10 days + or -
 
