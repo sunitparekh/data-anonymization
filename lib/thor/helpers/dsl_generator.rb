@@ -17,7 +17,7 @@ module DataAnon
 
         @tables = @ar_object.connection.tables
 
-        erb = ERB.new( File.new(DSLGenerator.source_root + "/../thor_templates/whitelist_template.erb").read, nil, '-')
+        erb = ERB.new( File.new(DSLGenerator.source_root + "/../templates/whitelist_template.erb").read, nil, '-')
 
         File.open('whitelist_generated.rb', 'w') do |f|
           f.write erb.result(binding)
