@@ -14,11 +14,17 @@ module DataAnon
         alias :document :collection
 
         def dest_collection
-          @dest_collection ||= Mongo::Connection.from_uri(@destination_database[:mongodb_uri])[@destination_database[:database]][@name]
+          database = @destination_database
+          @dest_collection ||= mongo_collection(database)
+        end
+
+        def mongo_collection(database)
+          options = database[:options] || {}
+          Mongo::Connection.from_uri(database[:mongodb_uri], options)[database[:database]][@name]
         end
 
         def source_collection
-          @source_collection ||= Mongo::Connection.from_uri(@source_database[:mongodb_uri])[@source_database[:database]][@name]
+          @source_collection ||= mongo_collection(@source_database)
         end
 
 
