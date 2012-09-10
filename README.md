@@ -162,61 +162,198 @@ has following attribute accessor
 ## Field Strategies
 
 
-Content | Name | Description
-:--------|:---- | :----- 
-Text | [LoremIpsum](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/LoremIpsum) | Generates a random Lorep Ipsum String
-Text | [RandomString](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomString) | Generates a random string of equal length 
-Text | [StringTemplate](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/StringTemplate) | Generates a string based on provided template 
-Text | [SelectFromList]((http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/SelectFromList) | Randomly selects a string from a provided list 
-Text | [SelectFromFile](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/SelectFromFile) | Randomly selects a string from a provided file
-Text | [FormattedStringNumber](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/FormattedStringNumber) | Randomize digits in a string while maintaining the format
-Text | [SelectFromDatabase](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/SelectFromDatabase) | Selects randomly from the result of a query on a database
-Text | [RandomURL](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomUrl) | Anonymizes a URL while mainting the structure
-
-
-Content | Name | Description 
-:--------|:---- | :----- 
-Number | [RandomInteger](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomInteger) | Generates a random integer between provided limits (default 0 to 100) 
-Number | [RandomIntegerDelta](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomIntegerDelta) | Generates a random integer within -delta and delta of original integer 
-Number | [RandomFloat](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomFloat) | Generates a random float between provided limits (default 0.0 to 100.0)  
-Number | [RandomFloatDelta]((http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomFloatDelta) | Generates a random float within -delta and delta of original float 
-Number | [RandomBigDecimalDelta](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomBigDecimalDelta) | Similar to previous but creates a big decimal object
-
-
-Content | Name | Description 
-:--------|:---- | :----- 
-Address | [RandomAddress](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomAddress) | Randomly selects an address from a geojson flat file [Default US address] 
-City | [RandomCity](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomCity) | Similar to address, picks a random city from a geojson flafile [Default US cities] 
-Province | [RandomProvince](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomProvince) | Similar to address, picks a random city from a geojson flafile [Default US provinces]   
-Zip code | [RandomZipcode](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomZipcode) | Similar to address, picks a random zipcode from a geojson flafile [Default US zipcodes] 
-Phone number | [RandomPhoneNumber](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomPhoneNumber) | Randomizes a phone number while preserving locale specific fomatting
-
-
-Content | Name | Description 
-:--------|:---- | :----- 
-DateTime | [AnonymizeDateTime](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/AnonymizeDateTime) | Anonymizes each field (except year and seconds) within natural range of the field depending on true/false flag provided 
-Time | [AnonymizeTime](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/AnonymizeTime) | Exactly similar to above except returned object is of type 'Time'  
-Date | [AnonymizeDate](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/AnonymizeDate) | Anonymizes day and month within natural ranges based on true/false flag  
-DateTimeDelta | [DateTimeDelta](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/DateTimeDelta) | Shifts data randomly within given range. Default shifts date within 10 days + or - and shifts time within 30 minutes.
-TimeDelta | [TimeDelta](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/TimeDelta) | Exactly similar to above except returned object is of type 'Time'
-DateDelta | [DateDelta](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/DateDelta) | Shifts date randomly within given delta range. Default shits date within 10 days + or -
-
-
-Content | Name | Description 
-:--------|:---- | :----- 
-Email | [RandomEmail](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomEmail) | Generates email randomly using the given HOSTNAME and TLD.
-Email | [GmailTemplate](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/GmailTemplate) | Generates a valid unique gmail address by taking advantage of the gmail + strategy  
-Email | [RandomMailinatorEmail](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomMailinatorEmail) | Generates random email using mailinator hostname. 
-
-
-Content | Name | Description 
-:--------|:---- | :----- 
-First name | [RandomFirstName](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomFirstName) | Randomly picks up first name from the predefined list in the file. Default [file](https://raw.github.com/sunitparekh/data-anonymization/master/resources/first_names.txt) is part of the gem.
-Last name | [RandomLastName](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomLastName) | Randomly picks up first name from the predefined list in the file. Default [file](https://raw.github.com/sunitparekh/data-anonymization/master/resources/first_names.txt) is part of the gem.
-Full Name | [RandomFullName](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomFullName) | Generates full name using the RandomFirstName and RandomLastName strategies.
-User name | [RandomUserName](http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomUserName) | Generates random user name of same length as original user name.
-
-
+<table>
+<tr>
+<th align="left">Content</th>
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+<tr>
+<td align="left">Text</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/LoremIpsum">LoremIpsum</a></td>
+<td align="left">Generates a random Lorep Ipsum String</td>
+</tr>
+<tr>
+<td align="left">Text</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomString">RandomString</a></td>
+<td align="left">Generates a random string of equal length</td>
+</tr>
+<tr>
+<td align="left">Text</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/StringTemplate">StringTemplate</a></td>
+<td align="left">Generates a string based on provided template</td>
+</tr>
+<tr>
+<td align="left">Text</td>
+<td align="left"><a>SelectFromList</a></td>
+<td align="left">Randomly selects a string from a provided list</td>
+</tr>
+<tr>
+<td align="left">Text</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/SelectFromFile">SelectFromFile</a></td>
+<td align="left">Randomly selects a string from a provided file</td>
+</tr>
+<tr>
+<td align="left">Text</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/FormattedStringNumber">FormattedStringNumber</a></td>
+<td align="left">Randomize digits in a string while maintaining the format</td>
+</tr>
+<tr>
+<td align="left">Text</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/SelectFromDatabase">SelectFromDatabase</a></td>
+<td align="left">Selects randomly from the result of a query on a database</td>
+</tr>
+<tr>
+<td align="left">Text</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomUrl">RandomURL</a></td>
+<td align="left">Anonymizes a URL while mainting the structure</td>
+</tr>
+</table><table>
+<tr>
+<th align="left">Content</th>
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+<tr>
+<td align="left">Number</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomInteger">RandomInteger</a></td>
+<td align="left">Generates a random integer between provided limits (default 0 to 100)</td>
+</tr>
+<tr>
+<td align="left">Number</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomIntegerDelta">RandomIntegerDelta</a></td>
+<td align="left">Generates a random integer within -delta and delta of original integer</td>
+</tr>
+<tr>
+<td align="left">Number</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomFloat">RandomFloat</a></td>
+<td align="left">Generates a random float between provided limits (default 0.0 to 100.0)</td>
+</tr>
+<tr>
+<td align="left">Number</td>
+<td align="left"><a>RandomFloatDelta</a></td>
+<td align="left">Generates a random float within -delta and delta of original float</td>
+</tr>
+<tr>
+<td align="left">Number</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomBigDecimalDelta">RandomBigDecimalDelta</a></td>
+<td align="left">Similar to previous but creates a big decimal object</td>
+</tr>
+</table><table>
+<tr>
+<th align="left">Content</th>
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+<tr>
+<td align="left">Address</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomAddress">RandomAddress</a></td>
+<td align="left">Randomly selects an address from a geojson flat file [Default US address]</td>
+</tr>
+<tr>
+<td align="left">City</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomCity">RandomCity</a></td>
+<td align="left">Similar to address, picks a random city from a geojson flafile [Default US cities]</td>
+</tr>
+<tr>
+<td align="left">Province</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomProvince">RandomProvince</a></td>
+<td align="left">Similar to address, picks a random city from a geojson flafile [Default US provinces]</td>
+</tr>
+<tr>
+<td align="left">Zip code</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomZipcode">RandomZipcode</a></td>
+<td align="left">Similar to address, picks a random zipcode from a geojson flafile [Default US zipcodes]</td>
+</tr>
+<tr>
+<td align="left">Phone number</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomPhoneNumber">RandomPhoneNumber</a></td>
+<td align="left">Randomizes a phone number while preserving locale specific fomatting</td>
+</tr>
+</table><table>
+<tr>
+<th align="left">Content</th>
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+<tr>
+<td align="left">DateTime</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/AnonymizeDateTime">AnonymizeDateTime</a></td>
+<td align="left">Anonymizes each field (except year and seconds) within natural range of the field depending on true/false flag provided</td>
+</tr>
+<tr>
+<td align="left">Time</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/AnonymizeTime">AnonymizeTime</a></td>
+<td align="left">Exactly similar to above except returned object is of type 'Time'</td>
+</tr>
+<tr>
+<td align="left">Date</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/AnonymizeDate">AnonymizeDate</a></td>
+<td align="left">Anonymizes day and month within natural ranges based on true/false flag</td>
+</tr>
+<tr>
+<td align="left">DateTimeDelta</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/DateTimeDelta">DateTimeDelta</a></td>
+<td align="left">Shifts data randomly within given range. Default shifts date within 10 days + or - and shifts time within 30 minutes.</td>
+</tr>
+<tr>
+<td align="left">TimeDelta</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/TimeDelta">TimeDelta</a></td>
+<td align="left">Exactly similar to above except returned object is of type 'Time'</td>
+</tr>
+<tr>
+<td align="left">DateDelta</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/DateDelta">DateDelta</a></td>
+<td align="left">Shifts date randomly within given delta range. Default shits date within 10 days + or -</td>
+</tr>
+</table><table>
+<tr>
+<th align="left">Content</th>
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+<tr>
+<td align="left">Email</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomEmail">RandomEmail</a></td>
+<td align="left">Generates email randomly using the given HOSTNAME and TLD.</td>
+</tr>
+<tr>
+<td align="left">Email</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/GmailTemplate">GmailTemplate</a></td>
+<td align="left">Generates a valid unique gmail address by taking advantage of the gmail + strategy</td>
+</tr>
+<tr>
+<td align="left">Email</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomMailinatorEmail">RandomMailinatorEmail</a></td>
+<td align="left">Generates random email using mailinator hostname.</td>
+</tr>
+</table><table>
+<tr>
+<th align="left">Content</th>
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+<tr>
+<td align="left">First name</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomFirstName">RandomFirstName</a></td>
+<td align="left">Randomly picks up first name from the predefined list in the file. Default <a href="https://raw.github.com/sunitparekh/data-anonymization/master/resources/first_names.txt">file</a> is part of the gem.</td>
+</tr>
+<tr>
+<td align="left">Last name</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomLastName">RandomLastName</a></td>
+<td align="left">Randomly picks up first name from the predefined list in the file. Default <a href="https://raw.github.com/sunitparekh/data-anonymization/master/resources/first_names.txt">file</a> is part of the gem.</td>
+</tr>
+<tr>
+<td align="left">Full Name</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomFullName">RandomFullName</a></td>
+<td align="left">Generates full name using the RandomFirstName and RandomLastName strategies.</td>
+</tr>
+<tr>
+<td align="left">User name</td>
+<td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomUserName">RandomUserName</a></td>
+<td align="left">Generates random user name of same length as original user name.</td>
+</tr>
+</table><h2>
 
 
 ## Write you own field strategies
