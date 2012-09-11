@@ -73,9 +73,6 @@ module DataAnon
         end
       end
 
-      def process_record  index, record
-        raise "Please implement the method"
-      end
 
     end
   end
