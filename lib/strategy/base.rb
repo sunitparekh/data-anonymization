@@ -3,6 +3,8 @@ module DataAnon
     class Base
       include Utils::Logging
 
+      attr_accessor :fields, :user_strategies
+
       def initialize source_database, destination_database, name, user_strategies
         @name = name
         @user_strategies = user_strategies
@@ -20,21 +22,8 @@ module DataAnon
         @primary_keys = fields
       end
 
-      def is_primary_key? field
-        @primary_keys.select { |key| field.downcase == key.downcase }.length > 0
-      end
-
-
       def whitelist *fields
         fields.each { |f| @fields[f.downcase] = DataAnon::Strategy::Field::Whitelist.new }
-      end
-
-      def fields
-        @fields
-      end
-
-      def user_strategies
-        @user_strategies
       end
 
       def anonymize *fields, &block
@@ -51,6 +40,10 @@ module DataAnon
         else
           fields.each { |f| @fields[f.downcase] = DataAnon::Strategy::Field::Anonymous.new(&block) }
         end
+      end
+
+      def is_primary_key? field
+        @primary_keys.select { |key| field.downcase == key.downcase }.length > 0
       end
 
       def dest_table
