@@ -63,7 +63,7 @@ module DataAnon
         total = source_table.count
         if total > 0
           index = 1
-          progress_bar = DataAnon::Utils::ProgressBar.new @name, total
+          progress_bar = progress_bar().new @name, total
           source_table.all.each do |record|
             process_record index, record
             index += 1
@@ -71,6 +71,14 @@ module DataAnon
           end
           progress_bar.close
         end
+      end
+
+      def progress_bar
+        @progress_bar ||= DataAnon::Utils::ProgressBar
+      end
+
+      def progress_bar= progress_bar_class
+        @progress_bar = progress_bar_class
       end
 
 

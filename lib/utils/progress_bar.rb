@@ -4,34 +4,36 @@ module DataAnon
   module Utils
 
     class ProgressBar
-      include Utils::Logging
 
       def initialize table_name, total
         @total = total
         @table_name = table_name
-        @progress_bar = PowerBar.new if total > 0 && show_progress && !parallel?
-      end
-
-      def show_progress
-        ENV['show_progress'] != 'false'
-      end
-
-      def parallel?
-        ENV['parallel_execution'] == 'true'
+        @progress_bar = PowerBar.new if show_progress_env
       end
 
       def show index
-        if started(index) || regular_interval(index) || complete(index)
-          if @progress_bar
-            msg = "Table: %-15s [ %6d/%-6d ]" % [ @table_name,index,@total]
-            @progress_bar.show(:msg => msg, :done => index, :total => @total)
-          elsif parallel?
-            suffix = ""
-            suffix = "STARTED" if started(index)
-            suffix = "COMPLETE" if complete(index)
-            logger.info("Table: %-15s [ %6d/%-6d ] %s" % [ @table_name,index,@total, suffix])
-          end
+        if show_progress? index
+          show_progress index
         end
+      end
+
+      def close
+        @progress_bar.close if @progress_bar
+      end
+
+      protected
+
+      def show_progress? index
+        show_progress_env && (started(index) || regular_interval(index) || complete(index))
+      end
+
+      def show_progress_env
+        ENV['show_progress'] == "false" ? false : true
+      end
+
+      def show_progress index
+        msg = "Table: %-15s [ %6d/%-6d ]" % [@table_name, index, @total]
+        @progress_bar.show(:msg => msg, :done => index, :total => @total)
       end
 
       def complete index
@@ -46,9 +48,6 @@ module DataAnon
         index == 1
       end
 
-      def close
-        @progress_bar.close if @progress_bar
-      end
 
     end
 

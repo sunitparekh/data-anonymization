@@ -1,5 +1,3 @@
-require 'mongo'
-
 module DataAnon
   module ThorHelpers
     class MongoDBDSLGenerator
