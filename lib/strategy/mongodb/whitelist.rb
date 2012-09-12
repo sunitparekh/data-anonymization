@@ -9,6 +9,10 @@ module DataAnon
     module MongoDB
       class Whitelist < DataAnon::Strategy::Base
 
+        def self.whitelist?
+          true
+        end
+
         def collection field, &block
           whitelist = self.class.new @source_database, @destination_database, @name, @user_strategies
           whitelist.process_fields &block
@@ -43,7 +47,7 @@ module DataAnon
           document.each do |field_name, field_value|
             field_strategy = field_strategies[field_name.downcase]
             unless field_value.nil?
-              field = DataAnon::Core::Field.new(field_name, field_value, index, document)
+              field = DataAnon::Core::Field.new(field_name, field_value, index, document, @name)
               anonymized_document[field.name] = AnonymizeField.new(field, field_strategy, self).anonymize
             end
           end

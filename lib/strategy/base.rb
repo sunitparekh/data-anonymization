@@ -3,7 +3,7 @@ module DataAnon
     class Base
       include Utils::Logging
 
-      attr_accessor :fields, :user_strategies
+      attr_accessor :fields, :user_strategies, :fields_missing_strategy
 
       def initialize source_database, destination_database, name, user_strategies
         @name = name
@@ -11,6 +11,11 @@ module DataAnon
         @fields = {}
         @source_database = source_database
         @destination_database = destination_database
+        @fields_missing_strategy = DataAnon::Core::FieldsMissingStrategy.new name
+      end
+
+      def self.whitelist?
+        false
       end
 
       def process_fields &block
@@ -44,6 +49,11 @@ module DataAnon
 
       def is_primary_key? field
         @primary_keys.select { |key| field.downcase == key.downcase }.length > 0
+      end
+
+      def default_strategy field_name
+        @fields_missing_strategy.missing field_name
+        DataAnon::Strategy::Field::DefaultAnon.new(@user_strategies)
       end
 
       def dest_table

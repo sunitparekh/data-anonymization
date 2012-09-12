@@ -3,6 +3,10 @@ module DataAnon
     module MongoDB
       class Blacklist < DataAnon::Strategy::MongoDB::Whitelist
 
+        def self.whitelist?
+          false
+        end
+
         def process_record index, document
           source_collection.save anonymize_document(document, index, @fields)
         end
@@ -11,7 +15,7 @@ module DataAnon
           field_strategies.each do |field_name, field_strategy|
             field_value = document[field_name]
             unless field_value.nil?
-              field = DataAnon::Core::Field.new(field_name, field_value, index, document)
+              field = DataAnon::Core::Field.new(field_name, field_value, index, document, @name)
               document[field.name] = AnonymizeField.new(field, field_strategy, self).anonymize
             end
           end

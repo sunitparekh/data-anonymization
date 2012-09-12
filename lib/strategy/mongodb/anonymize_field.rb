@@ -24,7 +24,7 @@ module DataAnon
         end
 
         def anonymize_field
-          @field_strategy = @field_strategy || DataAnon::Strategy::Field::DefaultAnon.new(@anonymization_strategy.user_strategies)
+          @field_strategy = @field_strategy || @anonymization_strategy.default_strategy(@field.name)
           @field_strategy.anonymize(@field)
         end
 

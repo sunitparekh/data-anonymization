@@ -2,6 +2,7 @@ module DataAnon
   module Core
 
     class Database
+      include Utils::Logging
 
       def initialize name
         @name = name
@@ -41,6 +42,10 @@ module DataAnon
 
       def anonymize
         @execution_strategy.new.anonymize @tables
+        if @strategy.whitelist?
+          logger.info("Fields missing the anonymization strategy")
+          @tables.collect { |table| table.fields_missing_strategy.print }
+        end
       end
 
     end
