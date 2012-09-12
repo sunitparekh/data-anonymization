@@ -5,8 +5,8 @@ DataAnon::Utils::Logging.logger.level = Logger::INFO
 database 'Template' do
 
   strategy DataAnon::Strategy::Whitelist
-  source_db <%= DataAnon::Utils::TemplateHelper.source_connection_specs @configuration_hash %>
-  destination_db <%= DataAnon::Utils::TemplateHelper.destination_connection_specs @configuration_hash %>
+  source_db <%= DataAnon::Utils::TemplateHelper.source_connection_specs_rdbms @configuration_hash %>
+  destination_db <%= DataAnon::Utils::TemplateHelper.destination_connection_specs_rdbms @configuration_hash %>
 
   <% @tables.each do |table| %>
   table '<%= table %>' do

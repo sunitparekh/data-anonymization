@@ -1,0 +1,15 @@
+require 'data-anonymization'
+require 'mongo'
+
+DataAnon::Utils::Logging.logger.level = Logger::INFO
+
+database 'test' do
+
+  strategy DataAnon::Strategy::MongoDB::Whitelist
+  source_db <%= DataAnon::Utils::TemplateHelper.source_connection_specs_mongo @configuration_hash %>
+  destination_db <%= DataAnon::Utils::TemplateHelper.destination_connection_specs_mongo @configuration_hash %>
+
+<%= @output.join("\n")  %>
+
+end
+

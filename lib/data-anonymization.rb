@@ -12,9 +12,15 @@ require "utils/resource"
 require "utils/template_helper"
 require "parallel/table"
 require "core/database"
-require "thor/helpers/dsl_generator"
+require "thor/helpers/rdbms_dsl_generator"
 require "core/field"
 require "strategy/strategies"
 require "utils/database"
 require "core/dsl"
 
+begin
+  require 'mongo'
+  require "thor/helpers/mongodb_dsl_generator"
+rescue LoadError
+  "Ignoring the mongodb specific libraries if monog driver is not specified in gem"
+end

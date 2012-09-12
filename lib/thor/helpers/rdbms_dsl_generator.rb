@@ -4,7 +4,7 @@ require 'erb'
 
 module DataAnon
   module ThorHelpers
-    class DSLGenerator
+    class RDBMSDSLGenerator
 
       def self.source_root
         File.dirname(__FILE__)
@@ -17,9 +17,9 @@ module DataAnon
 
         @tables = @ar_object.connection.tables
 
-        erb = ERB.new( File.new(DSLGenerator.source_root + "/../templates/whitelist_template.erb").read, nil, '-')
+        erb = ERB.new( File.new(RDBMSDSLGenerator.source_root + "/../templates/whitelist_template.erb").read, nil, '-')
 
-        File.open('whitelist_generated.rb', 'w') do |f|
+        File.open('rdbms_whitelist_generated.rb', 'w') do |f|
           f.write erb.result(binding)
           f.close
         end
