@@ -26,7 +26,7 @@ module DataAnon
         ":mongodb_uri => '#{self.mongo_uri config_hash}', :database => '#{config_hash[:database]}'"
       end
 
-      def self.destination_connection_specs_mongo config_hash
+      def self.destination_connection_specs_mongo
         ":mongodb_uri => '<enter value>', :database => '<enter value>'"
       end
 
