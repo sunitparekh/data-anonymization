@@ -24,7 +24,7 @@ module DataAnon
           f.close
         end
 
-      rescue Mysql2::Error => e
+      rescue => e
         puts "\e[31mActiverecord was unable to establish a connection to the specified database. Please check the configuration options and try again.\e[0m"
         puts e.backtrace
       end

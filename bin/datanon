@@ -19,7 +19,6 @@ class AnonymizationCLI < Thor
                            :username => options["username"],
                            :password => options["password"]
                           }
-
     create_file "rdbms_whitelist_generated.rb"
     DataAnon::ThorHelpers::RDBMSDSLGenerator.new.generate_whitelist_script(configuration_hash)
   end
@@ -29,7 +28,7 @@ class AnonymizationCLI < Thor
   method_option :database, :required => true, :aliases => "-d", :desc => "Database name [required]", :for => :generate_rdbms_dsl
   method_option :port, :aliases => "-p", :desc => "Port to connect to. If not provided default port provided by AR will be used", :for => :generate_rdbms_dsl
   method_option :username, :aliases => "-u", :desc => "Username", :for => :generate_rdbms_dsl
-  method_option :password, :aliases => "-pwd", :desc => "Password", :for => :generate_rdbms_dsl
+  method_option :password, :aliases => "-w", :desc => "Password", :for => :generate_rdbms_dsl
 
   desc "generate_mongo_dsl", "Generates a base anonymization script(whitelist strategy) for a Mongo DB using the database schema"
 
@@ -50,8 +49,8 @@ class AnonymizationCLI < Thor
   method_option :database, :required => true, :aliases => "-d", :desc => "Database name [required]", :for => :generate_mongo_dsl
   method_option :port, :aliases => "-p", :desc => "Port to connect to. If not provided default port will be used", :for => :generate_mongo_dsl
   method_option :username, :aliases => "-u", :desc => "Username", :for => :generate_mongo_dsl
-  method_option :password, :aliases => "-pwd", :desc => "Password", :for => :generate_mongo_dsl
-  method_option :whitelist_patterns, :aliases => "-wp", :desc => "Whitelist Patterns", :for => :generate_mongo_dsl
+  method_option :password, :aliases => "-w", :desc => "Password", :for => :generate_mongo_dsl
+  method_option :whitelist_patterns, :aliases => "-r", :desc => "Whitelist Patterns", :for => :generate_mongo_dsl
 
 end
 
