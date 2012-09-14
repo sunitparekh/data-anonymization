@@ -7,7 +7,7 @@ database 'test' do
 
   strategy DataAnon::Strategy::MongoDB::Whitelist
   source_db <%= DataAnon::Utils::TemplateHelper.source_connection_specs_mongo @configuration_hash %>
-  destination_db <%= DataAnon::Utils::TemplateHelper.destination_connection_specs_mongo @configuration_hash %>
+  destination_db <%= DataAnon::Utils::TemplateHelper.destination_connection_specs_mongo %>
 
 <%= @output.join("\n")  %>
 
