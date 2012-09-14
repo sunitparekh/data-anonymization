@@ -73,7 +73,10 @@ Postgresql database having **composite primary key**
 Major changes:
 
 1. MongoDB support
-2. Command line utility to generate whitelist DSL for RDBMS (reduces pain for writing whitelist dsl)
+2. Command line utility to generate whitelist DSL for RDBMS & MongoDB (reduces pain for writing whitelist dsl)
+3. Added support for reporting fields missing mapping in case of whitelist
+4. Errors reported at the end of process. Job doesn't fail for a single error.
+
 
 Please see the [Github 0.5.0 milestone page](https://github.com/sunitparekh/data-anonymization/issues?milestone=2&state=open) for more details on changes/fixes in release 0.5.0
 
