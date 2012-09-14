@@ -11,7 +11,7 @@ module DataAnon
 
       def initialize(configuration_hash, whitelist_patterns)
         @mongodb_uri = DataAnon::Utils::TemplateHelper.mongo_uri(configuration_hash)
-        @whitelist_patterns = whitelist_patterns || [/^_/,/_at$/]
+        @whitelist_patterns = whitelist_patterns || [/^_/,/_at$/,/_id$/,/_type$/]
         @configuration_hash = configuration_hash
         @output = []
       end

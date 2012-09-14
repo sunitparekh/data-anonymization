@@ -7,6 +7,6 @@ describe "String Utils" do
   end
 
   it "should generate random string only with characters" do
-    DataAnon::Utils::RandomStringCharsOnly.generate(10).should match /^[a-z]{10}$/
+    DataAnon::Utils::RandomStringCharsOnly.generate(10).should match /^[a-zA-Z]{10}$/
   end
 end

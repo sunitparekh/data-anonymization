@@ -42,7 +42,8 @@ module DataAnon
           dest_collection.insert anonymize_document(document, index, @fields)
         end
 
-        def anonymize_document document, index, field_strategies = {}
+        def anonymize_document document, index, field_strategies
+          field_strategies ||= {}
           anonymized_document = {}
           document.each do |field_name, field_value|
             field_strategy = field_strategies[field_name.downcase]

@@ -10,17 +10,17 @@ module DataAnon
       class FormattedStringNumber
 
         def anonymize field
-          @original_phone_number = field.value
-          @anonymized_phone_number = ""
-          @original_phone_number.each_char do |char|
+          @original_string = field.value
+          @anonymized_string = ""
+          @original_string.each_char do |char|
             if /\d/.match(char).nil?
-              @anonymized_phone_number += char
+              @anonymized_string += char
             else
-              @anonymized_phone_number += DataAnon::Utils::RandomInt.generate(0,9).to_s
+              @anonymized_string += DataAnon::Utils::RandomInt.generate(0,9).to_s
             end
           end
 
-          @anonymized_phone_number
+          @anonymized_string
         end
 
       end

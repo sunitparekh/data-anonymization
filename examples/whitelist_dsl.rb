@@ -41,7 +41,6 @@ database 'Chinook' do
     anonymize('Phone').using FieldStrategy::RandomPhoneNumber.new
     anonymize('Fax').using FieldStrategy::RandomPhoneNumber.new
     anonymize('Email').using FieldStrategy::StringTemplate.new('test+#{row_number}@gmail.com')
-    whitelist
   end
 
   table 'Customer' do

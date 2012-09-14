@@ -2,7 +2,7 @@ module DataAnon
   module Utils
     class RandomString
 
-      RANDOM_STRING_CHARS = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789'
+      RANDOM_STRING_CHARS = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ0123456789'
 
       def self.generate length = nil, chars = RANDOM_STRING_CHARS
         length ||= Random.new.rand 5...15

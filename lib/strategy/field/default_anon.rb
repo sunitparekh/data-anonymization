@@ -12,12 +12,14 @@ module DataAnon
                               :datetime => FieldStrategy::DateTimeDelta.new,
                               :time => FieldStrategy::TimeDelta.new,
                               :date => FieldStrategy::DateDelta.new,
+                              :array => FieldStrategy::AnonymizeArray.new(nil),
                               :trueclass => FieldStrategy::RandomBoolean.new,
                               :falseclass => FieldStrategy::RandomBoolean.new
         }
 
         def initialize user_defaults = {}
           @user_defaults = DEFAULT_STRATEGIES.merge user_defaults
+          FieldStrategy::AnonymizeArray.user_defaults @user_defaults
         end
 
         def anonymize field

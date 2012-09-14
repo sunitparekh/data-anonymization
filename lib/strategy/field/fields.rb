@@ -3,12 +3,16 @@ require 'strategy/field/random_boolean'
 
 require 'strategy/field/anonymous'
 
+#array
+require 'strategy/field/anonymize_array'
+
 # string
 require 'strategy/field/string/lorem_ipsum'
 require 'strategy/field/string/string_template'
 require 'strategy/field/string/random_string'
 require 'strategy/field/string/random_url'
 require 'strategy/field/string/formatted_string_numbers'
+require 'strategy/field/string/random_formatted_string'
 
 require 'strategy/field/string/select_from_file'
 require 'strategy/field/string/select_from_list'

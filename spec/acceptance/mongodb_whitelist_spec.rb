@@ -10,6 +10,7 @@ describe "End 2 End MongoDB Whitelist Acceptance Test" do
         {
             "_id" => 1,
             "name" => "Free",
+            "nick_names" => ["Name1","Name2"],
             "features" => [
                 {
                     "max_storage" => 21474836480,
@@ -83,6 +84,8 @@ describe "End 2 End MongoDB Whitelist Acceptance Test" do
 
     plan['_id'].should == 1
     plan['name'].should == "Free"
+    plan['nick_names'][0].should_not == "Name1"
+    plan['nick_names'][1].should_not == "Name2"
     plan['term'].should == "month"
     plan['created_at'].should == Time.new(2012, 6, 21, 13, 30, 0)
     plan['plan_aliases'].should be_nil
