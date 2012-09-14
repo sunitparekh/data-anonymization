@@ -14,6 +14,7 @@ module DataAnon
                               :date => FieldStrategy::DateDelta.new,
                               :array => FieldStrategy::AnonymizeArray.new(nil),
                               :trueclass => FieldStrategy::RandomBoolean.new,
+                              :"bson::objectid" => FieldStrategy::Whitelist.new,
                               :falseclass => FieldStrategy::RandomBoolean.new
         }
 

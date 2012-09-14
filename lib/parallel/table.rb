@@ -6,8 +6,12 @@ module DataAnon
 
       def anonymize tables
         ::Parallel.each(tables) do |table|
-          table.progress_bar = DataAnon::Utils::ParallelProgressBar
-          table.process
+          begin
+            table.progress_bar_class DataAnon::Utils::ParallelProgressBar
+            table.process
+          rescue => e
+            logger.error "\n#{e.message} \n #{e.backtrace}"
+          end
         end
       end
 

@@ -3,7 +3,7 @@ module DataAnon
     class Base
       include Utils::Logging
 
-      attr_accessor :fields, :user_strategies, :fields_missing_strategy
+      attr_accessor :fields, :user_strategies, :fields_missing_strategy, :errors
 
       def initialize source_database, destination_database, name, user_strategies
         @name = name
@@ -12,6 +12,7 @@ module DataAnon
         @source_database = source_database
         @destination_database = destination_database
         @fields_missing_strategy = DataAnon::Core::FieldsMissingStrategy.new name
+        @errors = DataAnon::Core::TableErrors.new(@name)
       end
 
       def self.whitelist?
@@ -72,14 +73,18 @@ module DataAnon
         logger.debug "Processing table #{@name} with fields strategies #{@fields}"
         total = source_table.count
         if total > 0
-          index = 1
-          progress_bar = progress_bar().new @name, total
+          index = 0
+          progress = progress_bar.new(@name, total)
           source_table.all.each do |record|
-            process_record index, record
             index += 1
-            progress_bar.show(index)
+            begin
+              process_record index, record
+            rescue => exception
+              @errors.log_error record, exception
+            end
+            progress.show index
           end
-          progress_bar.close
+          progress.close
         end
       end
 
@@ -87,8 +92,8 @@ module DataAnon
         @progress_bar ||= DataAnon::Utils::ProgressBar
       end
 
-      def progress_bar= progress_bar_class
-        @progress_bar = progress_bar_class
+      def progress_bar_class progress_bar
+        @progress_bar = progress_bar
       end
 
 

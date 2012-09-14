@@ -25,6 +25,7 @@ module DataAnon
 
         def anonymize_field
           @field_strategy = @field_strategy || @anonymization_strategy.default_strategy(@field.name)
+          raise "Improper fields strategy defined for '#{@field.name}' within document \n #{@field.ar_record}" unless @field_strategy.respond_to?(:anonymize)
           @field_strategy.anonymize(@field)
         end
 

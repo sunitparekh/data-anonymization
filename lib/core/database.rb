@@ -41,18 +41,30 @@ module DataAnon
       alias :collection :table
 
       def anonymize
-        @execution_strategy.new.anonymize @tables
+        begin
+          @execution_strategy.new.anonymize @tables
+        rescue => e
+          logger.error "\n#{e.message} \n #{e.backtrace}"
+        end
         if @strategy.whitelist?
           logger.info("Fields missing the anonymization strategy")
-          @tables.collect { |table| table.fields_missing_strategy.print }
+          @tables.each { |table| table.fields_missing_strategy.print }
         end
+
+        @tables.each { |table| table.errors.print }
       end
 
     end
 
     class Sequential
       def anonymize tables
-        tables.each { |table| table.process }
+        tables.each do |table|
+          begin
+            table.process
+          rescue => e
+            logger.error "\n#{e.message} \n #{e.backtrace}"
+          end
+        end
       end
     end
 

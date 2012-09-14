@@ -42,11 +42,10 @@ module DataAnon
           dest_collection.insert anonymize_document(document, index, @fields)
         end
 
-        def anonymize_document document, index, field_strategies
-          field_strategies ||= {}
+        def anonymize_document document, index, field_strategies = {}
           anonymized_document = {}
           document.each do |field_name, field_value|
-            field_strategy = field_strategies[field_name.downcase]
+            field_strategy = field_strategies[field_name.downcase] if field_strategies.kind_of?(Hash)
             unless field_value.nil?
               field = DataAnon::Core::Field.new(field_name, field_value, index, document, @name)
               anonymized_document[field.name] = AnonymizeField.new(field, field_strategy, self).anonymize
