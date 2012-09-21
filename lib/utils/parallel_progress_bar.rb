@@ -15,7 +15,7 @@ module DataAnon
 
       def show_progress index
         suffix = started(index) ? "STARTED" : (complete(index) ? "COMPLETE" : "")
-        logger.info("Table: %-15s [ %6d/%-6d ] %s" % [@table_name, index, @total, suffix])
+        logger.info("%-30s [ %7d/%-7d ] %s" % [@table_name, index, @total, suffix])
       end
 
     end

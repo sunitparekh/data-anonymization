@@ -41,7 +41,7 @@ module DataAnon
 
       def show_progress counter
         sleep 0.1
-        msg = "Table: %-15s [ %6d/%-6d ]" % [@table_name, counter, @total]
+        msg = "%-20s [%6d/%-6d]" % [@table_name, counter, @total]
         @power_bar.show({:msg => msg, :done => counter, :total => @total})
       end
 
