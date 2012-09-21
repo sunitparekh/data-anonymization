@@ -68,7 +68,7 @@ Postgresql database having **composite primary key**
 
 ## Changelog
 
-#### 0.5.0 (under development, point Gemfile to Github repo)
+#### 0.5.0 (rc1 released. install gem using --pre option)
 
 Major changes:
 
