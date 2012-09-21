@@ -8,7 +8,22 @@ module DataAnon
       def initialize table_name, total
         @total = total
         @table_name = table_name
-        @progress_bar = PowerBar.new if show_progress_env
+        @power_bar = PowerBar.new if show_progress_env
+        @power_bar.settings.tty.finite.template.main = \
+        "${<msg>} ${<bar> }\e[0m${<rate>/s} \e[33;1m${<percent>%} " +
+            "\e[36;1m${<elapsed>}\e[31;1m${ ETA: <eta>}"
+        @power_bar.settings.tty.finite.template.padchar = "\e[30;1m\u2589"
+        @power_bar.settings.tty.finite.template.barchar = "\e[34;1m\u2589"
+        @power_bar.settings.tty.finite.template.exit = "\e[?25h\e[0m"  # clean up after us
+        @power_bar.settings.tty.finite.template.close = "\e[?25h\e[0m\n" # clean up after us
+        @power_bar.settings.tty.finite.output = Proc.new{ |s|
+          # The default output function truncates our
+          # string to to enable the "squeezing" as seen in the
+          # previous demo. This doesn't mix so well with ANSI-colors,
+          # so if you want to use colors you'll have to make the output
+          # a little more naive. Like this:
+          $stderr.print s
+        }
       end
 
       def show index
@@ -18,7 +33,7 @@ module DataAnon
       end
 
       def close
-        @progress_bar.close if @progress_bar
+        @power_bar.close if @power_bar
       end
 
       protected
@@ -31,9 +46,10 @@ module DataAnon
         ENV['show_progress'] == "false" ? false : true
       end
 
-      def show_progress index
-        msg = "Table: %-15s [ %6d/%-6d ]" % [@table_name, index, @total]
-        @progress_bar.show(:msg => msg, :done => index, :total => @total)
+      def show_progress counter
+        sleep 0.1
+        msg = "Table: %-15s [ %6d/%-6d ]" % [@table_name, counter, @total]
+        @power_bar.show({:msg => msg, :done => counter, :total => @total})
       end
 
       def complete index
@@ -41,7 +57,7 @@ module DataAnon
       end
 
       def regular_interval index
-        index % 1000 == 0
+        (index % 1000) == 0
       end
 
       def started index

@@ -89,7 +89,7 @@ module DataAnon
       end
 
       def progress_bar
-        @progress_bar ||= DataAnon::Utils::ProgressBar
+        @progress_bar || DataAnon::Utils::ProgressBar
       end
 
       def progress_bar_class progress_bar

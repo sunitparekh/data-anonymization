@@ -236,6 +236,7 @@ The **mongo** gem is required in order to install the mongo db drivers. The scri
 Currently provides capability of running anonymization in parallel at table level provided no FK constraints on tables.
 It uses [Parallel gem](https://github.com/grosser/parallel) provided by Michael Grosser.
 By default it starts multiple parallel ruby processes processing table one by one.
+
 ```ruby
 database 'DellStore' do
   strategy DataAnon::Strategy::Whitelist
