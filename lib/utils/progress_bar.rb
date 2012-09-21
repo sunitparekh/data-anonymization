@@ -12,18 +12,11 @@ module DataAnon
         @power_bar.settings.tty.finite.template.main = \
         "${<msg>} ${<bar> }\e[0m${<rate>/s} \e[33;1m${<percent>%} " +
             "\e[36;1m${<elapsed>}\e[31;1m${ ETA: <eta>}"
-        @power_bar.settings.tty.finite.template.padchar = "\e[30;1m\u2589"
+        @power_bar.settings.tty.finite.template.padchar = "\e[0m\u2589"
         @power_bar.settings.tty.finite.template.barchar = "\e[34;1m\u2589"
         @power_bar.settings.tty.finite.template.exit = "\e[?25h\e[0m"  # clean up after us
         @power_bar.settings.tty.finite.template.close = "\e[?25h\e[0m\n" # clean up after us
-        @power_bar.settings.tty.finite.output = Proc.new{ |s|
-          # The default output function truncates our
-          # string to to enable the "squeezing" as seen in the
-          # previous demo. This doesn't mix so well with ANSI-colors,
-          # so if you want to use colors you'll have to make the output
-          # a little more naive. Like this:
-          $stderr.print s
-        }
+        @power_bar.settings.tty.finite.output = Proc.new{ |s| $stderr.print s }
       end
 
       def show index
