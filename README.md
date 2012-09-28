@@ -115,6 +115,8 @@ For almost all projects there is a need for production data dump in order to run
 However, getting production data and using it is not feasible due to multiple reasons, primary being privacy concerns for user data. And thus the need for data anonymization.
 This tool helps you to get anonymized production data dump using either Blacklist or Whitelist strategies.
 
+Read more about [data anonymization here](http://sunitspace.blogspot.in/2012/09/data-anonymization.html)
+
 ## Anonymization Strategies
 
 ### Blacklist
@@ -146,6 +148,9 @@ database 'DatabaseName' do
   ...
 end
 ```
+
+Read more about [blacklist and whitelist here](http://sunitspace.blogspot.in/2012/09/data-anonymization-blacklist-whitelist.html)
+
 
 ## Tips
 
