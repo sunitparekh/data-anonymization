@@ -28,7 +28,7 @@ module DataAnon
 
     class BaseTable
 
-      def self.create_table  database, table_name, primary_keys
+      def self.create_table  database, table_name, primary_keys = []
         Class.new(database) do
           self.table_name = table_name
           self.primary_keys = primary_keys if primary_keys.length > 1
@@ -42,7 +42,7 @@ module DataAnon
 
     class SourceTable < BaseTable
 
-      def self.create table_name, primary_key
+      def self.create table_name, primary_key = []
         create_table  SourceDatabase, table_name, primary_key
       end
 
@@ -50,7 +50,7 @@ module DataAnon
 
     class DestinationTable < BaseTable
 
-      def self.create table_name, primary_key
+      def self.create table_name, primary_key = []
         create_table DestinationDatabase, table_name, primary_key
       end
 

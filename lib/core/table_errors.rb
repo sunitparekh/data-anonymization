@@ -20,9 +20,10 @@ module DataAnon
 
       def print
         return if @errors.length == 0
-        logger.error("Errors while processing table #{@table_name}:")
+        logger.error("Errors while processing table '#{@table_name}':")
         @errors.each do |error|
           logger.error(error[:exception])
+          logger.error(error[:exception].backtrace.join("\n\t"))
         end
       end
 

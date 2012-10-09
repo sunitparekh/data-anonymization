@@ -21,7 +21,6 @@ describe "End 2 End RDBMS Whitelist Acceptance Test using SQLite database" do
       destination_db dest_connection_spec
 
       table 'customers' do
-        primary_key 'cust_id'
         whitelist 'cust_id', 'address', 'zipcode', 'blog_url'
         anonymize('first_name').using FieldStrategy::RandomFirstName.new
         anonymize('last_name').using FieldStrategy::RandomLastName.new
@@ -34,8 +33,8 @@ describe "End 2 End RDBMS Whitelist Acceptance Test using SQLite database" do
     end
 
     DataAnon::Utils::DestinationDatabase.establish_connection dest_connection_spec
-    dest_table = DataAnon::Utils::DestinationTable.create 'customers', ['cust_id']
-    new_rec = dest_table.find(CustomerSample::SAMPLE_DATA[:cust_id])
+    dest_table = DataAnon::Utils::DestinationTable.create 'customers'
+    new_rec = dest_table.where("cust_id" => CustomerSample::SAMPLE_DATA[:cust_id]).first
     new_rec.first_name.should_not be("Sunit")
     new_rec.last_name.should_not be("Parekh")
     new_rec.birth_date.should_not be(Date.new(1977,7,8))

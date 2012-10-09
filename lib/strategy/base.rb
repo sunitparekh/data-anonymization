@@ -13,6 +13,7 @@ module DataAnon
         @destination_database = destination_database
         @fields_missing_strategy = DataAnon::Core::FieldsMissingStrategy.new name
         @errors = DataAnon::Core::TableErrors.new(@name)
+        @primary_keys = []
       end
 
       def self.whitelist?
