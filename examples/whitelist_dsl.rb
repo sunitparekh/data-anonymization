@@ -26,8 +26,26 @@ database 'Chinook' do
 
   end
 
+  table 'Customer' do
+    primary_key 'CustomerId'
+    batch_size 5  # batch_size works only if the primary_key is defined for the table
+
+    whitelist 'CustomerId', 'SupportRepId', 'Company'
+    anonymize('Phone').using FieldStrategy::RandomPhoneNumber.new
+    anonymize('FirstName').using FieldStrategy::RandomFirstName.new
+    anonymize('LastName').using FieldStrategy::RandomLastName.new
+    anonymize('Address').using FieldStrategy::RandomAddress.region_US
+    anonymize('City').using FieldStrategy::RandomCity.region_US
+    anonymize('State').using FieldStrategy::RandomProvince.region_US
+    anonymize('PostalCode').using FieldStrategy::RandomZipcode.region_US
+    anonymize('Country') {|field| "USA" }
+    anonymize('Fax').using FieldStrategy::RandomPhoneNumber.new
+    anonymize('Email').using FieldStrategy::StringTemplate.new('test+#{row_number}@gmail.com')
+  end
+
   table 'Employee' do
-    primary_key 'EmployeeId'
+    batch_size 5  # this won't work since there is no 'primary_key' defined
+
     whitelist 'EmployeeId', 'ReportsTo', 'Title'
     anonymize('BirthDate').using FieldStrategy::DateTimeDelta.new(1, 1)
     anonymize('FirstName').using FieldStrategy::RandomFirstName.new
@@ -43,20 +61,6 @@ database 'Chinook' do
     anonymize('Email').using FieldStrategy::StringTemplate.new('test+#{row_number}@gmail.com')
   end
 
-  table 'Customer' do
-    primary_key 'CustomerId'
-    whitelist 'SupportRepId', 'Company'
-    anonymize('Phone').using FieldStrategy::RandomPhoneNumber.new
-    anonymize('FirstName').using FieldStrategy::RandomFirstName.new
-    anonymize('LastName').using FieldStrategy::RandomLastName.new
-    anonymize('Address').using FieldStrategy::RandomAddress.region_US
-    anonymize('City').using FieldStrategy::RandomCity.region_US
-    anonymize('State').using FieldStrategy::RandomProvince.region_US
-    anonymize('PostalCode').using FieldStrategy::RandomZipcode.region_US
-    anonymize('Country') {|field| "USA" }
-    anonymize('Fax').using FieldStrategy::RandomPhoneNumber.new
-    anonymize('Email').using FieldStrategy::StringTemplate.new('test+#{row_number}@gmail.com')
-  end
 
 
 end

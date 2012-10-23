@@ -14,7 +14,6 @@ module DataAnon
         @fields_missing_strategy = DataAnon::Core::FieldsMissingStrategy.new name
         @errors = DataAnon::Core::TableErrors.new(@name)
         @primary_keys = []
-        @batch_size = 5000
       end
 
       def self.whitelist?
@@ -80,7 +79,7 @@ module DataAnon
         total = source_table.count
         if total > 0
           progress = progress_bar.new(@name, total)
-          if @primary_keys.empty?
+          if @primary_keys.empty? || !@batch_size.present?
             process_table progress
           else
             process_table_in_batches progress
@@ -103,7 +102,7 @@ module DataAnon
       end
 
       def process_table_in_batches progress
-        logger.debug "Processing table #{@name} records in batch size #{@batch_size}"
+        logger.info "Processing table #{@name} records in batch size of #{@batch_size}"
         index = 0
         source_table.find_each(:batch_size => @batch_size) do |record|
           index += 1
