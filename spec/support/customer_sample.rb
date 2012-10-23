@@ -3,7 +3,7 @@ class CustomerSample
   class CreateCustomer < ActiveRecord::Migration
     def up
       create_table :customers, { :id => false, :force => true } do |t|
-        t.integer :cust_id
+        t.integer :cust_id, :primary => true
         t.string :first_name
         t.string :last_name
         t.date :birth_date
