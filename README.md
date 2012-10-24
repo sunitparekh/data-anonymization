@@ -68,6 +68,12 @@ Postgresql database having **composite primary key**
 
 ## Changelog
 
+#### 0.5.1  (Oct ??, 2012)
+
+1. Minor fixes release, no major functionality or feature added.
+
+Please see the [Github 0.5.1 milestone page](https://github.com/sunitparekh/data-anonymization/issues?milestone=3&state=open) for more details on changes/fixes in release 0.5.1
+
 #### 0.5.0  (Sep 28, 2012)
 
 Major changes:
@@ -157,6 +163,7 @@ Read more about [blacklist and whitelist here](http://sunitspace.blogspot.in/201
 1. In Whitelist approach make source database connection READONLY.
 2. Change [default field strategies](#default-field-strategies) to avoid using same strategy again and again in your DSL.
 3. To run anonymization in parallel at Table level, provided no FK constraint on tables use DataAnon::Parallel::Table strategy
+4. For large table to load them in batches from table set 'batch_size' and it will use RoR's batch mode processing. Checkout [example](https://github.com/sunitparekh/data-anonymization/blob/master/examples/whitelist_dsl.rb) on how to use batch processing.
 
 ## DSL Generation
 
