@@ -68,7 +68,7 @@ Postgresql database having **composite primary key**
 
 ## Changelog
 
-#### 0.5.1  (Oct ??, 2012)
+#### 0.5.1  (Oct 26, 2012)
 
 1. Minor fixes release, no major functionality or feature added.
 
