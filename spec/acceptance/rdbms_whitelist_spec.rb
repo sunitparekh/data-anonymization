@@ -29,6 +29,7 @@ describe "End 2 End RDBMS Whitelist Acceptance Test using SQLite database" do
         anonymize('email').using FieldStrategy::StringTemplate.new('test+#{row_number}@gmail.com')
         anonymize 'terms_n_condition', 'age', 'longitude'
         anonymize('latitude').using FieldStrategy::RandomFloatDelta.new(2.0)
+        whitelist 'created_at','updated_at'
       end
     end
 
@@ -47,6 +48,7 @@ describe "End 2 End RDBMS Whitelist Acceptance Test using SQLite database" do
     new_rec.age.should be_between(0,100)
     new_rec.latitude.should be_between( 38.689060, 42.689060)
     new_rec.longitude.should be_between( -84.044636, -64.044636)
-
+    new_rec.created_at.should == Time.new(2010,10,10)
+    new_rec.updated_at.should == Time.new(2010,5,5)
   end
 end

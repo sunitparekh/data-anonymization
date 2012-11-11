@@ -17,6 +17,8 @@ class CustomerSample
         t.integer :age
         t.float :latitude
         t.float :longitude
+
+        t.timestamps
       end
     end
   end
@@ -36,7 +38,8 @@ class CustomerSample
                  :birth_date => Date.new(1977,7,8), :address => "F 501 Shanti Nagar",
                  :state => "Maharastra", :zipcode => "411048", :phone => "9923700662",
                  :email => "parekh.sunit@gmail.com", :terms_n_condition => true,
-                 :age => 34, :longitude => -74.044636, :latitude => +40.689060}
+                 :age => 34, :longitude => -74.044636, :latitude => +40.689060,
+                 :created_at => Time.new(2010,10,10), :updated_at => Time.new(2010,5,5)}
 
   def self.insert_record connection_spec, data_hash = SAMPLE_DATA
     DataAnon::Utils::TempDatabase.establish_connection connection_spec
