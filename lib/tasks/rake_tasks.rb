@@ -1,5 +1,4 @@
 require 'rake'
-require 'rake/task'
 
 module DataAnonymization
   class RakeTasks
