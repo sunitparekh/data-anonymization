@@ -1,4 +1,4 @@
-system "bundle exec ruby whitelist_dsl.rb"
+system "bundle exec ruby examples/whitelist_dsl.rb"
 
 require 'data-anonymization'
 
