@@ -70,7 +70,7 @@ Postgresql database having **composite primary key**
 
 #### 0.5.2  (Jan 20, 2013)
 
-1. Upgraded all gem to latest and grested including Rails activerecord and activesupport.
+1. Upgraded all gem to latest and greatest including Rails activerecord and activesupport.
 
 #### 0.5.1  (Oct 26, 2012)
 
