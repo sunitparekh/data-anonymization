@@ -51,4 +51,50 @@ describe "End 2 End RDBMS Whitelist Acceptance Test using SQLite database" do
     new_rec.created_at.should == Time.new(2010,10,10)
     new_rec.updated_at.should == Time.new(2010,5,5)
   end
+
+  context "when whitelisting attributes" do
+
+    # This is intended to replicate what happens when
+    #
+    # config.active_record.whitelist_attributes = true
+    #
+    # is set in your application.
+
+    default_active_authorizer = nil
+
+    before(:each) do
+      default_active_authorizer = ActiveRecord::Base.active_authorizers[:default]
+      ActiveRecord::Base.active_authorizers[:default] = ActiveModel::MassAssignmentSecurity::WhiteList.new
+    end
+
+    after(:each) do
+      ActiveRecord::Base.active_authorizers[:default] = default_active_authorizer
+    end
+
+    it "should copy the customer table data" do
+
+      database "Customer" do
+        strategy DataAnon::Strategy::Whitelist
+        source_db source_connection_spec
+        destination_db dest_connection_spec
+
+        table 'customers' do
+          whitelist 'cust_id', 'address', 'zipcode', 'blog_url'
+          anonymize('first_name').using FieldStrategy::RandomFirstName.new
+          anonymize('last_name').using FieldStrategy::RandomLastName.new
+          anonymize('state').using FieldStrategy::SelectFromList.new(['Gujrat','Karnataka'])
+          anonymize('phone').using FieldStrategy::RandomPhoneNumber.new
+          anonymize('email').using FieldStrategy::StringTemplate.new('test+#{row_number}@gmail.com')
+          anonymize 'terms_n_condition', 'age', 'longitude'
+          anonymize('latitude').using FieldStrategy::RandomFloatDelta.new(2.0)
+          whitelist 'created_at','updated_at'
+        end
+      end
+
+      DataAnon::Utils::DestinationDatabase.establish_connection dest_connection_spec
+      dest_table = DataAnon::Utils::DestinationTable.create 'customers'
+      new_rec = dest_table.all.first
+      new_rec.address.should == 'F 501 Shanti Nagar'
+    end
+  end
 end
