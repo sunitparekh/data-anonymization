@@ -16,6 +16,7 @@ module DataAnon
           end
         end
         dest_record = dest_table.new dest_record_map
+        dest_record.assign_attributes(dest_record_map, without_protection: true)
         @primary_keys.each do |key|
           dest_record[key] = record[key]
         end
