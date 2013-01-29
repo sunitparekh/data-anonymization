@@ -68,6 +68,12 @@ Postgresql database having **composite primary key**
 
 ## Changelog
 
+#### 0.5.2  (Jan 29, 2013)
+
+1. Fixed [issue #17](https://github.com/sunitparekh/data-anonymization/issues/17)
+2. Upgraded Thor dependency to latest version
+
+
 #### 0.5.2  (Jan 20, 2013)
 
 1. Upgraded all gem to latest and greatest including Rails activerecord and activesupport.
