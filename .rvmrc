@@ -1,1 +1,1 @@
-rvm use 1.9.3@data-anon --create
+rvm use 2.0.0-p0@data-anon --create

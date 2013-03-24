@@ -5,3 +5,4 @@ before_script: rake empty_dest
 rvm:
   - 1.9.2
   - 1.9.3
+  - 2.0.0
