@@ -1,7 +1,9 @@
 require 'rspec'
 require "pry"
 require 'data-anonymization'
+require 'coveralls'
 
+Coveralls.wear!
 
 ENV['show_progress'] = 'false'
 
