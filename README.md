@@ -4,6 +4,7 @@ Tool to create anonymized production data dump to use for PERF and other TEST en
 [<img src="https://secure.travis-ci.org/sunitparekh/data-anonymization.png?branch=master">](http://travis-ci.org/sunitparekh/data-anonymization)
 [<img src="https://gemnasium.com/sunitparekh/data-anonymization.png?travis">](https://gemnasium.com/sunitparekh/data-anonymization)
 [<img src="https://codeclimate.com/badge.png">](https://codeclimate.com/github/sunitparekh/data-anonymization)
+[![Coverage Status](https://coveralls.io/repos/sunitparekh/data-anonymization/badge.png?branch=master)](https://coveralls.io/r/sunitparekh/data-anonymization?branch=master)
 
 ## Getting started
 
