@@ -59,7 +59,7 @@ describe "End 2 End MongoDB Whitelist Acceptance Test" do
     database 'test' do
       strategy DataAnon::Strategy::MongoDB::Whitelist
       source_db :mongodb_uri => "mongodb://localhost/test", :database => 'test'
-      destination_db :mongodb_uri => "mongodb://localhost/dest", :database => 'dest', :options => {:safe => true}
+      destination_db :mongodb_uri => "mongodb://localhost/dest", :database => 'dest'
 
       collection 'plans' do
         whitelist '_id', 'name', 'term', 'created_at'

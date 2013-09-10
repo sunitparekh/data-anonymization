@@ -33,7 +33,7 @@ describe "End 2 End MongoDB Blacklist Acceptance Test" do
             "updated_at" => Time.new(2012, 2, 11, 13, 1, 0)
         }
     ]
-    users_coll = Mongo::Connection.from_uri("mongodb://localhost/dest",{:safe => true})['test']['users']
+    users_coll = Mongo::Connection.from_uri("mongodb://localhost/dest")['test']['users']
     users.each { |p| users_coll.save p }
   end
 
@@ -41,7 +41,7 @@ describe "End 2 End MongoDB Blacklist Acceptance Test" do
 
     database 'test' do
       strategy DataAnon::Strategy::MongoDB::Blacklist
-      source_db :mongodb_uri => "mongodb://localhost/test", :database => 'test', :options => {:safe => true}
+      source_db :mongodb_uri => "mongodb://localhost/test", :database => 'test'
 
       collection 'users' do
         anonymize('date_of_birth').using FieldStrategy::TimeDelta.new(5,30)

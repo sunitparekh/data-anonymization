@@ -1,6 +1,6 @@
-require "spec_helper"
+require 'spec_helper'
 
-describe "Utils" do
+describe 'Utils' do
 
   before(:each) do
     source = {:adapter => 'sqlite3', :database => 'sample-data/chinook.sqlite'}
@@ -10,17 +10,16 @@ describe "Utils" do
     DataAnon::Utils::DestinationDatabase.establish_connection destination
   end
 
-  it "should test the connection to source database" do
-    album = DataAnon::Utils::SourceTable.create "Album", ["AlbumId"]
+  it 'should test the connection to source database' do
+    album = DataAnon::Utils::SourceTable.create 'Album', ['AlbumId']
     album.count.should > 0
     album.all.length > 0
   end
 
-  it "should test the connection to destination database" do
-    album = DataAnon::Utils::DestinationTable.create "Album", ["AlbumId"]
+  it 'should test the connection to destination database' do
+    album = DataAnon::Utils::DestinationTable.create 'Album', ['AlbumId']
     album.count.should == 0
     album.all.length == 0
-
   end
 
 end
