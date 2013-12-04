@@ -1,3 +1,5 @@
+require 'protected_attributes'
+
 class CustomerSample
 
   class CreateCustomer < ActiveRecord::Migration
