@@ -1,5 +1,5 @@
 # Data::Anonymization
-Tool to create anonymized production data dump to use for PERF and other TEST environments.
+Afraid of getting production data due to privacy issues. Data Anonymization tool ban help you to build anonymized production data dump to use for testing like performance and security, debugging production issues and development purpose.
 
 [<img src="https://secure.travis-ci.org/sunitparekh/data-anonymization.png?branch=master">](http://travis-ci.org/sunitparekh/data-anonymization)
 [<img src="https://gemnasium.com/sunitparekh/data-anonymization.png?travis">](https://gemnasium.com/sunitparekh/data-anonymization)
