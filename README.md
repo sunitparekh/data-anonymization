@@ -69,6 +69,9 @@ Postgresql database having **composite primary key**
 
 ## Changelog
 
+#### 0.6.0 (Dec x, 2013)
+In Progress....
+
 #### 0.5.2  (Jan 29, 2013)
 
 1. Fixed [issue #17](https://github.com/sunitparekh/data-anonymization/issues/17)
