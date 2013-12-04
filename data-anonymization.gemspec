@@ -11,6 +11,8 @@ Gem::Specification.new do |gem|
   gem.description   = %q{Data anonymization tool for RDBMS databases}
   gem.summary       = %q{Tool to create anonymized production data dump to use for PREF and other TEST environments.}
   gem.homepage      = "http://sunitparekh.github.com/data-anonymization"
+  spec.license       = "MIT"
+
 
   gem.files         = `git ls-files`.split($/).select { |f| !f.match(/^sample-data/) }
   gem.executables   = "datanon"
