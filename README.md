@@ -69,8 +69,9 @@ Postgresql database having **composite primary key**
 
 ## Changelog
 
-#### 0.6.0 (Dec x, 2013)
-In Progress....
+#### 0.5.5 (Dec 4, 2013)
+1. Upgraded gems to latest versions
+
 
 #### 0.5.2  (Jan 29, 2013)
 

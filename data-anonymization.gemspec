@@ -23,6 +23,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency('rgeo', '~> 0.3.20')
   gem.add_dependency('rgeo-geojson', '~> 0.2.3')
   gem.add_dependency('powerbar', '~> 1.0.11')
-  gem.add_dependency('parallel', '~> 0.6.3')
-  gem.add_dependency('thor', '~> 0.17.0')
+  gem.add_dependency('parallel', '~> 0.9.1')
+  gem.add_dependency('thor', '~> 0.18.1')
 end

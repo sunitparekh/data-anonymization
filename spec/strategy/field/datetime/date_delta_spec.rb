@@ -11,7 +11,7 @@ describe FieldStrategy::DateDelta do
     let(:date_difference) {anonymized_value - field.value}
 
     it { anonymized_value.should be_kind_of Date}
-    it { date_difference.should be_between(-5.days, 5.days) }
+    it { date_difference.should be_between(-10.days, 10.days) }
   end
 
   describe 'date should not change when provided with 0 delta for both date and time' do

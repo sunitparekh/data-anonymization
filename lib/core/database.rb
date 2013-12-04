@@ -11,6 +11,7 @@ module DataAnon
         @tables = []
         @execution_strategy = DataAnon::Core::Sequential
         ENV['parallel_execution'] = 'false'
+        I18n.enforce_available_locales = false
       end
 
       def strategy strategy
