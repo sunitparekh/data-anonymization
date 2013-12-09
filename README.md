@@ -69,7 +69,7 @@ Postgresql database having **composite primary key**
 
 ## Changelog
 
-#### 0.6.0 (Dec --, 2013)
+#### 0.6.0 (Dec 09, 2013)
 1. Upgraded rails activerecord gem to latest versions 4.0.2, please provide feedback.
 
 #### 0.5.5 (Dec 4, 2013)
