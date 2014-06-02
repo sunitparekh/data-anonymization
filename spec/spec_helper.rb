@@ -13,8 +13,13 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 DataAnon::Utils::Logging.logger.level = Logger::WARN
 
 RSpec.configure do |config|
-  config.expect_with :rspec
-  config.mock_with 'rspec-mocks'
+  config.expect_with :rspec do |c|
+    c.syntax = [:should, :expect]
+  end
+
+  config.mock_with :rspec do |c|
+    c.syntax = [:should, :expect]
+  end
 
   config.before(:suite) do
   end
