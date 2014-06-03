@@ -5,6 +5,7 @@ Afraid of getting production data due to privacy issues. Data Anonymization tool
 [<img src="https://gemnasium.com/sunitparekh/data-anonymization.png?travis">](https://gemnasium.com/sunitparekh/data-anonymization)
 [<img src="https://codeclimate.com/badge.png">](https://codeclimate.com/github/sunitparekh/data-anonymization)
 [![Coverage Status](https://coveralls.io/repos/sunitparekh/data-anonymization/badge.png?branch=master)](https://coveralls.io/r/sunitparekh/data-anonymization?branch=master)
+[![Gem Version](https://badge.fury.io/rb/data-anonymization.svg)](http://badge.fury.io/rb/data-anonymization)
 
 ## Getting started
 
