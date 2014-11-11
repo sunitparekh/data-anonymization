@@ -1,5 +1,5 @@
 # Data::Anonymization
-Afraid of getting production data due to privacy issues. Data Anonymization tool helps to build anonymized production data dump to use for performance and security testing, debugging production issues and development purpose.
+Afraid of using production data due to privacy issues? Data Anonymization is a tool that helps you build anonymized production data dumps which you can use for performance testing, security testing, debugging and development.
 
 [<img src="https://secure.travis-ci.org/sunitparekh/data-anonymization.png?branch=master">](http://travis-ci.org/sunitparekh/data-anonymization)
 [<img src="https://gemnasium.com/sunitparekh/data-anonymization.png?travis">](https://gemnasium.com/sunitparekh/data-anonymization)
