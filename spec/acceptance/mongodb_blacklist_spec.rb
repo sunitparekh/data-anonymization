@@ -60,7 +60,7 @@ describe "End 2 End MongoDB Blacklist Acceptance Test" do
 
     user['_id'].should == 1
     user['user_id'].should == "user-1"
-    user['date_of_birth'].should_not == Time.new(2012, 7, 14, 13, 1, 0)
+    user['date_of_birth'].to_i.should_not == Time.new(2012, 7, 14, 13, 1, 0).to_i
     user['email'].should_not == "parekh.sunit@gmail.com"
     user['password'].should == "password"
     user['failed_attempts'].should == 0
@@ -68,7 +68,7 @@ describe "End 2 End MongoDB Blacklist Acceptance Test" do
     user['last_name'].should_not be "Parekh"
     user['password_reset_answer'].should == "manza"
     user['password_reset_question'].should == "My new car modal?"
-    user['updated_at'].should == Time.new(2012, 8, 15, 13, 1, 0)
+    user['updated_at'].to_i.should == Time.new(2012, 8, 15, 13, 1, 0).to_i
 
 
   end
