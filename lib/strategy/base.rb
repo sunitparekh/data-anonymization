@@ -34,27 +34,27 @@ module DataAnon
       end
 
       def whitelist *fields
-        fields.each { |f| @fields[f.downcase] = DataAnon::Strategy::Field::Whitelist.new }
+        fields.each { |f| @fields[f] = DataAnon::Strategy::Field::Whitelist.new }
       end
 
       def anonymize *fields, &block
         if block.nil?
-          fields.each { |f| @fields[f.downcase] = DataAnon::Strategy::Field::DefaultAnon.new(@user_strategies) }
+          fields.each { |f| @fields[f] = DataAnon::Strategy::Field::DefaultAnon.new(@user_strategies) }
           temp = self
           return Class.new do
             @temp_fields = fields
             @table_fields = temp.fields
             def self.using field_strategy
-              @temp_fields.each { |f| @table_fields[f.downcase] = field_strategy }
+              @temp_fields.each { |f| @table_fields[f] = field_strategy }
             end
           end
         else
-          fields.each { |f| @fields[f.downcase] = DataAnon::Strategy::Field::Anonymous.new(&block) }
+          fields.each { |f| @fields[f] = DataAnon::Strategy::Field::Anonymous.new(&block) }
         end
       end
 
       def is_primary_key? field
-        @primary_keys.select { |key| field.downcase == key.downcase }.length > 0
+        @primary_keys.select { |key| field == key }.length > 0
       end
 
       def default_strategy field_name

@@ -70,6 +70,11 @@ Postgresql database having **composite primary key**
 
 ## Changelog
 
+#### 0.7.0 (Mar 9, 2015)
+1. Removed downcase from field name since it was causing issues with upper case field names. So now for databsae where case matters field name case should be maintained. 
+2. Upgraded gems to latest version
+
+
 #### 0.6.7 (Jan 17, 2015)
 1. Upgraded gems to latest version including activerecord to 4.2. Please try it out and provide feedback.
 
