@@ -21,7 +21,7 @@ database 'test' do
   end
 
   collection 'plans' do
-    anonymize('plan_aliases').using FieldStrategy::SelectFromList.new(["Free","Team","Business","Paid"])
+    anonymize('plan_aliases').using FieldStrategy::AnonymizeArray.new(FieldStrategy::SelectFromList.new(["Free","Team","Business","Paid"]))
     anonymize 'public_sharing','photo_sharing'
 
     collection 'features' do
