@@ -21,7 +21,7 @@ describe "End 2 End MongoDB Blacklist Acceptance Test" do
         },
         {
             "_id" => 2,
-            "user_id" => "anandagrawal",
+            "USER_ID" => "anandagrawal",
             "date_of_birth" => Time.new(2011, 8, 11, 13, 1, 0),
             "email" => "anandagrawal84@gmail.com",
             "password" => "Tz548O0RWusldVAWkwqfzO3jK/X4l/5EtnOkfLCeynOL85tJQuxum",
