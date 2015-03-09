@@ -199,6 +199,7 @@ Read more about [blacklist and whitelist here](http://sunitspace.blogspot.in/201
 2. Change [default field strategies](#default-field-strategies) to avoid using same strategy again and again in your DSL.
 3. To run anonymization in parallel at Table level, provided no FK constraint on tables use DataAnon::Parallel::Table strategy
 4. For large table to load them in batches from table set 'batch_size' and it will use RoR's batch mode processing. Checkout [example](https://github.com/sunitparekh/data-anonymization/blob/master/examples/whitelist_dsl.rb) on how to use batch processing.
+5. Make sure to give proper case for fields and table names. 
 
 ## DSL Generation
 
