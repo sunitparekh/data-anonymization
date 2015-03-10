@@ -20,7 +20,7 @@ class CustomerSample
         t.float :latitude
         t.float :longitude
 
-        t.timestamps
+        t.timestamps null: true
       end
     end
   end
