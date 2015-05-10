@@ -30,11 +30,11 @@ module DataAnon
         end
 
         def sub_documents?
-          @field.value.kind_of?(Array) && @field.value[0].kind_of?(Hash)
+          @field.value.kind_of?(Array) && (@field_strategy.kind_of?(Hash) || @field.value[0].kind_of?(Hash))
         end
 
         def sub_document?
-          @field.value.kind_of? Hash
+          @field.value.kind_of?(Hash)
         end
 
 

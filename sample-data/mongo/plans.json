@@ -37,5 +37,14 @@
         "public_sharing": true,
         "photo_sharing": true,
         "created_at":{ "$date":1346740765000 }
+    },
+    {
+        "name":"Team",
+        "plan_aliases":[],
+        "features":[],
+        "term":"month",
+        "public_sharing": true,
+        "photo_sharing": true,
+        "created_at":{ "$date":1346740765000 }
     }
 ]

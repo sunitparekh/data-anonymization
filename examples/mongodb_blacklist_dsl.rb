@@ -24,7 +24,7 @@ database 'test' do
     anonymize('plan_aliases').using FieldStrategy::AnonymizeArray.new(FieldStrategy::SelectFromList.new(["Free","Team","Business","Paid"]))
     anonymize 'public_sharing','photo_sharing'
 
-    collection 'features' do
+    document 'features' do
       anonymize('max_storage').using FieldStrategy::SelectFromList.new([10737418240,21474836480,53687091200])
 
       document 'users' do
