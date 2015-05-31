@@ -37,6 +37,14 @@ module DataAnon
         fields.each { |f| @fields[f] = DataAnon::Strategy::Field::Whitelist.new }
       end
 
+      def skip &block
+        @skip_block = block
+      end
+
+      def continue &block
+        @continue_block = block
+      end
+
       def anonymize *fields, &block
         if block.nil?
           fields.each { |f| @fields[f] = DataAnon::Strategy::Field::DefaultAnon.new(@user_strategies) }
@@ -93,7 +101,7 @@ module DataAnon
         source_table.all.each do |record|
           index += 1
           begin
-            process_record index, record
+            process_record_if index, record
           rescue => exception
             @errors.log_error record, exception
           end
@@ -107,12 +115,19 @@ module DataAnon
         source_table.find_each(:batch_size => @batch_size) do |record|
           index += 1
           begin
-            process_record index, record
+            process_record_if index, record
           rescue => exception
             @errors.log_error record, exception
           end
           progress.show index
         end
+      end
+
+      def process_record_if index, record
+        return if @skip_block && @skip_block.call(index, record)
+        return if @continue_block && !@continue_block.call(index, record)
+
+        process_record index, record
       end
 
       def progress_bar

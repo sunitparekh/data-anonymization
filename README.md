@@ -70,6 +70,11 @@ Postgresql database having **composite primary key**
 
 ## Changelog
 
+#### 0.7.1 (May 31, 2015)
+1. Fixed issues with empty array data for MongoDB
+2. Added feature to skip and continue records during anaonymisation, this is useful to apply different strategies for different types of records.
+
+
 #### 0.7.0 (Mar 9, 2015)
 1. Removed downcase from field name since it was causing issues with upper case field names. So now for databsae where case matters field name case should be maintained. 
 2. Upgraded gems to latest version
@@ -200,6 +205,7 @@ Read more about [blacklist and whitelist here](http://sunitspace.blogspot.in/201
 3. To run anonymization in parallel at Table level, provided no FK constraint on tables use DataAnon::Parallel::Table strategy
 4. For large table to load them in batches from table set 'batch_size' and it will use RoR's batch mode processing. Checkout [example](https://github.com/sunitparekh/data-anonymization/blob/master/examples/whitelist_dsl.rb) on how to use batch processing.
 5. Make sure to give proper case for fields and table names. 
+6. Use skip and continue to apply different strategies for records. 
 
 ## DSL Generation
 
@@ -566,6 +572,37 @@ ENV['show_progress'] = 'false'
 ```ruby
 DataAnon::Utils::Logging.logger.level = Logger::INFO
 ```
+
+## Skip and Continue records
+
+*Skip* is used to skip records during anonymization when condition returns true. This records are ignored, 
+in blacklist it remains as it is in database and in case of whitelist this records will not be copied to destination database.
+
+```ruby
+table 'customers' do
+  skip { |index, record| record['age'] < 18 }
+
+  primary_key 'cust_id'
+  anonymize('email').using FieldStrategy::StringTemplate.new('test+#{row_number}@gmail.com')
+  anonymize 'terms_n_condition', 'age'
+end
+```
+  
+  
+*Continue* is exactly opposite of Skip and it continue with anonymization only if given condition returns true. 
+In case of blacklist records are anonymized for matching conditions and for whitelist records are anonymized and copied
+to new database for matching conditions. 
+
+```ruby
+table 'customers' do
+  continue { |index, record| record['age'] > 18 }
+
+  primary_key 'cust_id'
+  anonymize('email').using FieldStrategy::StringTemplate.new('test+#{row_number}@gmail.com')
+  anonymize 'terms_n_condition', 'age'
+end
+```
+
 
 ## Want to contribute?
 
