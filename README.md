@@ -70,7 +70,7 @@ Postgresql database having **composite primary key**
 
 ## Changelog
 
-#### 0.7.1 (May 31, 2015)
+#### 0.7.1 (Jun 13, 2015)
 1. Fixed issues with empty array data for MongoDB
 2. Added feature to skip and continue records during anaonymisation, this is useful to apply different strategies for different types of records.
 
