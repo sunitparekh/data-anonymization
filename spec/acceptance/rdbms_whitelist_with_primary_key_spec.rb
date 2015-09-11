@@ -8,7 +8,7 @@ describe "End 2 End RDBMS Whitelist Acceptance Test using SQLite database" do
   before(:each) do
     CustomerSample.clean
     CustomerSample.create_schema source_connection_spec
-    CustomerSample.insert_record source_connection_spec, CustomerSample::SAMPLE_DATA
+    CustomerSample.insert_record source_connection_spec, CustomerSample::SAMPLE_DATA[0]
 
     CustomerSample.create_schema dest_connection_spec
   end
@@ -37,7 +37,7 @@ describe "End 2 End RDBMS Whitelist Acceptance Test using SQLite database" do
 
     DataAnon::Utils::DestinationDatabase.establish_connection dest_connection_spec
     dest_table = DataAnon::Utils::DestinationTable.create 'customers'
-    new_rec = dest_table.where("cust_id" => CustomerSample::SAMPLE_DATA[:cust_id]).first
+    new_rec = dest_table.where("cust_id" => CustomerSample::SAMPLE_DATA[0][:cust_id]).first
     new_rec.first_name.should_not be("Sunit")
     new_rec.last_name.should_not be("Parekh")
     new_rec.birth_date.should_not be(Date.new(1977,7,8))

@@ -6,7 +6,7 @@ describe 'End 2 End RDBMS Blacklist Acceptance Test using SQLite database' do
   before(:each) do
     CustomerSample.clean
     CustomerSample.create_schema connection_spec
-    CustomerSample.insert_record connection_spec, CustomerSample::SAMPLE_DATA
+    CustomerSample.insert_record connection_spec, CustomerSample::SAMPLE_DATA[0]
   end
 
   it 'should anonymize customer table record ' do
@@ -24,7 +24,7 @@ describe 'End 2 End RDBMS Blacklist Acceptance Test using SQLite database' do
 
     DataAnon::Utils::SourceDatabase.establish_connection connection_spec
     source = DataAnon::Utils::SourceTable.create 'customers', ['cust_id']
-    new_rec = source.find(CustomerSample::SAMPLE_DATA[:cust_id])
+    new_rec = source.find(CustomerSample::SAMPLE_DATA[0][:cust_id])
     new_rec['email'].should == 'test+1@gmail.com'
 
   end
@@ -45,7 +45,7 @@ describe 'End 2 End RDBMS Blacklist Acceptance Test using SQLite database' do
 
     DataAnon::Utils::SourceDatabase.establish_connection connection_spec
     source = DataAnon::Utils::SourceTable.create 'customers', ['cust_id']
-    new_rec = source.find(CustomerSample::SAMPLE_DATA[:cust_id])
+    new_rec = source.find(CustomerSample::SAMPLE_DATA[0][:cust_id])
     new_rec['email'].should_not == 'test+1@gmail.com'
 
   end
@@ -66,7 +66,7 @@ describe 'End 2 End RDBMS Blacklist Acceptance Test using SQLite database' do
 
     DataAnon::Utils::SourceDatabase.establish_connection connection_spec
     source = DataAnon::Utils::SourceTable.create 'customers', ['cust_id']
-    new_rec = source.find(CustomerSample::SAMPLE_DATA[:cust_id])
+    new_rec = source.find(CustomerSample::SAMPLE_DATA[0][:cust_id])
     new_rec['email'].should == 'test+1@gmail.com'
 
 

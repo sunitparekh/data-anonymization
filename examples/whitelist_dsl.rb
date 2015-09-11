@@ -29,6 +29,7 @@ database 'Chinook' do
   table 'Customer' do
     primary_key 'CustomerId'
     batch_size 5  # batch_size works only if the primary_key is defined for the table
+    limit 10 # will only take last 10 records
 
     whitelist 'CustomerId', 'SupportRepId', 'Company'
     anonymize('Phone').using FieldStrategy::RandomPhoneNumber.new
@@ -64,4 +65,3 @@ database 'Chinook' do
 
 
 end
-

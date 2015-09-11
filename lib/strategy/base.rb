@@ -33,6 +33,10 @@ module DataAnon
         @batch_size = size
       end
 
+      def limit limit
+        @limit = limit
+      end
+
       def whitelist *fields
         fields.each { |f| @fields[f] = DataAnon::Strategy::Field::Whitelist.new }
       end
@@ -98,7 +102,8 @@ module DataAnon
 
       def process_table progress
         index = 0
-        source_table.all.each do |record|
+
+        source_table_limited.each do |record|
           index += 1
           begin
             process_record_if index, record
@@ -112,7 +117,8 @@ module DataAnon
       def process_table_in_batches progress
         logger.info "Processing table #{@name} records in batch size of #{@batch_size}"
         index = 0
-        source_table.find_each(:batch_size => @batch_size) do |record|
+
+        source_table_limited.find_each(:batch_size => @batch_size) do |record|
           index += 1
           begin
             process_record_if index, record
@@ -120,6 +126,16 @@ module DataAnon
             @errors.log_error record, exception
           end
           progress.show index
+        end
+      end
+
+      def source_table_limited
+        @source_table_limited ||= begin
+          if @limit.present?
+            source_table.all.limit(@limit).order(created_at: :desc)
+          else
+            source_table.all
+          end
         end
       end
 
