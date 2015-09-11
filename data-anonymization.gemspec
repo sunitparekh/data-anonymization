@@ -28,4 +28,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency('powerbar', '~> 1.0')
   gem.add_dependency('parallel', '~> 1.0')
   gem.add_dependency('thor', '~> 0.19')
+  gem.add_dependency('mongo', '~> 1.12.3')
 end
