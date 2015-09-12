@@ -76,7 +76,7 @@ Postgresql database having **composite primary key**
 
 
 #### 0.7.0 (Mar 9, 2015)
-1. Removed downcase from field name since it was causing issues with upper case field names. So now for databsae where case matters field name case should be maintained. 
+1. Removed downcase from field name since it was causing issues with upper case field names. So now for databsae where case matters field name case should be maintained.
 2. Upgraded gems to latest version
 
 
@@ -204,8 +204,9 @@ Read more about [blacklist and whitelist here](http://sunitspace.blogspot.in/201
 2. Change [default field strategies](#default-field-strategies) to avoid using same strategy again and again in your DSL.
 3. To run anonymization in parallel at Table level, provided no FK constraint on tables use DataAnon::Parallel::Table strategy
 4. For large table to load them in batches from table set 'batch_size' and it will use RoR's batch mode processing. Checkout [example](https://github.com/sunitparekh/data-anonymization/blob/master/examples/whitelist_dsl.rb) on how to use batch processing.
-5. Make sure to give proper case for fields and table names. 
-6. Use skip and continue to apply different strategies for records. 
+5. Make sure to give proper case for fields and table names.
+6. Use skip and continue to apply different strategies for records.
+7. Use 'limit' to limit the number of rows that will be imported in whitelist
 
 ## DSL Generation
 
@@ -268,7 +269,7 @@ The options available are :
 2. database(-d) : The name of the database to generate the whitelist script for
 3. username(-u) : Username for DB authentication
 4. password(-w) : Password for DB authentication
-5. port(-p)     : The port the database service is running on. 
+5. port(-p)     : The port the database service is running on.
 6. whitelist patterns(-r): A regex expression which can be used to match records in the database to list as whitelisted fields in the generated script.
 
 The host and database options are mandatory. The others are optional.
@@ -282,7 +283,7 @@ datanon generate_mongo_dsl -h 123.456.7.8 -d production_db
 
 ```
 
-The **mongo** gem is required in order to install the mongo db drivers. The script generates a file named **mongodb_whitelist_generated.rb** in the same location as the project. 
+The **mongo** gem is required in order to install the mongo db drivers. The script generates a file named **mongodb_whitelist_generated.rb** in the same location as the project.
 
 
 
@@ -575,7 +576,7 @@ DataAnon::Utils::Logging.logger.level = Logger::INFO
 
 ## Skip and Continue records
 
-*Skip* is used to skip records during anonymization when condition returns true. This records are ignored, 
+*Skip* is used to skip records during anonymization when condition returns true. This records are ignored,
 in blacklist it remains as it is in database and in case of whitelist this records will not be copied to destination database.
 
 ```ruby
@@ -587,11 +588,11 @@ table 'customers' do
   anonymize 'terms_n_condition', 'age'
 end
 ```
-  
-  
-*Continue* is exactly opposite of Skip and it continue with anonymization only if given condition returns true. 
+
+
+*Continue* is exactly opposite of Skip and it continue with anonymization only if given condition returns true.
 In case of blacklist records are anonymized for matching conditions and for whitelist records are anonymized and copied
-to new database for matching conditions. 
+to new database for matching conditions.
 
 ```ruby
 table 'customers' do
@@ -623,5 +624,3 @@ end
 - [Dan Abel](http://www.linkedin.com/pub/dan-abel/0/61b/9b0) for introducing me to Blacklist and Whitelist approach for data anonymization.
 - [Chirga Doshi](https://twitter.com/chiragsdoshi) for encouraging me to get this done.
 - [Aditya Karle](https://twitter.com/adityakarle) for the Logo. (Coming Soon...)
-
-
