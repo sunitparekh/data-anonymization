@@ -73,7 +73,7 @@ Postgresql database having **composite primary key**
 #### 0.7.2 (Sep 26, 2015)
 1. Upgraded MongoDB to latest gem version 2.1.0 and tested with MongoDB 3.x version.
 2. Upgraded gems to latest version 
-
+3. Adding limit functionality - Merge pull request #27 from yanismydj/master       
 
 #### 0.7.1 (Jun 13, 2015)
 1. Fixed issues with empty array data for MongoDB
