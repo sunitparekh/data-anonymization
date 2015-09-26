@@ -79,7 +79,7 @@ describe "End 2 End MongoDB Whitelist Acceptance Test" do
     end
 
     plans_coll = Mongo::Client.new("mongodb://localhost/dest").database.collection('plans')
-    plans_coll.find.count.should be 2
+    plans_coll.find.count.to_int.should be 2
     plan = plans_coll.find({ '_id' => 1}).to_a[0]
 
     plan['_id'].should == 1

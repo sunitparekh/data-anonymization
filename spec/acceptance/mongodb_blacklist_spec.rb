@@ -59,7 +59,7 @@ describe "End 2 End MongoDB Blacklist Acceptance Test" do
     end
 
     users_coll = Mongo::Client.new("mongodb://localhost/test").database().collection('users')
-    users_coll.find.count.should be 2
+    users_coll.find.count.to_int.should be 2
     user = users_coll.find({'_id' => 1}).to_a[0]
 
     user['_id'].should == 1
