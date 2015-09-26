@@ -23,7 +23,7 @@ module DataAnon
 
         def mongo_collection(database)
           options = database[:options] || {}
-          Mongo::Connection.from_uri(database[:mongodb_uri], options)[database[:database]][@name]
+          Mongo::Client.new(database[:mongodb_uri], options).database.collection(@name)
         end
 
         def dest_collection
@@ -39,7 +39,7 @@ module DataAnon
         alias :dest_table :dest_collection
 
         def process_record index, document
-          dest_collection.insert anonymize_document(document, index, @fields)
+          dest_collection.insert_one anonymize_document(document, index, @fields)
         end
 
         def anonymize_document document, index, field_strategies = {}

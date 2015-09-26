@@ -70,6 +70,11 @@ Postgresql database having **composite primary key**
 
 ## Changelog
 
+#### 0.7.2 (Sep 26, 2015)
+1. Upgraded MongoDB to latest gem version 2.1.0 and tested with MongoDB 3.x version.
+2. Upgraded gems to latest version 
+
+
 #### 0.7.1 (Jun 13, 2015)
 1. Fixed issues with empty array data for MongoDB
 2. Added feature to skip and continue records during anaonymisation, this is useful to apply different strategies for different types of records.

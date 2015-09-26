@@ -4,7 +4,7 @@ require 'mongo'
 describe "End 2 End MongoDB Blacklist Acceptance Test" do
 
   before(:each) do
-    Mongo::Connection.from_uri("mongodb://localhost/test").drop_database('test')
+    Mongo::Client.new("mongodb://localhost/test").database().drop()
     users = [
         {
             "_id" => 1,
@@ -36,8 +36,8 @@ describe "End 2 End MongoDB Blacklist Acceptance Test" do
             "alternate_emails" => ["abc@test.com","abc2@test.com"]
         }
     ]
-    users_coll = Mongo::Connection.from_uri("mongodb://localhost/dest")['test']['users']
-    users.each { |p| users_coll.save p }
+    users_coll = Mongo::Client.new("mongodb://localhost/test").database().collection('users')
+    users.each { |p| users_coll.insert_one p }
   end
 
   it "should anonymize plans collection" do
@@ -58,9 +58,9 @@ describe "End 2 End MongoDB Blacklist Acceptance Test" do
 
     end
 
-    users_coll = Mongo::Connection.from_uri("mongodb://localhost/test")['test']['users']
-    users_coll.count.should be 2
-    user = users_coll.find_one({'_id' => 1})
+    users_coll = Mongo::Client.new("mongodb://localhost/test").database().collection('users')
+    users_coll.find.count.should be 2
+    user = users_coll.find({'_id' => 1}).to_a[0]
 
     user['_id'].should == 1
     user['USER_ID'].should == "user-1"

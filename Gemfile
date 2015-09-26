@@ -8,6 +8,7 @@ group :development, :test do
   gem 'rspec'
   gem 'pry'
   gem 'sqlite3'
-  gem 'bson_ext'
+  gem 'mongo'
   gem 'coveralls', require: false
 end
+

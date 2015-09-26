@@ -4,8 +4,8 @@ require 'mongo'
 describe "End 2 End MongoDB Whitelist Acceptance Test" do
 
   before(:each) do
-    Mongo::Connection.from_uri("mongodb://localhost/test").drop_database('test')
-    Mongo::Connection.from_uri("mongodb://localhost/dest").drop_database('dest')
+    Mongo::Client.new("mongodb://localhost/test").database.drop
+    Mongo::Client.new("mongodb://localhost/dest").database.drop
     plans = [
         {
             "_id" => 1,
@@ -50,20 +50,20 @@ describe "End 2 End MongoDB Whitelist Acceptance Test" do
             "created_at" => Time.new(2012, 8, 11, 13, 1, 0)
         }
     ]
-    plans_coll = Mongo::Connection.from_uri("mongodb://localhost/dest")['test']['plans']
-    plans.each { |p| plans_coll.save p }
+    plans_coll =  Mongo::Client.new("mongodb://localhost/test").database.collection('plans')
+    plans.each { |p| plans_coll.insert_one p }
   end
 
   it "should anonymize plans collection" do
 
-    database 'test' do
+    database 'dest' do
       strategy DataAnon::Strategy::MongoDB::Whitelist
       source_db :mongodb_uri => "mongodb://localhost/test", :database => 'test'
       destination_db :mongodb_uri => "mongodb://localhost/dest", :database => 'dest'
 
       collection 'plans' do
         whitelist '_id', 'name', 'term', 'created_at'
-        anonymize('plan_aliases').using FieldStrategy::SelectFromList.new(["Free", "Team", "Business", "Paid"])
+        anonymize('plan_aliases').using FieldStrategy::SelectFromList.new(%w(Free Team Business Paid))
         anonymize 'public_sharing', 'photo_sharing'
 
         collection 'features' do
@@ -78,9 +78,9 @@ describe "End 2 End MongoDB Whitelist Acceptance Test" do
 
     end
 
-    plans_coll = Mongo::Connection.from_uri("mongodb://localhost/dest")['dest']['plans']
-    plans_coll.count.should be 2
-    plan = plans_coll.find_one({ '_id' => 1})
+    plans_coll = Mongo::Client.new("mongodb://localhost/dest").database.collection('plans')
+    plans_coll.find.count.should be 2
+    plan = plans_coll.find({ '_id' => 1}).to_a[0]
 
     plan['_id'].should == 1
     plan['name'].should == "Free"
@@ -99,7 +99,7 @@ describe "End 2 End MongoDB Whitelist Acceptance Test" do
     [true,false].should include(feature1['users']['additional'])
 
 
-    plan = plans_coll.find_one({ '_id' => 2})
+    plan = plans_coll.find({ '_id' => 2}).to_a[0]
     plan['plan_aliases'].length.should == 2
     ["Free", "Team", "Business", "Paid"].should include(plan['plan_aliases'][0])
     ["Free", "Team", "Business", "Paid"].should include(plan['plan_aliases'][1])

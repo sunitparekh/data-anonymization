@@ -8,7 +8,8 @@ module DataAnon
         end
 
         def process_record index, document
-          source_collection.save anonymize_document(document, index, @fields)
+          anonymized_document = anonymize_document(document, index, @fields)
+          source_collection.find({'_id' => anonymized_document['_id']}).update_one(anonymized_document)
         end
 
         def anonymize_document document, index, field_strategies = {}
