@@ -1,12 +1,14 @@
 require 'data-anonymization'
-
 require 'mongo'
-Mongo::Connection.from_uri("mongodb://localhost/test").drop_database('test')
-Mongo::Connection.from_uri("mongodb://localhost/dest").drop_database('dest')
-system "mongoimport -d test --drop -c users --jsonArray ./sample-data/mongo/users.json"
-system "mongoimport -d test --drop -c plans --jsonArray ./sample-data/mongo/plans.json"
 
 DataAnon::Utils::Logging.logger.level = Logger::INFO
+Mongo::Logger.logger.level = Logger::WARN
+
+
+Mongo::Client.new("mongodb://localhost/test").database.drop
+Mongo::Client.new("mongodb://localhost/dest").database.drop
+system "mongoimport --host=127.0.0.1 -d test --drop -c users --jsonArray ./sample-data/mongo/users.json"
+system "mongoimport --host=127.0.0.1 -d test --drop -c plans --jsonArray ./sample-data/mongo/plans.json"
 
 database 'test' do
   strategy DataAnon::Strategy::MongoDB::Whitelist
@@ -26,7 +28,7 @@ database 'test' do
 
   collection 'plans' do
     whitelist '_id', 'name','term', 'created_at'
-    anonymize('plan_aliases').using FieldStrategy::AnonymizeArray.new(FieldStrategy::SelectFromList.new(["Free","Team","Business","Paid"]))
+    anonymize('plan_aliases').using FieldStrategy::AnonymizeArray.new(FieldStrategy::SelectFromList.new(%w(Free Team Business Paid)))
     anonymize 'public_sharing','photo_sharing'
 
     collection 'features' do
