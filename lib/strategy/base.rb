@@ -76,14 +76,16 @@ module DataAnon
 
       def dest_table
         return @dest_table unless @dest_table.nil?
-        DataAnon::Utils::DestinationDatabase.establish_connection @destination_database if @destination_database
-        @dest_table = Utils::DestinationTable.create @name, @primary_keys
+        table_klass = Utils::DestinationTable.create @name, @primary_keys
+        table_klass.establish_connection @destination_database if @destination_database
+        @dest_table = table_klass
       end
 
       def source_table
         return @source_table unless @source_table.nil?
-        DataAnon::Utils::SourceDatabase.establish_connection @source_database
-        @source_table = Utils::SourceTable.create @name, @primary_keys
+        table_klass = Utils::SourceTable.create @name, @primary_keys
+        table_klass.establish_connection @source_database
+        @source_table = table_klass
       end
 
       def process
