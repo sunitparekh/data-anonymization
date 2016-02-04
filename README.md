@@ -70,6 +70,9 @@ Postgresql database having **composite primary key**
 
 ## Changelog
 
+#### 0.7.3 (Feb 5, 2016)
+1. Fixed issue with batchsize. Thanks to [Jan Raasch](https://github.com/janraasch) for sending pull request. 
+
 #### 0.7.2 (Sep 26, 2015)
 1. Upgraded MongoDB to latest gem version 2.1.0 and tested with MongoDB 3.x version.
 2. Upgraded gems to latest version 
