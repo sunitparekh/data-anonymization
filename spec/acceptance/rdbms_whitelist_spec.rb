@@ -53,6 +53,29 @@ describe 'End 2 End RDBMS Whitelist Acceptance Test using SQLite database' do
     new_rec.updated_at.should == Time.new(2010,5,5)
   end
 
+  describe 'batch_size' do
+    it 'processes all records in batches' do
+      database 'Customer' do
+        strategy DataAnon::Strategy::Whitelist
+        source_db source_connection_spec
+        destination_db dest_connection_spec
+
+        table 'customers' do
+          batch_size 1
+          whitelist 'first_name'
+        end
+      end
+
+      DataAnon::Utils::DestinationDatabase.establish_connection dest_connection_spec
+      dest_table = DataAnon::Utils::DestinationTable.create 'customers'
+      dest_table.count.should == 2
+      first_rec = dest_table.first
+      first_rec.first_name.should eq('Sunit')
+      second_rec = dest_table.second
+      second_rec.first_name.should eq('Rohit')
+    end
+  end
+
   describe 'limiting' do
     it 'returns only last record' do
       database 'Customer' do
