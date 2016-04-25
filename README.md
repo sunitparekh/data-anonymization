@@ -501,7 +501,7 @@ has following attribute accessor
 <tr>
 <td align="left">Last name</td>
 <td align="left"><a href="http://rubydoc.info/github/sunitparekh/data-anonymization/DataAnon/Strategy/Field/RandomLastName">RandomLastName</a></td>
-<td align="left">Randomly picks up first name from the predefined list in the file. Default <a href="https://raw.github.com/sunitparekh/data-anonymization/master/resources/first_names.txt">file</a> is part of the gem.</td>
+<td align="left">Randomly picks up last name from the predefined list in the file. Default <a href="https://raw.github.com/sunitparekh/data-anonymization/master/resources/last_names.txt">file</a> is part of the gem.</td>
 </tr>
 <tr>
 <td align="left">Full Name</td>
