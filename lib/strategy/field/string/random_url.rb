@@ -13,7 +13,7 @@ module DataAnon
 
           url = field.value
           randomized_url = ""
-          protocols = url.scan(/http:\/\/|www\./)
+          protocols = url.scan(/https?:\/\/|www\./)
           protocols.each do |token|
             url = url.gsub(token,"")
             randomized_url += token
