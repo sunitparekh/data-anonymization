@@ -100,6 +100,7 @@ module DataAnon
           end
           progress.close
         end
+	source_table.clear_all_connections!
       end
 
       def process_table progress
