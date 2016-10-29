@@ -48,8 +48,12 @@ module DataAnon
           logger.error "\n#{e.message} \n #{e.backtrace}"
         end
         if @strategy.whitelist?
-          logger.info("Fields missing the anonymization strategy")
-          @tables.each { |table| table.fields_missing_strategy.print }
+          @tables.each do |table|
+            if table.fields_missing_strategy.present?
+              logger.info('Fields missing the anonymization strategy:')
+              table.fields_missing_strategy.print
+            end
+          end
         end
 
         @tables.each { |table| table.errors.print }

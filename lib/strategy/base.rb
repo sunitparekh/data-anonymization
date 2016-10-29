@@ -100,7 +100,9 @@ module DataAnon
           end
           progress.close
         end
-	source_table.clear_all_connections!
+        if source_table.respond_to?('clear_all_connections!')
+	        source_table.clear_all_connections!
+        end
       end
 
       def process_table progress
