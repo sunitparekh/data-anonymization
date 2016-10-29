@@ -1,15 +1,9 @@
 require 'active_record'
-require 'protected_attributes'
 require 'composite_primary_keys'
 require 'logger'
 
 module DataAnon
   module Utils
-
-    class MassAssignmentIgnoreSanitizer < ActiveModel::MassAssignmentSecurity::Sanitizer
-      def process_removed_attributes(klass, attrs)
-      end
-    end
 
     class TempDatabase < ActiveRecord::Base
       self.abstract_class = true
@@ -38,7 +32,6 @@ module DataAnon
             self.primary_key = primary_keys[0] if primary_keys.length == 1
             self.primary_key = nil if primary_keys.length == 0
             self.inheritance_column = :_type_disabled
-            self.mass_assignment_sanitizer = MassAssignmentIgnoreSanitizer.new
           end
         )
       end

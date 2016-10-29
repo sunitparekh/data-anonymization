@@ -70,6 +70,9 @@ Postgresql database having **composite primary key**
 
 ## Changelog
 
+#### 0.8.0.rc1 (Sep 5, 2016)
+1. Upgraded to rails 5.0, please report any issue or use case not working. 
+
 #### 0.7.3 (Feb 5, 2016)
 1. Fixed issue with batchsize. Thanks to [Jan Raasch](https://github.com/janraasch) for sending pull request. 
 

@@ -24,6 +24,10 @@ module DataAnon
         end
       end
 
+      def present?
+        fields_missing_strategy.size > 0
+      end
+
     end
 
   end

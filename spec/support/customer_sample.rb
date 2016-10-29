@@ -1,8 +1,6 @@
-require 'protected_attributes'
-
 class CustomerSample
 
-  class CreateCustomer < ActiveRecord::Migration
+  class CreateCustomer < ActiveRecord::Migration[5.0]
     def up
       create_table :customers, { :id => false, :force => true } do |t|
         t.integer :cust_id, :primary => true
