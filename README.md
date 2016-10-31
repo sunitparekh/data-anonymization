@@ -70,6 +70,12 @@ Postgresql database having **composite primary key**
 
 ## Changelog
 
+#### 0.8.0 (Oct 31, 2016)
+1. Upgraded to rails 5.x 
+
+#### 0.7.4 (Oct 29, 2016)
+1. Continue to work on rails 4.x. Minor changes based on feedback. 
+
 #### 0.8.0.rc1 (Sep 5, 2016)
 1. Upgraded to rails 5.0, please report any issue or use case not working. 
 
