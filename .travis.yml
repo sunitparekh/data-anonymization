@@ -4,5 +4,5 @@ services:
 before_install: gem install bundler -v 1.12.5
 before_script: rake empty_dest
 rvm:
-  - 2.2.5
-  - 2.3.1
+  - 2.2.6
+  - 2.3.3
