@@ -18,13 +18,13 @@ module DataAnon
 
       def generate
 
-        db = Mongo::Connection.from_uri(@mongodb_uri)[@configuration_hash[:database]]
+        db = Mongo::Client.new(@mongodb_uri, :database => @configuration_hash[:database])
         collections = db.collections
         collections.each do |collection|
           unless collection.name.start_with?('system.')
             depth = 2
             @output << "\tcollection '#{collection.name}' do"
-            document = collection.find_one
+            document = collection.find({}).first
             process_document(depth, document)
             @output << "\tend\n"
           end
@@ -63,4 +63,3 @@ module DataAnon
     end
   end
 end
-
