@@ -37,6 +37,10 @@ module DataAnon
         @limit = limit
       end
 
+      def thread_num thread_num
+        @thread_num = thread_num
+      end
+
       def whitelist *fields
         fields.each { |f| @fields[f] = DataAnon::Strategy::Field::Whitelist.new }
       end
@@ -95,13 +99,15 @@ module DataAnon
           progress = progress_bar.new(@name, total)
           if @primary_keys.empty? || !@batch_size.present?
             process_table progress
+          elsif @thread_num.present?
+            process_table_in_threads progress
           else
             process_table_in_batches progress
           end
           progress.close
         end
         if source_table.respond_to?('clear_all_connections!')
-	        source_table.clear_all_connections!
+          source_table.clear_all_connections!
         end
       end
 
@@ -130,6 +136,40 @@ module DataAnon
           rescue => exception
             @errors.log_error record, exception
           end
+          progress.show index
+        end
+      end
+
+      def process_table_in_threads progress
+        logger.info "Processing table #{@name} records in batch size of #{@batch_size} [THREADS]"
+
+        index = 0
+        threads = []
+
+        source_table.find_in_batches(batch_size: @batch_size) do |records|
+          until threads.count(&:alive?) <= @thread_num
+            thr = threads.delete_at 0
+            thr.join
+            progress.show index
+          end
+
+          thr = Thread.new {
+            records.each do |record|
+              begin
+                process_record_if index, record
+                index += 1
+              rescue => exception
+                puts exception.inspect
+                @errors.log_error record, exception
+              end
+            end
+          }
+          threads << thr
+        end
+
+        until threads.empty?
+          thr = threads.delete_at 0
+          thr.join
           progress.show index
         end
       end
