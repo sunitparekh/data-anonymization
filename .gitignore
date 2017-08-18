@@ -19,3 +19,4 @@ tmp
 sample-data/chinook-empty.sqlite
 tmp
 examples/mongodb_whitelist_generated.rb
+data
