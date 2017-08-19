@@ -5,6 +5,7 @@ module DataAnon
       class DefaultAnon
 
         DEFAULT_STRATEGIES = {:string => FieldStrategy::RandomString.new,
+                              :integer => FieldStrategy::RandomIntegerDelta.new(5),
                               :fixnum => FieldStrategy::RandomIntegerDelta.new(5),
                               :bignum => FieldStrategy::RandomIntegerDelta.new(5000),
                               :float => FieldStrategy::RandomFloatDelta.new(5.0),

@@ -1,4 +1,4 @@
-system "bundle exec ruby examples/whitelist_dsl.rb"
+system 'bundle exec ruby examples/whitelist_dsl.rb'
 
 require 'data-anonymization'
 
@@ -18,7 +18,7 @@ database 'Chinook' do
     anonymize('City').using FieldStrategy::RandomCity.region_US
     anonymize('State').using FieldStrategy::RandomProvince.region_US
     anonymize('PostalCode').using FieldStrategy::RandomZipcode.region_US
-    anonymize('Country') {|field| "USA" }
+    anonymize('Country') {|field| 'USA'}
     anonymize('Phone').using FieldStrategy::RandomPhoneNumber.new
     anonymize('Fax').using FieldStrategy::RandomPhoneNumber.new
     anonymize('Email').using FieldStrategy::StringTemplate.new('test+#{row_number}@gmail.com')
@@ -33,7 +33,7 @@ database 'Chinook' do
     anonymize('City').using FieldStrategy::RandomCity.region_US
     anonymize('State').using FieldStrategy::RandomProvince.region_US
     anonymize('PostalCode').using FieldStrategy::RandomZipcode.region_US
-    anonymize('Country') {|field| "USA" }
+    anonymize('Country') {|field| 'USA'}
     anonymize('Fax').using FieldStrategy::RandomPhoneNumber.new
     anonymize('Email').using FieldStrategy::StringTemplate.new('test+#{row_number}@gmail.com')
   end

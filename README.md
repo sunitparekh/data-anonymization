@@ -70,6 +70,10 @@ Postgresql database having **composite primary key**
 
 ## Changelog
 
+#### 0.8.1 (Aug 19, 2017)
+1. Multi-threading support added by [stanislav-tyutin](https://github.com/stanislav-tyutin) using Pull Request.  
+2. Fixed to work with Ruby 2.4.x, issue with Integer data type
+
 #### 0.8.0 (Oct 31, 2016)
 1. Upgraded to rails 5.x 
 

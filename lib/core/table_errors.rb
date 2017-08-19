@@ -11,7 +11,7 @@ module DataAnon
 
       def log_error record, exception
         @errors << { :record => record, :exception => exception}
-        raise "Reached limit of error for a table" if @errors.length > 100
+        raise 'Reached limit of error for a table' if @errors.length > 100
       end
 
       def errors

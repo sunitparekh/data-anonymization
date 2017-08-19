@@ -1,4 +1,4 @@
-require "spec_helper"
+require 'spec_helper'
 
 describe DataAnon::Strategy::Field::RandomAddress do
 
@@ -7,6 +7,6 @@ describe DataAnon::Strategy::Field::RandomAddress do
 
   describe 'anonymized address should be different from original address' do
     let(:anonymized_address) {RandomAddress.region_US.anonymize(field)}
-    it {anonymized_address.should_not eq("1 Infinite Loop")}
+    it {anonymized_address.should_not eq('1 Infinite Loop')}
   end
 end

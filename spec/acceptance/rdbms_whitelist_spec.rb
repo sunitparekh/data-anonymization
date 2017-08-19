@@ -1,4 +1,4 @@
-require "spec_helper"
+require 'spec_helper'
 
 describe 'End 2 End RDBMS Whitelist Acceptance Test using SQLite database' do
 

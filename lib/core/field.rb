@@ -3,7 +3,7 @@ module DataAnon
 
     class Field
 
-      def initialize name, value, row_number, ar_record, table_name = "unknown"
+      def initialize name, value, row_number, ar_record, table_name = 'unknown'
         @name = name
         @value = value
         @row_number = row_number

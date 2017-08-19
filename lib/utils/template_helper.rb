@@ -5,9 +5,11 @@ module DataAnon
       def self.source_connection_specs_rdbms config_hash
 
         config_hash.keys.reject{|key| config_hash[key].nil? }.collect { |key|
-          if ((config_hash[key].class.to_s.downcase == "string"))
+          if ((config_hash[key].class.to_s.downcase == 'string'))
             ":#{key} => '#{config_hash[key]}'"
-          elsif ((config_hash[key].class.to_s.downcase == "fixnum"))
+          elsif ((config_hash[key].class.to_s.downcase == 'integer'))
+            ":#{key} => #{config_hash[key]}"
+          elsif ((config_hash[key].class.to_s.downcase == 'fixnum'))
             ":#{key} => #{config_hash[key]}"
           end
         }.join ', '

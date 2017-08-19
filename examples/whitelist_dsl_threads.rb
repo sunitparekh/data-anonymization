@@ -28,8 +28,7 @@ database 'Chinook' do
 
   table 'Customer' do
     primary_key 'CustomerId'
-    batch_size 5  # batch_size works only if the primary_key is defined for the table
-    limit 10 # will only take last 10 records
+    thread_num 5  # thread_num
 
     whitelist 'CustomerId', 'SupportRepId', 'Company'
     anonymize('Phone').using FieldStrategy::RandomPhoneNumber.new
@@ -45,7 +44,7 @@ database 'Chinook' do
   end
 
   table 'Employee' do
-    batch_size 5  # this won't work since there is no 'primary_key' defined
+    thread_num 5  # thread_num
 
     whitelist 'EmployeeId', 'ReportsTo', 'Title'
     anonymize('BirthDate').using FieldStrategy::DateTimeDelta.new(1, 1)
