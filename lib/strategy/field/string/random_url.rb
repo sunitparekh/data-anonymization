@@ -5,7 +5,7 @@ module DataAnon
       # Generates a randomized URL while maintaining the structure of the original url
       #
       #    !!!ruby
-      #    anonymize('fb_profile').using FieldStrategy::RandomURL.new
+      #    anonymize('fb_profile').using FieldStrategy::RandomUrl.new
 
     class RandomUrl
 
