@@ -228,6 +228,7 @@ Read more about [blacklist and whitelist here](http://sunitspace.blogspot.in/201
 5. Make sure to give proper case for fields and table names.
 6. Use skip and continue to apply different strategies for records.
 7. Use 'limit' to limit the number of rows that will be imported in whitelist
+8. RDBMS databases utilizing schemas can be specified via `schema_search_path`: `source_db { ... schema_search_path: 'public,my_special_schema' }`
 
 ## DSL Generation
 
