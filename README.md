@@ -1,6 +1,17 @@
 # Data::Anonymization
 Afraid of using production data due to privacy issues? Data Anonymization is a tool that helps you build anonymized production data dumps which you can use for performance testing, security testing, debugging and development.
 
+## Java/Kotlin version
+
+Java/Kotlin version of tool supporting RDBMS databases is available with similar easy to use DSL. 
+* [Kotlin/Java Data Anonymization Tool](https://github.com/dataanon/data-anon)
+* [Kotlin Maven Sample Project](https://github.com/dataanon/dataanon-kotlin-sample)
+* [Java Maven Sample Project](https://github.com/dataanon/dataanon-java-sample)
+
+
+----------------------
+
+
 [<img src="https://secure.travis-ci.org/sunitparekh/data-anonymization.png?branch=master">](http://travis-ci.org/sunitparekh/data-anonymization)
 [<img src="https://gemnasium.com/sunitparekh/data-anonymization.png?travis">](https://gemnasium.com/sunitparekh/data-anonymization)
 [<img src="https://codeclimate.com/badge.png">](https://codeclimate.com/github/sunitparekh/data-anonymization)
