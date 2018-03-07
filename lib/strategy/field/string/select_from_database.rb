@@ -12,16 +12,23 @@ module DataAnon
         include Utils::Logging
 
         def initialize table_name, field_name, connection_spec
-          DataAnon::Utils::SourceDatabase.establish_connection connection_spec
-          source = Utils::SourceTable.create table_name, []
-          @values = source.select(field_name).distinct.collect { |record| record[field_name]}
-          logger.debug "For field strategy #{table_name}:#{field_name} using values #{@values} "
-
+          @table_name = table_name
+          @field_name = field_name
+          @connection_spec = connection_spec
         end
 
+        def anonymize field
+          @values ||= begin
+            DataAnon::Utils::SourceDatabase.establish_connection @connection_spec
+            source = Utils::SourceTable.create @table_name, []
+            values = source.select(@field_name).distinct.collect { |record| record[@field_name]}
+            logger.debug "For field strategy #{@table_name}:#{@field_name} using values #{values} "
+            values
+          end
+
+          super
+        end
       end
-
-
     end
   end
 end
