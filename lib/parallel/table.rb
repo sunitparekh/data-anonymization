@@ -5,7 +5,7 @@ module DataAnon
     class Table
 
       def anonymize tables
-        ::Parallel.each(tables) do |table|
+        ::Parallel.each(tables.sort_by{|t| t.source_table.count}.reverse) do |table|
           begin
             table.progress_bar_class DataAnon::Utils::ParallelProgressBar
             table.process
