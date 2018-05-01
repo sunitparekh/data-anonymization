@@ -95,7 +95,7 @@ describe 'End 2 End MongoDB Whitelist Acceptance Test' do
     feature1 = plan['features'][0]
     [10737418240, 21474836480, 53687091200].should include(feature1['max_storage'])
     feature1['type'].should == 'AmazonS3'
-    feature1['users']['max'].should be_kind_of(Fixnum)
+    feature1['users']['max'].should be_kind_of(Integer)
     [true,false].should include(feature1['users']['additional'])
 
 
