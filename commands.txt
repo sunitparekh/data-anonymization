@@ -1,0 +1,4 @@
+bundle update
+bundle outdated
+
+bundle exec rake
