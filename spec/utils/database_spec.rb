@@ -16,10 +16,7 @@ describe 'Utils' do
     album.all.length > 0
   end
 
-  # This is a specific example encountered in the wild
-  # Instead of creating a new class it references
-  # ActiveSupport::Callbacks::Conditionals
-  it 'creates a table for an in-scope constant' do
+  it 'ignores inherited constants when creating a table with matching name' do
     conditionals = DataAnon::Utils::SourceTable.create 'Conditionals'
     conditionals.count.should == 0
     conditionals.all.length == 0
