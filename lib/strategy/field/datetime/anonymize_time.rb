@@ -58,8 +58,8 @@ module DataAnon
           month = @anonymize_month? DataAnon::Utils::RandomInt.generate(1,12) : original_time.month
           days_in_month = Time.new(year,month,1,1,1,1).end_of_month.day
           day = @anonymize_day? DataAnon::Utils::RandomInt.generate(1,days_in_month) : original_time.day
-          hour = @anonymize_hour? DataAnon::Utils::RandomInt.generate(1,24) : original_time.hour
-          min = @anonymize_min? DataAnon::Utils::RandomInt.generate(1,60) : original_time.min
+          hour = @anonymize_hour? DataAnon::Utils::RandomInt.generate(0,23) : original_time.hour
+          min = @anonymize_min? DataAnon::Utils::RandomInt.generate(0,59) : original_time.min
           sec = original_time.sec
 
           create_object(year, month, day, hour, min, sec)
