@@ -11,6 +11,10 @@ module DataAnon
           begin
             anonymized_document = anonymize_document(document, index, @fields)
             updates = flatten_for_update anonymized_document
+            # skip empty documents/updates
+            if ((updates.kind_of?(Array) || updates.kind_of?(Hash)) && updates.size == 0)
+              return;
+            end
             # differential mongodb update via { $set: { 'doc.nested.array.0.attr': 'value' }}
             source_collection.update_one({ "_id" => id }, { "$set" => updates })
           rescue StandardError => e
