@@ -13,11 +13,39 @@ module DataAnon
         @destination_database = destination_database
         @fields_missing_strategy = DataAnon::Core::FieldsMissingStrategy.new name
         @errors = DataAnon::Core::TableErrors.new(@name)
+        @bulk_process = defined?(::ActiveRecord::Import)
         @primary_keys = []
       end
 
       def self.whitelist?
         false
+      end
+
+      def bulk_process?
+        @bulk_process
+      end
+
+      def bulk_process flag
+        @bulk_process = flag
+      end
+
+      def collect_for_bulk_process record
+        Thread.current[:bulk_process_records] << record
+      end
+
+      def bulk_process_records
+        if bulk_process?
+          Thread.current[:bulk_process_records] = []
+          yield
+          bulk_store Thread.current[:bulk_process_records]
+        else
+          yield
+        end
+      end
+
+      def bulk_store(records)
+        columns = dest_table.column_names
+        dest_table.import columns, records, validate: false, on_duplicate_key_update: columns, timestamps: false
       end
 
       def process_fields &block
@@ -114,14 +142,16 @@ module DataAnon
       def process_table progress
         index = 0
 
-        source_table_limited.each do |record|
-          index += 1
-          begin
-            process_record_if index, record
-          rescue => exception
-            @errors.log_error record, exception
+        bulk_process_records do
+          source_table_limited.each do |record|
+            index += 1
+            begin
+              process_record_if index, record
+            rescue => exception
+              @errors.log_error record, exception
+            end
+            progress.show index
           end
-          progress.show index
         end
       end
 
@@ -129,14 +159,18 @@ module DataAnon
         logger.info "Processing table #{@name} records in batch size of #{@batch_size}"
         index = 0
 
-        source_table_limited.find_each(:batch_size => @batch_size) do |record|
-          index += 1
-          begin
-            process_record_if index, record
-          rescue => exception
-            @errors.log_error record, exception
+        source_table_limited.find_in_batches(:batch_size => @batch_size) do |records|
+          bulk_process_records do
+            records.each do |record|
+              index += 1
+              begin
+                process_record_if index, record
+              rescue => exception
+                @errors.log_error record, exception
+              end
+              progress.show index
+            end
           end
-          progress.show index
         end
       end
 
@@ -154,13 +188,15 @@ module DataAnon
           end
 
           thr = Thread.new {
-            records.each do |record|
-              begin
-                process_record_if index, record
-                index += 1
-              rescue => exception
-                puts exception.inspect
-                @errors.log_error record, exception
+            bulk_process_records do
+              records.each do |record|
+                begin
+                  process_record_if index, record
+                  index += 1
+                rescue => exception
+                  puts exception.inspect
+                  @errors.log_error record, exception
+                end
               end
             end
           }
@@ -198,7 +234,6 @@ module DataAnon
       def progress_bar_class progress_bar
         @progress_bar = progress_bar
       end
-
 
     end
   end
