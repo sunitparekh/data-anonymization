@@ -4,7 +4,7 @@ require 'bigdecimal'
 describe FieldStrategy::RandomBigDecimalDelta do
 
   RandomBigDecimalDelta = FieldStrategy::RandomBigDecimalDelta
-  let(:field) {DataAnon::Core::Field.new('decimal_field',BigDecimal.new("53422342378687687342893.23324"),1,nil)}
+  let(:field) {DataAnon::Core::Field.new('decimal_field',BigDecimal("53422342378687687342893.23324"),1,nil)}
 
   describe 'anonymized big decimal should not be the same as original value' do
     let(:anonymized_value) {RandomBigDecimalDelta.new.anonymize(field)}

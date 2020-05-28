@@ -22,10 +22,4 @@ describe 'Utils' do
     conditionals.all.length == 0
   end
 
-  it 'should test the connection to destination database' do
-    album = DataAnon::Utils::DestinationTable.create 'Album', ['AlbumId']
-    album.count.should == 0
-    album.all.length == 0
-  end
-
 end

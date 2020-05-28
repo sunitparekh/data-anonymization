@@ -16,7 +16,7 @@ module DataAnon
         end
 
         def anonymize field
-          return BigDecimal.new("#{field.value + DataAnon::Utils::RandomFloat.generate(-@delta, +@delta)}")
+          return BigDecimal("#{field.value + DataAnon::Utils::RandomFloat.generate(-@delta, +@delta)}")
         end
 
       end
