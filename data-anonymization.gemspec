@@ -20,11 +20,11 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
 
   gem.add_dependency('activerecord', '~> 6.1')
-  gem.add_dependency('composite_primary_keys', '~> 13.0')
   gem.add_dependency('activesupport', '~> 6.1')
-  gem.add_dependency('rgeo', '~> 1.0')
-  gem.add_dependency('rgeo-geojson', '~> 2.0')
-  gem.add_dependency('powerbar', '~> 1.0')
-  gem.add_dependency('parallel', '~> 1.12')
-  gem.add_dependency('thor', '~> 0.20.3')
+  gem.add_dependency('composite_primary_keys', '~> 13.0')
+  gem.add_dependency('parallel', '~> 1.20')
+  gem.add_dependency('powerbar', '~> 2.0')
+  gem.add_dependency('rgeo', '~> 2.3')
+  gem.add_dependency('rgeo-geojson', '~> 2.1')
+  gem.add_dependency('thor', '~> 1.1')
 end
