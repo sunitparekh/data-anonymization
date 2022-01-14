@@ -19,10 +19,10 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ['lib']
 
-  gem.add_dependency('activerecord', '~> 6.1')
-  gem.add_dependency('activesupport', '~> 6.1')
-  gem.add_dependency('composite_primary_keys', '~> 13.0')
-  gem.add_dependency('parallel', '~> 1.20')
+  gem.add_dependency('activerecord', '~> 7.0')
+  gem.add_dependency('activesupport', '~> 7.0')
+  gem.add_dependency('composite_primary_keys', '~> 14.0')
+  gem.add_dependency('parallel', '~> 1.21')
   gem.add_dependency('powerbar', '~> 2.0')
   gem.add_dependency('rgeo', '~> 2.3')
   gem.add_dependency('rgeo-geojson', '~> 2.1')

@@ -1,8 +1,8 @@
 class CustomerSample
 
-  class CreateCustomer < ActiveRecord::Migration[5.0]
+  class CreateCustomer < ActiveRecord::Migration[7.0]
     def up
-      create_table :customers, { :id => false, :force => true } do |t|
+      create_table :customers, :id => false, :force => true do |t|
         t.integer :cust_id, :primary => true
         t.string :first_name
         t.string :last_name
