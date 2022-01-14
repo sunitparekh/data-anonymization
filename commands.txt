@@ -1,4 +1,4 @@
-bundle update
-bundle outdated
+rbenv exec bundle update
+rbenv exec bundle outdated
 
-bundle exec rake
+rbenv exec bundle exec rake
