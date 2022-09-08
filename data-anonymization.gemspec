@@ -24,7 +24,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency('composite_primary_keys', '~> 14.0')
   gem.add_dependency('parallel', '~> 1.21')
   gem.add_dependency('powerbar', '~> 2.0')
-  gem.add_dependency('rgeo', '~> 2.3')
-  gem.add_dependency('rgeo-geojson', '~> 2.1')
-  gem.add_dependency('thor', '~> 1.1')
+  gem.add_dependency('rgeo', '~> 2.4.0')
+  gem.add_dependency('rgeo-geojson', '~> 2.1.1')
+  gem.add_dependency('thor', '~> 1.2.1')
 end
