@@ -19,9 +19,12 @@ module DataAnon
         @primary_keys.each do |key|
           dest_record[key] = record[key]
         end
-        dest_record.save!
+        if bulk_process?
+          collect_for_bulk_process(dest_record)
+        else
+          dest_record.save!
+        end
       end
-
 
     end
   end

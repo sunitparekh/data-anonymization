@@ -12,7 +12,14 @@ module DataAnon
             updates[database_field_name] = strategy.anonymize(field)
           end
         end
-        record.update_columns(updates) if updates.any?
+        if updates.any?
+          if bulk_process?
+            record.assign_attributes(updates)
+            collect_for_bulk_process(record)
+          else
+            record.update_columns(updates)
+          end
+        end
       end
 
     end
