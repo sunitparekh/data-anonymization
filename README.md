@@ -204,10 +204,9 @@ Read more about [data anonymization here](http://sunitspace.blogspot.in/2012/09/
 ## Anonymization Strategies
 
 ### Blacklist
-This approach essentially leaves all fields unchanged with the exception of those specified by the user, which are scrambled/anonymized (hence the name blacklist).
-For `Blacklist` create a copy of prod database and chooses the fields to be anonymized like e.g. username, password, email, name, geo location etc. based on user specification. Most of the fields have different rules e.g. password should be set to same value for all users, email needs to be valid.
+This approach essentially leaves all fields unchanged, except for those specified by the user, which are scrambled/anonymized (hence the name "blacklist"). For the blacklist method, create a copy of the production database and choose the fields to be anonymized, such as username, password, email, name, geolocation, etc., based on user specifications. Most fields have different rules; for example, the password should be set to the same value for all users, and the email needs to be valid.
 
-The problem with this approach is that when new fields are added they will not be anonymized by default. Human error in omitting users personal data could be damaging.
+The problem with this approach is that when new fields are added, they will not be anonymized by default. Human error in omitting users' personal data could be damaging
 
 ```ruby
 database 'DatabaseName' do
