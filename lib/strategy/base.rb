@@ -95,6 +95,7 @@ module DataAnon
       def process
         logger.debug "Processing table #{@name} with fields strategies #{@fields}"
         total = source_table.count
+
         if total > 0
           progress = progress_bar.new(@name, total)
           if @primary_keys.empty? || !@batch_size.present?
@@ -106,8 +107,8 @@ module DataAnon
           end
           progress.close
         end
-        if source_table.respond_to?('clear_all_connections!')
-          source_table.clear_all_connections!
+        if source_table.respond_to?("connection_handler")
+          source_table.connection_handler.clear_all_connections!
         end
       end
 
