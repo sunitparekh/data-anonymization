@@ -81,6 +81,9 @@ Postgresql database having **composite primary key**
 
 ## Changelog
 
+#### 0.8.10 (Mar 20, 2024)
+1. Upgraded to rails 7.1
+
 #### 0.8.7 (Jan 14, 2022)
 1. Upgraded to rails 7.x
 
