@@ -17,6 +17,8 @@ test/version_tmp
 tmp
 .idea
 sample-data/chinook-empty.sqlite
+sample-data/chinook.sqlite-shm
+sample-data/chinook.sqlite-wal
 tmp
 examples/mongodb_whitelist_generated.rb
 data
