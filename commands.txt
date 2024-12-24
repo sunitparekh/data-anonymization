@@ -2,3 +2,7 @@ rbenv exec bundle update
 rbenv exec bundle outdated
 
 rbenv exec bundle exec rake
+
+
+
+mongod --dbpath ./data  
