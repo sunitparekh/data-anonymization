@@ -1,8 +1,21 @@
 rbenv exec bundle update
 rbenv exec bundle outdated
 
+# run tests
 rbenv exec bundle exec rake
 
-
-
+# start mongodb database
 mongod --dbpath ./data  
+
+
+# git commands
+git pull --rebase
+git add .    
+git commit -m "upgraded to ActiveRecord and ActiveSupport 8.0"
+git push
+
+
+# ruby gemspec commands
+gem build data-anonymization.gemspec
+gem push data-anonymization-0.9.0.gem
+
