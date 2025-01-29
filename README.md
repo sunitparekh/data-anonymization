@@ -81,9 +81,11 @@ Postgresql database having **composite primary key**
 
 ## Changelog
 
+#### 0.9.0 (Jan 29, 2025)
+1. Fixed issue with connection pool
+
 #### 0.9.0 (Dec 24, 2024)
 1. Upgraded to rails 8.0
-
 
 #### 0.8.10 (Mar 20, 2024)
 1. Upgraded to rails 7.1

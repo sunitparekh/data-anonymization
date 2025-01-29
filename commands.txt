@@ -17,5 +17,5 @@ git push
 
 # ruby gemspec commands
 gem build data-anonymization.gemspec
-gem push data-anonymization-0.9.0.gem
+gem push data-anonymization-0.9.1.gem
 

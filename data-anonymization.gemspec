@@ -12,6 +12,7 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Tool to create anonymized production data dump to use for performance and testing environments.}
   gem.homepage      = 'http://sunitparekh.github.com/data-anonymization'
   gem.license       = 'MIT'
+  gem.required_ruby_version = '>= 3.0'
 
 
   gem.files         = `git ls-files`.split($/).select { |f| !f.match(/^sample-data/) }
